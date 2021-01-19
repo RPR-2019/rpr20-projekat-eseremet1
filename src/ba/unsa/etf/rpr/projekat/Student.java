@@ -12,7 +12,6 @@ public class Student {
     private SimpleStringProperty password;
     private String picture;
 
-
     public Student() {
     }
 
