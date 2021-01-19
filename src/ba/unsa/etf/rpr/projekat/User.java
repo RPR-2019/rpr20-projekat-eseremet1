@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.projekat;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class User {
+abstract public class User {
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
     private SimpleStringProperty surname;
@@ -15,13 +15,13 @@ public class User {
     public User() {
     }
 
-    public User(SimpleIntegerProperty id, SimpleStringProperty name, SimpleStringProperty surname, SimpleStringProperty email, SimpleStringProperty username, SimpleStringProperty password, String picture) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.username = username;
-        this.password = password;
+    public User(Integer id, String name, String surname, String email, String username, String password, String picture) {
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.surname = new SimpleStringProperty(surname);
+        this.email = new SimpleStringProperty(email);
+        this.username = new SimpleStringProperty(username);
+        this.password = new SimpleStringProperty(password);
         this.picture = picture;
     }
 

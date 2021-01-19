@@ -6,12 +6,12 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Student extends User {
     private SimpleStringProperty index;
+
     public Student() {
     }
-
-    public Student(SimpleIntegerProperty id, SimpleStringProperty name, SimpleStringProperty surname, SimpleStringProperty email, SimpleStringProperty username, SimpleStringProperty password, String picture, SimpleStringProperty index) {
+    public Student(Integer id, String name, String surname, String email, String username, String password, String picture, String index) {
         super(id, name, surname, email, username, password, picture);
-        this.index = index;
+        this.index = new SimpleStringProperty(index);
     }
 
     public String getIndex() {
