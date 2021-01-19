@@ -5,24 +5,25 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Student {
     private SimpleIntegerProperty id;
-    private SimpleStringProperty ime;
-    private SimpleStringProperty prezime;
+    private SimpleStringProperty name;
+    private SimpleStringProperty surname;
     private SimpleStringProperty email;
     private SimpleStringProperty username;
     private SimpleStringProperty password;
-    private String slika;
+    private String picture;
+
 
     public Student() {
     }
 
-    public Student(SimpleIntegerProperty id, SimpleStringProperty ime, SimpleStringProperty prezime, SimpleStringProperty email, SimpleStringProperty username, SimpleStringProperty password, String slika) {
+    public Student(SimpleIntegerProperty id, SimpleStringProperty name, SimpleStringProperty surname, SimpleStringProperty email, SimpleStringProperty username, SimpleStringProperty password, String picture) {
         this.id = id;
-        this.ime = ime;
-        this.prezime = prezime;
+        this.name = name;
+        this.surname = surname;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.slika = slika;
+        this.picture = picture;
     }
 
     public int getId() {
@@ -37,28 +38,28 @@ public class Student {
         this.id.set(id);
     }
 
-    public String getIme() {
-        return ime.get();
+    public String getName() {
+        return name.get();
     }
 
-    public SimpleStringProperty imeProperty() {
-        return ime;
+    public SimpleStringProperty nameProperty() {
+        return name;
     }
 
-    public void setIme(String ime) {
-        this.ime.set(ime);
+    public void setName(String name) {
+        this.name.set(name);
     }
 
-    public String getPrezime() {
-        return prezime.get();
+    public String getSurname() {
+        return surname.get();
     }
 
-    public SimpleStringProperty prezimeProperty() {
-        return prezime;
+    public SimpleStringProperty surnameProperty() {
+        return surname;
     }
 
-    public void setPrezime(String prezime) {
-        this.prezime.set(prezime);
+    public void setSurname(String surname) {
+        this.surname.set(surname);
     }
 
     public String getEmail() {
@@ -97,11 +98,11 @@ public class Student {
         this.password.set(password);
     }
 
-    public String getSlika() {
-        return slika;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setSlika(String slika) {
-        this.slika = slika;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }
