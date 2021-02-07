@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1513.0" style="-fx-background-color: #a6a2a5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AdminProffesorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1513.0" style="-fx-background-color: #a6a2a5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AdminProfessorController">
     <bottom>
         <HBox alignment="BOTTOM_LEFT" depthTest="DISABLE" prefHeight="185.0" prefWidth="1508.0" BorderPane.alignment="TOP_LEFT">
             <children>
@@ -98,7 +97,7 @@
                                 <TableColumn fx:id="colProfessorSurname" prefWidth="176.2000274658203" text="Prezime" />
                                 <TableColumn fx:id="colProfessorUsername" prefWidth="156.60000610351562" text="Korisničko ime" />
                                 <TableColumn fx:id="colProfessorPassword" prefWidth="167.4000244140625" text="Lozika" />
-                                <TableColumn fx:id="colProfessorDepartment" prefWidth="222.199951171875" text="Email" />
+                                <TableColumn fx:id="colProfessorEmail" prefWidth="222.199951171875" text="Email" />
                             </columns>
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -118,7 +117,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <children>
-                        <Button fx:id="addProffesorBtn" mnemonicParsing="false" onAction="#addProffesorAction" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
+                        <Button fx:id="addProffesorBtn" mnemonicParsing="false" onAction="#addProfessorAction" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
                             <graphic>
                                 <ImageView disable="true" fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -143,7 +142,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <children>
-                        <Button fx:id="editProffesorBtn" mnemonicParsing="false" onAction="#editProffesorAction" prefHeight="31.0" prefWidth="44.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
+                        <Button fx:id="editProffesorBtn" mnemonicParsing="false" onAction="#editProfessorAction" prefHeight="31.0" prefWidth="44.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
                             <graphic>
                                 <ImageView disable="true" fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -168,7 +167,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <children>
-                        <Button fx:id="deleteProffesorBtn" mnemonicParsing="false" onAction="#deleteProffesorAction" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
+                        <Button fx:id="deleteProffesorBtn" mnemonicParsing="false" onAction="#deleteProfessorAction" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
                             <graphic>
                                 <ImageView disable="true" fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
