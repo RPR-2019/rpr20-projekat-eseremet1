@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.2-internal">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" />
+    </rowConstraints>
+    <children>
+        <ImageView fitHeight="700.0" fitWidth="1200.0" opacity="0.69" pickOnBounds="true" preserveRatio="true" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <image>
+                <Image url="@../images/etfPicture.jpg" />
+            </image>
+            <effect>
+                <MotionBlur radius="5.8" />
+            </effect>
+        </ImageView>
+        <Button alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" mnemonicParsing="false" opacity="0.6" prefWidth="600.0" text="Log in" textAlignment="CENTER" GridPane.halignment="CENTER">
+            <font>
+                <Font name="Candara Light" size="50.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="1.0" endY="1.0" startX="0.36259543622723067" startY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color opacity="0.8999999761581421" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Button>
+    </children>
+</GridPane>
