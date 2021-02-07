@@ -17,6 +17,7 @@ import java.io.IOException;
 public class LogInController {
     public TextField userNameField;
     public PasswordField passwordField;
+    public ProfessorDAO professor;
 
     @FXML
     public void initialize() {
@@ -70,6 +71,24 @@ public class LogInController {
             stage.show();
             Stage stageClose = (Stage) userNameField.getScene().getWindow();
             stageClose.close();
+        } else if (professor.searchProfessor(userNameField.getText()) != null) {
+            if (professor.searchProfessor(userNameField.getText()).getPassword().equals(passwordField.getText())) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Obavijest");
+                alert.setHeaderText(null);
+                alert.setContentText("Uspješno ste prijavljeni kao profesor");
+
+                alert.showAndWait();
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Pogrešna lozinka. Pokušajte ponovo!");
+
+                alert.showAndWait();
+            }
         }
     }
 }
