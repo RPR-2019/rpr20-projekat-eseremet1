@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.HomeAdminController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" />
+    </rowConstraints>
+    <children>
+        <ImageView fitHeight="700.0" fitWidth="1200.0" opacity="0.69" pickOnBounds="true" preserveRatio="true" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <image>
+                <Image url="@../images/etfPicture.jpg" />
+            </image>
+            <effect>
+                <MotionBlur radius="5.8" />
+            </effect>
+        </ImageView>
+        <VBox alignment="CENTER" spacing="30.0" GridPane.halignment="CENTER">
+            <children>
+                <Button fx:id="proffesorBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#proffesorAction" opacity="0.6" prefWidth="600.0" text="Profesori" textAlignment="CENTER">
+                    <font>
+                        <Font name="Candara Light" size="50.0" />
+                    </font>
+                    <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" proportional="false" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.5636986301369863">
+                           <color>
+                              <Color red="0.28999999165534973" green="0.2784000039100647" blue="0.2784000039100647" opacity="0.3400000035762787" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.2973684072494507" green="0.2824999988079071" blue="0.2824999988079071" opacity="0.3400000035762787" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+                    </textFill>
+                </Button>
+                <Button fx:id="studentBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#studentAction" opacity="0.6" prefWidth="600.0" text="Studenti" textAlignment="CENTER">
+                    <font>
+                        <Font name="Candara Light" size="50.0" />
+                    </font>
+                    <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.2973684072494507" green="0.2824999988079071" blue="0.2824999988079071" opacity="0.3400000035762787" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </textFill>
+                </Button>
+                <Button fx:id="subjectBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" layoutX="310.0" layoutY="375.0" mnemonicParsing="false" onAction="#subjectAction" opacity="0.6" prefWidth="600.0" text="Predmeti" textAlignment="CENTER">
+                    <font>
+                        <Font name="Candara Light" size="50.0" />
+                    </font>
+                    <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.2973684072494507" green="0.2824999988079071" blue="0.2824999988079071" opacity="0.3400000035762787" />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </textFill>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</GridPane>

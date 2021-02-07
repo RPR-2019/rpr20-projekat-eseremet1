@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -7,7 +8,6 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<?import java.net.URL?>
 <GridPane hgap="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" vgap="1.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.LogInController">
     <stylesheets>
         <URL value="@../css/logIn.css" />
@@ -31,7 +31,7 @@
                 <MotionBlur radius="5.8" />
             </effect>
         </ImageView>
-        <Button alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" mnemonicParsing="false" opacity="0.6" prefWidth="600.0" text="Log in" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+        <Button alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logInAction" opacity="0.6" prefWidth="600.0" text="Log in" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
             <font>
                 <Font name="Candara Light" size="50.0" />
             </font>

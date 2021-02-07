@@ -2,9 +2,17 @@ package ba.unsa.etf.rpr.projekat;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LogInController {
     public TextField userNameField;
@@ -37,5 +45,31 @@ public class LogInController {
                 }
             }
         });
+    }
+
+    public void logInAction(ActionEvent actionEvent) throws IOException {
+        if (userNameField.getText().trim().isEmpty()) {
+            userNameField.getStyleClass().addAll("poljeNijeIspravno");
+        }
+        if (passwordField.getText().trim().isEmpty()) {
+            passwordField.getStyleClass().addAll("poljeNijeIspravno");
+        }
+
+        if (userNameField.getText().equals("admin") && passwordField.getText().equals("admin")) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Obavijest");
+            alert.setHeaderText(null);
+            alert.setContentText("Uspješno ste prijavljeni kao administrator!");
+            alert.showAndWait();
+
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/homeAdmin.fxml"));
+            stage.setTitle("Upravljanje korisnicima");
+            stage.setScene(new Scene(root, 1200, 700));
+            stage.setResizable(false);
+            stage.show();
+            Stage stageClose = (Stage) userNameField.getScene().getWindow();
+            stageClose.close();
+        }
     }
 }

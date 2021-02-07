@@ -23,7 +23,7 @@
                 <MotionBlur radius="5.8" />
             </effect>
         </ImageView>
-        <Button alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logInAction" opacity="0.6" prefWidth="600.0" text="Log in" textAlignment="CENTER" GridPane.halignment="CENTER">
+        <Button alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logInAction" opacity="0.6" prefWidth="600.0" text="Log in" textAlignment="CENTER" GridPane.halignment="CENTER">
             <font>
                 <Font name="Candara Light" size="50.0" />
             </font>
