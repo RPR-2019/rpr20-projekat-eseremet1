@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,14 +19,23 @@ public class AddProfessorController {
     public PasswordField passwordField;
     private ProfessorDAO professorDAO;
     private Professor professor;
+    public Button addBtn;
 
-    public AddProfessorController() {
+    public AddProfessorController(Professor professor) {
         professorDAO = ProfessorDAO.getInstance();
+        this.professor = professor;
     }
 
     @FXML
     public void initialize() {
 
+        if(professor!=null) {
+            nameField.setText(professor.getName());
+            surnameField.setText(professor.getSurname());
+            passwordField.setText(professor.getPassword());
+            usernameField.setText(professor.getUsername());
+            addBtn.setText("Izmijeni");
+        }
         surnameField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
@@ -135,9 +145,9 @@ public class AddProfessorController {
             surnameField.getStyleClass().add("poljeIspravno");
         }
 
-
-            for (Professor oldProffesor: professorDAO.professors()) {
-                if(oldProffesor.getUsername().equals(usernameField.getText())) {
+        if(professor==null) {
+            for (Professor oldProffesor : professorDAO.professors()) {
+                if (oldProffesor.getUsername().equals(usernameField.getText())) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Upozorenje");
                     alert.setHeaderText(null);
@@ -145,11 +155,12 @@ public class AddProfessorController {
 
                     alert.showAndWait();
 
-                    sveOk=false;
+                    sveOk = false;
                     break;
 
                 }
 
+            }
         }
 
         if (!sveOk) return;

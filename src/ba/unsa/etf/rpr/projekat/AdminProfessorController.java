@@ -74,7 +74,7 @@ public class AdminProfessorController {
         Stage stage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"));
-            AddProfessorController professorContoller=new AddProfessorController();
+            AddProfessorController professorContoller=new AddProfessorController(null);
             loader.setController(professorContoller);
             root=loader.load();
             stage.setTitle("Dodavanje profesora");
@@ -95,6 +95,31 @@ public class AdminProfessorController {
     }
 
     public void editProfessorAction(ActionEvent actionEvent) {
+        Professor professor= tableViewProfessors.getSelectionModel().getSelectedItem();
+        if (professor == null) return;
+
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"));
+            AddProfessorController professorContoller=new AddProfessorController(professor);
+            loader.setController(professorContoller);
+            root=loader.load();
+            stage.setTitle("Izmjena profesora");
+            stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+            stage.setResizable(false);
+            stage.show();
+
+            stage.setOnHiding( event -> {
+                Professor newProfessor = professorContoller.getProfessor();
+                if (newProfessor != null) {
+                    professorDAO.changeProfessor(newProfessor);
+                    collection.setAll(professorDAO.professors());
+                }
+            } );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteProfessorAction(ActionEvent actionEvent) {
