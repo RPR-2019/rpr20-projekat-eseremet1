@@ -11,10 +11,10 @@ public class Subject {
     public Subject() {
     }
 
-    public Subject(SimpleIntegerProperty id, SimpleStringProperty name, SimpleIntegerProperty numberOfEnrolled) {
-        this.id = id;
-        this.name = name;
-        this.numberOfEnrolled = numberOfEnrolled;
+    public Subject(Integer id, String name) {
+        this.id = new SimpleIntegerProperty(id);
+        this.name = new SimpleStringProperty(name);
+        this.numberOfEnrolled = new SimpleIntegerProperty(0);
     }
 
     public int getId() {
@@ -26,7 +26,7 @@ public class Subject {
     }
 
     public void setId(int id) {
-        this.id.set(id);
+        this.id = new SimpleIntegerProperty(id);
     }
 
     public String getName() {
@@ -38,7 +38,7 @@ public class Subject {
     }
 
     public void setName(String name) {
-        this.name.set(name);
+        this.name=new SimpleStringProperty(name);
     }
 
     public int getNumberOfEnrolled() {
@@ -50,6 +50,6 @@ public class Subject {
     }
 
     public void setNumberOfEnrolled(int numberOfEnrolled) {
-        this.numberOfEnrolled.set(numberOfEnrolled);
+        this.numberOfEnrolled = new SimpleIntegerProperty(numberOfEnrolled);
     }
 }
