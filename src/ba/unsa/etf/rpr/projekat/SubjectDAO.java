@@ -115,7 +115,7 @@ public class SubjectDAO {
         }
     }
 
-    public void changeProfessor(Subject subject) {
+    public void changeSubject(Subject subject) {
         try {
 
             changeSubjectStatement.setString(1,subject.getName());

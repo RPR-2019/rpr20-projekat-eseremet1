@@ -80,6 +80,30 @@ public class AdminSubjectController {
     }
 
     public void editSubjectAction(ActionEvent actionEvent) {
+        Subject subject= tableViewSubjects.getSelectionModel().getSelectedItem();
+        if (subject == null) return;
+        Parent root = null;
+        Stage stage = new Stage();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"));
+            AddSubjectController subjectController=new AddSubjectController(subject);
+            loader.setController(subjectController);
+            root=loader.load();
+            stage.setTitle("Izmjena predmeta");
+            stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+            stage.setResizable(false);
+            stage.show();
+
+            stage.setOnHiding(event -> {
+                Subject newSubject = subjectController.getSubject();
+                if (subject != null) {
+                    subjectDAO.changeSubject(subject);
+                    collection.setAll(subjectDAO.subjects());
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteSubjectAction(ActionEvent actionEvent) {
