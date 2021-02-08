@@ -9,13 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class AdminProfessorController {
 
@@ -123,6 +122,19 @@ public class AdminProfessorController {
     }
 
     public void deleteProfessorAction(ActionEvent actionEvent) {
+        Professor professor = tableViewProfessors.getSelectionModel().getSelectedItem();
+        if (professor== null) return;
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Potvrda brisanja");
+        alert.setHeaderText("Brisanje profesora "+professor.getName()+" "+professor.getSurname());
+        alert.setContentText("Da li ste sigurni da želite obrisati profesora " +professor.getName()+" "+professor.getSurname()+"?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (((Optional) result).get() == ButtonType.OK){
+            professorDAO.deleteProfessor(professor.getUsername());
+            collection.setAll(professorDAO.professors());
+        }
     }
 
     public void showReportAction(ActionEvent actionEvent) {
