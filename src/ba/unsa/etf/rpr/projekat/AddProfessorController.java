@@ -1,8 +1,14 @@
 package ba.unsa.etf.rpr.projekat;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.util.Random;
 
 public class AddProfessorController {
     public TextField nameField;
@@ -11,7 +17,94 @@ public class AddProfessorController {
     public PasswordField passwordField;
     public TextField emailField;
 
+    @FXML
+    public void initialize() {
+
+        surnameField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
+                if (surnameField.getText().trim().isEmpty()) {
+                    surnameField.getStyleClass().removeAll("poljeJeIspravno");
+                    surnameField.getStyleClass().add("poljeNijeIspravno");
+                } else {
+                    surnameField.getStyleClass().removeAll("poljeNijeIspravno");
+                    surnameField.getStyleClass().add("poljeJeIspravno");
+                }
+            }
+        });
+        nameField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
+                if (nameField.getText().trim().isEmpty()) {
+                    nameField.getStyleClass().removeAll("poljeJeIspravno");
+                    nameField.getStyleClass().add("poljeNijeIspravno");
+                } else {
+                    nameField.getStyleClass().removeAll("poljeNijeIspravno");
+                    nameField.getStyleClass().add("poljeJeIspravno");
+                }
+            }
+        });
+        usernameField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
+                if (usernameField.getText().trim().isEmpty()) {
+                    usernameField.getStyleClass().removeAll("poljeJeIspravno");
+                    usernameField.getStyleClass().add("poljeNijeIspravno");
+                } else {
+                    usernameField.getStyleClass().removeAll("poljeNijeIspravno");
+                    usernameField.getStyleClass().add("poljeJeIspravno");
+                }
+            }
+        });
+    }
+
     public void generateAction(ActionEvent actionEvent) {
+        String newPassword="";
+        String possibleCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        while(true) {
+            StringBuilder salt = new StringBuilder();
+            Random random = new Random();
+            //generise neko od 8 cifara
+            while (salt.length() < 7) { //zbog uslova
+                int index = (int) (random.nextFloat() * possibleCharacters.length());
+                salt.append(possibleCharacters.charAt(index));
+            }
+            newPassword = salt.toString();
+
+
+            boolean small=false, uppercase = false, number = false;
+            //a sadrži barem jedno veliko slovo, jedno malo slovo i jednu cifru
+
+            for(int i=0; i<newPassword.length(); i++) {
+                if(newPassword.charAt(i)>= 'A' && newPassword.charAt(i)<= 'Z') {
+                    uppercase=true;
+                }
+                else if(newPassword.charAt(i)>= 'a' && newPassword.charAt(i)<= 'z') {
+                    small=true;
+                }
+                else if(newPassword.charAt(i)>= '0' && newPassword.charAt(i)<= '9') {
+                    number=true;
+                }
+                else continue;
+            }
+
+            if(uppercase && small && number) break;
+        }
+        String specijalni="!#$%&/()=?*~";
+        Random random = new Random();
+        int index=(int) (random.nextFloat() * specijalni.length());
+
+        newPassword+=possibleCharacters.charAt(index);
+
+
+        passwordField.setText(newPassword);
+
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Upozorenje!");
+        alert.setHeaderText("Vaša lozinka glasi: ");
+        alert.setContentText(newPassword);
+        alert.showAndWait();
     }
 
     public void addAction(ActionEvent actionEvent) {
