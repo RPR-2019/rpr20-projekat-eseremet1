@@ -166,6 +166,8 @@ public class AddProfessorController {
     }
 
     public void cancelAction(ActionEvent actionEvent) {
+        Stage stage = (Stage) usernameField.getScene().getWindow();
+        stage.close();
     }
 
     public Professor getProfessor() {
