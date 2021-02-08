@@ -47,9 +47,9 @@ public class SubjectDAO {
             //pripremljeni upiti za profesora
             deleteSubjectStatement = connection.prepareStatement("DELETE FROM subject WHERE id = ?");
             searchSubjectStatement = connection.prepareStatement("SELECT * FROM subject WHERE name LIKE ? ");
-            changeSubjectStatement = connection.prepareStatement("UPDATE subject SET name = ?, enrolled = ? WHERE id=?");
+            changeSubjectStatement = connection.prepareStatement("UPDATE subject SET name = ? WHERE id=?");
             getSubjectsStatement = connection.prepareStatement("SELECT * FROM subject");
-            addSubjectStatement = connection.prepareStatement("INSERT INTO subject VALUES(?,?,?) ");
+            addSubjectStatement = connection.prepareStatement("INSERT INTO subject VALUES(?,?) ");
             determineIdSubjectStatement = connection.prepareStatement("SELECT MAX(id)+1 FROM subject");
 
         } catch (SQLException e) {
@@ -100,7 +100,6 @@ public class SubjectDAO {
 
     private Subject getSubjectResultSet(ResultSet rs) throws SQLException {
         Subject newSubject = new Subject(rs.getInt(1), rs.getString(2));
-        newSubject.setNumberOfEnrolled(rs.getInt(3));
         return newSubject;
     }
 
@@ -120,8 +119,7 @@ public class SubjectDAO {
         try {
 
             changeSubjectStatement.setString(1,subject.getName());
-            changeSubjectStatement.setInt(2,subject.getNumberOfEnrolled());
-            changeSubjectStatement.setInt(3,subject.getId());
+            changeSubjectStatement.setInt(2,subject.getId());
 
             changeSubjectStatement.executeUpdate();
         } catch (SQLException e) {
@@ -168,7 +166,6 @@ public class SubjectDAO {
             }
             addSubjectStatement.setInt(1,id);
             addSubjectStatement.setString(2,subject.getName());
-            addSubjectStatement.setInt(3,subject.getNumberOfEnrolled());
 
 
             addSubjectStatement.executeUpdate();

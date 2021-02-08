@@ -92,9 +92,8 @@
                     <children>
                         <TableView fx:id="tableViewSubjects" prefHeight="287.0" prefWidth="1142.0">
                             <columns>
-                                <TableColumn fx:id="colSubjectID" prefWidth="263.20004308223724" text="ID" />
-                                <TableColumn fx:id="colSubjectName" minWidth="6.800018310546875" prefWidth="258.5999755859375" text="Naziv" />
-                                <TableColumn fx:id="colSubjectEnrolled" minWidth="0.0" prefWidth="350.0" text="Broj upisanih studenata" />
+                                <TableColumn fx:id="colSubjectID" prefWidth="349.00000035762787" text="ID" />
+                                <TableColumn fx:id="colSubjectName" minWidth="6.800018310546875" prefWidth="772.5999145507812" text="Naziv" />
                             </columns>
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 public class Subject {
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
-    private SimpleIntegerProperty numberOfEnrolled;
 
     public Subject() {
     }
@@ -14,7 +13,6 @@ public class Subject {
     public Subject(Integer id, String name) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.numberOfEnrolled = new SimpleIntegerProperty(0);
     }
 
     public int getId() {
@@ -39,17 +37,5 @@ public class Subject {
 
     public void setName(String name) {
         this.name=new SimpleStringProperty(name);
-    }
-
-    public int getNumberOfEnrolled() {
-        return numberOfEnrolled.get();
-    }
-
-    public SimpleIntegerProperty numberOfEnrolledProperty() {
-        return numberOfEnrolled;
-    }
-
-    public void setNumberOfEnrolled(int numberOfEnrolled) {
-        this.numberOfEnrolled = new SimpleIntegerProperty(numberOfEnrolled);
     }
 }

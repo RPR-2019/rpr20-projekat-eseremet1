@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS "professor" (
 CREATE TABLE IF NOT EXISTS "subject" (
 	"id"	INTEGER,
 	"name"	TEXT,
-	"enrolled"	INTEGER,
 	PRIMARY KEY("id")
 );
 INSERT INTO "professor" VALUES (1,'Elma','Šeremet','eseremet1@etf.unsa.ba','eseremet1','proba');

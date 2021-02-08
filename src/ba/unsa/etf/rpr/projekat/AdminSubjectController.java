@@ -6,9 +6,14 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class AdminSubjectController {
@@ -16,9 +21,8 @@ public class AdminSubjectController {
     public TextField filterField;
     private SubjectDAO subjectDAO;
     private ObservableList<Subject> collection;
-    public TableColumn colSubjectId;
+    public TableColumn colSubjectID;
     public TableColumn colSubjectName;
-    public TableColumn colSubjectEnrolled;
 
 
     public AdminSubjectController() {
@@ -29,9 +33,8 @@ public class AdminSubjectController {
     @FXML
     public void initialize() {
         tableViewSubjects.setItems(collection);
-        colSubjectId.setCellValueFactory(new PropertyValueFactory("id"));
+        colSubjectID.setCellValueFactory(new PropertyValueFactory("id"));
         colSubjectName.setCellValueFactory(new PropertyValueFactory("name"));
-        colSubjectEnrolled.setCellValueFactory(new PropertyValueFactory("enrolled"));
 
 
         FilteredList<Subject> filteredList = new FilteredList<>(collection, tmp->true);
@@ -50,6 +53,29 @@ public class AdminSubjectController {
 
     }
     public void addSubjectAction(ActionEvent actionEvent) {
+        Parent root = null;
+        Stage stage = new Stage();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"));
+            AddSubjectController subjectController=new AddSubjectController(null);
+            loader.setController(subjectController);
+            root=loader.load();
+            stage.setTitle("Dodavanje profesora");
+            stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+            stage.setResizable(false);
+            stage.show();
+
+            stage.setOnHiding(event -> {
+                Subject subject = subjectController.getSubject();
+                if (subject != null) {
+                    subjectDAO.addSubject(subject);
+                    collection.setAll(subjectDAO.subjects());
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
