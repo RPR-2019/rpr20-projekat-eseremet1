@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.projekat;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-abstract public class User {
+public class User {
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
     private SimpleStringProperty surname;
@@ -46,7 +46,7 @@ abstract public class User {
     }
 
     public void setName(String name) {
-        this.name.set(name);
+        this.name = new SimpleStringProperty(name);
     }
 
     public String getSurname() {
@@ -58,7 +58,7 @@ abstract public class User {
     }
 
     public void setSurname(String surname) {
-        this.surname.set(surname);
+        this.surname = new SimpleStringProperty(surname);
     }
 
     public String getEmail() {
@@ -70,7 +70,7 @@ abstract public class User {
     }
 
     public void setEmail(String email) {
-        this.email.set(email);
+        this.email = new SimpleStringProperty(email);
     }
 
     public String getUsername() {
@@ -82,7 +82,7 @@ abstract public class User {
     }
 
     public void setUsername(String username) {
-        this.username.set(username);
+        this.username = new SimpleStringProperty(username);
     }
 
     public String getPassword() {
@@ -94,7 +94,7 @@ abstract public class User {
     }
 
     public void setPassword(String password) {
-        this.password.set(password);
+        this.password = new SimpleStringProperty(password);
     }
 
     public String getPicture() {

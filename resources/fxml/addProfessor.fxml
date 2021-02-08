@@ -143,29 +143,7 @@
                                   </LinearGradient>
                               </textFill>
                           </Label>
-                        <PasswordField fx:id="passwordField" />
-                          <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="Email">
-                              <font>
-                                  <Font name="Candara Light" size="33.0" />
-                              </font>
-                              <textFill>
-                                  <LinearGradient endX="0.8969466085652358" endY="0.48091604327427523" startX="0.8854961668262045" startY="0.36259541984732824">
-                                      <stops>
-                                          <Stop>
-                                              <color>
-                                                  <Color />
-                                              </color>
-                                          </Stop>
-                                          <Stop offset="1.0">
-                                              <color>
-                                                  <Color />
-                                              </color>
-                                          </Stop>
-                                      </stops>
-                                  </LinearGradient>
-                              </textFill>
-                          </Label>
-                        <TextField fx:id="emailField1" layoutX="10.0" layoutY="376.0" />
+                        <PasswordField fx:id="passwordField" editable="false" />
                      </children>
                   </VBox>
                </children>

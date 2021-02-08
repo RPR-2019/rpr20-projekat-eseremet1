@@ -82,13 +82,13 @@ public class AdminProfessorController {
             stage.setResizable(false);
             stage.show();
 
-            /*stage.setOnHiding(event -> {
-                Professor professor = professorContoller.getProfesor();
+            stage.setOnHiding(event -> {
+                Professor professor = professorContoller.getProfessor();
                 if (professor != null) {
                     professorDAO.addProfessor(professor);
                     collection.setAll(professorDAO.professors());
                 }
-            });*/
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,11 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class InitialController {
+    public Button logInBtn;
+
     public void logInAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
@@ -16,5 +19,7 @@ public class InitialController {
         stage.setScene(new Scene(root, 1200, 700));
         stage.setResizable(false);
         stage.show();
+        Stage stageClose = (Stage) logInBtn.getScene().getWindow();
+        stageClose.close();
     }
 }

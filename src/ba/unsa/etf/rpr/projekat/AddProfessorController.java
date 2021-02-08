@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.util.Random;
 
@@ -15,7 +16,12 @@ public class AddProfessorController {
     public TextField surnameField;
     public TextField usernameField;
     public PasswordField passwordField;
-    public TextField emailField;
+    private ProfessorDAO professorDAO;
+    private Professor professor;
+
+    public AddProfessorController() {
+        professorDAO = ProfessorDAO.getInstance();
+    }
 
     @FXML
     public void initialize() {
@@ -47,6 +53,7 @@ public class AddProfessorController {
         usernameField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
+
                 if (usernameField.getText().trim().isEmpty()) {
                     usernameField.getStyleClass().removeAll("poljeJeIspravno");
                     usernameField.getStyleClass().add("poljeNijeIspravno");
@@ -56,6 +63,7 @@ public class AddProfessorController {
                 }
             }
         });
+
     }
 
     public void generateAction(ActionEvent actionEvent) {
@@ -108,8 +116,63 @@ public class AddProfessorController {
     }
 
     public void addAction(ActionEvent actionEvent) {
+        boolean sveOk = true;
+        if(nameField.getText().trim().isEmpty()) {
+            nameField.getStyleClass().removeAll("poljeIspravno");
+            nameField.getStyleClass().addAll("poljeNijeIspravno");
+            sveOk=false;
+        } else {
+            nameField.getStyleClass().removeAll("poljeNijeIspravno");
+            nameField.getStyleClass().add("poljeIspravno");
+        }
+
+        if(surnameField.getText().trim().isEmpty()) {
+            surnameField.getStyleClass().removeAll("poljeIspravno");
+            surnameField.getStyleClass().addAll("poljeNijeIspravno");
+            sveOk=false;
+        } else {
+            surnameField.getStyleClass().removeAll("poljeNijeIspravno");
+            surnameField.getStyleClass().add("poljeIspravno");
+        }
+
+
+            for (Professor oldProffesor: professorDAO.professors()) {
+                if(oldProffesor.getUsername().equals(usernameField.getText())) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Upozorenje");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Username već postoji!");
+
+                    alert.showAndWait();
+
+                    sveOk=false;
+                    break;
+
+                }
+
+        }
+
+        if (!sveOk) return;
+
+        if (professor== null) professor = new Professor();
+        professor.setName(nameField.getText());
+        professor.setSurname(surnameField.getText());
+        professor.setUsername(usernameField.getText());
+        professor.setPassword(passwordField.getText());
+        professor.setEmail(usernameField.getText()+"@etf.unsa.ba");
+
+        Stage stageClose = (Stage) nameField.getScene().getWindow();
+        stageClose.close();
     }
 
     public void cancelAction(ActionEvent actionEvent) {
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 }
