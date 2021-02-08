@@ -6,16 +6,22 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AdminProfessorController {
 
     public TableView<Professor> tableViewProfessors;
     public TextField filterField;
-    private ProfessorDAO professor;
+    private ProfessorDAO professorDAO;
     private ObservableList<Professor> collection;
     public TableColumn colProfessorId;
     public TableColumn colProfessorName;
@@ -26,8 +32,8 @@ public class AdminProfessorController {
 
 
     public AdminProfessorController() {
-        professor = ProfessorDAO.getInstance();
-        collection = FXCollections.observableArrayList(professor.professors());
+        professorDAO = ProfessorDAO.getInstance();
+        collection = FXCollections.observableArrayList(professorDAO.professors());
     }
 
     @FXML
@@ -64,6 +70,28 @@ public class AdminProfessorController {
     }
 
     public void addProfessorAction(ActionEvent actionEvent) {
+        Parent root = null;
+        Stage stage = new Stage();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"));
+            AddProfessorController professorContoller=new AddProfessorController();
+            loader.setController(professorContoller);
+            root=loader.load();
+            stage.setTitle("Dodavanje profesora");
+            stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+            stage.setResizable(false);
+            stage.show();
+
+            /*stage.setOnHiding(event -> {
+                Professor professor = professorContoller.getProfesor();
+                if (professor != null) {
+                    professorDAO.addProfessor(professor);
+                    collection.setAll(professorDAO.professors());
+                }
+            });*/
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void editProfessorAction(ActionEvent actionEvent) {
