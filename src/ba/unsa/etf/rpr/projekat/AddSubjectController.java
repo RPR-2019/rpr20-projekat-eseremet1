@@ -2,30 +2,34 @@ package ba.unsa.etf.rpr.projekat;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.util.Random;
+import java.util.ArrayList;
+
 
 public class AddSubjectController {
     public TextField nameField;
     private SubjectDAO subjectDAO;
     private Subject subject;
     public Button addBtn;
+    public ChoiceBox<Professor> choiceProfessor;
+    private ObservableList<Professor> professors;
 
-    public AddSubjectController(Subject subject) {
+
+    public AddSubjectController(Subject subject, ArrayList<Professor> professors) {
         subjectDAO = SubjectDAO.getInstance();
         this.subject = subject;
+        this.professors= FXCollections.observableArrayList(professors);
     }
 
     @FXML
     public void initialize() {
-
+        choiceProfessor.setItems(professors);
         if(subject!=null) {
             nameField.setText(subject.getName());
             addBtn.setText("Izmijeni");
@@ -79,6 +83,7 @@ public class AddSubjectController {
 
         if (subject== null) subject = new Subject();
         subject.setName(nameField.getText());
+        subject.setProfessor(choiceProfessor.getValue());
 
         Stage stageClose = (Stage) nameField.getScene().getWindow();
         stageClose.close();

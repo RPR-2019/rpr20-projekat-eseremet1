@@ -2,14 +2,14 @@ package ba.unsa.etf.rpr.projekat;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class AddProfessorController {
@@ -17,23 +17,28 @@ public class AddProfessorController {
     public TextField surnameField;
     public TextField usernameField;
     public PasswordField passwordField;
+    public ChoiceBox<Subject> choiceSubject;
+    private ObservableList<Subject> subjects;
     private ProfessorDAO professorDAO;
     private Professor professor;
     public Button addBtn;
 
-    public AddProfessorController(Professor professor) {
+    public AddProfessorController(Professor professor, ArrayList<Subject> subjects) {
         professorDAO = ProfessorDAO.getInstance();
         this.professor = professor;
+        this.subjects= FXCollections.observableArrayList(subjects);
     }
 
     @FXML
     public void initialize() {
+        choiceSubject.setItems(subjects);
 
         if(professor!=null) {
             nameField.setText(professor.getName());
             surnameField.setText(professor.getSurname());
             passwordField.setText(professor.getPassword());
             usernameField.setText(professor.getUsername());
+            choiceSubject.setValue(professor.getSubject());
             addBtn.setText("Izmijeni");
         }
         surnameField.textProperty().addListener(new ChangeListener<String>() {
@@ -171,6 +176,7 @@ public class AddProfessorController {
         professor.setUsername(usernameField.getText());
         professor.setPassword(passwordField.getText());
         professor.setEmail(usernameField.getText()+"@etf.unsa.ba");
+        professor.setSubject(choiceSubject.getValue());
 
         Stage stageClose = (Stage) nameField.getScene().getWindow();
         stageClose.close();

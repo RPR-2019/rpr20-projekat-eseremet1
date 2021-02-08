@@ -23,11 +23,14 @@ public class AdminSubjectController {
     private ObservableList<Subject> collection;
     public TableColumn colSubjectID;
     public TableColumn colSubjectName;
+    public TableColumn colSubjectProfessor;
+    public ProfessorDAO professorDAO;
 
 
     public AdminSubjectController() {
         subjectDAO = SubjectDAO.getInstance();
         collection = FXCollections.observableArrayList(subjectDAO.subjects());
+        professorDAO = ProfessorDAO.getInstance();
     }
 
     @FXML
@@ -35,7 +38,7 @@ public class AdminSubjectController {
         tableViewSubjects.setItems(collection);
         colSubjectID.setCellValueFactory(new PropertyValueFactory("id"));
         colSubjectName.setCellValueFactory(new PropertyValueFactory("name"));
-
+        colSubjectProfessor.setCellValueFactory(new PropertyValueFactory("professor"));
 
         FilteredList<Subject> filteredList = new FilteredList<>(collection, tmp->true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -57,7 +60,8 @@ public class AdminSubjectController {
         Stage stage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"));
-            AddSubjectController subjectController=new AddSubjectController(null);
+            AddSubjectController subjectController=new AddSubjectController(null, professorDAO.professors());
+            professorDAO.close();
             loader.setController(subjectController);
             root=loader.load();
             stage.setTitle("Dodavanje profesora");
@@ -86,7 +90,7 @@ public class AdminSubjectController {
         Stage stage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"));
-            AddSubjectController subjectController=new AddSubjectController(subject);
+            AddSubjectController subjectController=new AddSubjectController(subject, professorDAO.professors());
             loader.setController(subjectController);
             root=loader.load();
             stage.setTitle("Izmjena predmeta");

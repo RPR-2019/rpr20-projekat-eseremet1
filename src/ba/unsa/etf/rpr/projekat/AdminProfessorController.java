@@ -28,11 +28,14 @@ public class AdminProfessorController {
     public TableColumn colProfessorUsername;
     public TableColumn colProfessorPassword;
     public TableColumn colProfessorEmail;
+    public TableColumn colProfessorSubject;
+    private SubjectDAO subjectDAO;
 
 
     public AdminProfessorController() {
         professorDAO = ProfessorDAO.getInstance();
         collection = FXCollections.observableArrayList(professorDAO.professors());
+        subjectDAO=SubjectDAO.getInstance();
     }
 
     @FXML
@@ -44,6 +47,7 @@ public class AdminProfessorController {
         colProfessorUsername.setCellValueFactory(new PropertyValueFactory("username"));
         colProfessorPassword.setCellValueFactory(new PropertyValueFactory("password"));
         colProfessorEmail.setCellValueFactory(new PropertyValueFactory("email"));
+        colProfessorSubject.setCellValueFactory(new PropertyValueFactory("subject"));
 
 
         FilteredList<Professor> filteredList = new FilteredList<>(collection, tmp->true);
@@ -73,7 +77,8 @@ public class AdminProfessorController {
         Stage stage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"));
-            AddProfessorController professorContoller=new AddProfessorController(null);
+            AddProfessorController professorContoller=new AddProfessorController(null, subjectDAO.subjects());
+            subjectDAO.close();
             loader.setController(professorContoller);
             root=loader.load();
             stage.setTitle("Dodavanje profesora");
@@ -101,7 +106,7 @@ public class AdminProfessorController {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"));
-            AddProfessorController professorContoller=new AddProfessorController(professor);
+            AddProfessorController professorContoller=new AddProfessorController(professor, subjectDAO.subjects());
             loader.setController(professorContoller);
             root=loader.load();
             stage.setTitle("Izmjena profesora");

@@ -96,8 +96,9 @@
                                 <TableColumn fx:id="colProfessorName" prefWidth="168.9999771118164" text="Ime" />
                                 <TableColumn fx:id="colProfessorSurname" prefWidth="176.2000274658203" text="Prezime" />
                                 <TableColumn fx:id="colProfessorUsername" prefWidth="156.60000610351562" text="Korisničko ime" />
-                                <TableColumn fx:id="colProfessorPassword" prefWidth="167.4000244140625" text="Lozika" />
-                                <TableColumn fx:id="colProfessorEmail" prefWidth="222.199951171875" text="Email" />
+                                <TableColumn fx:id="colProfessorPassword" prefWidth="109.9998779296875" text="Lozika" />
+                                <TableColumn fx:id="colProfessorEmail" minWidth="0.0" prefWidth="223.5999755859375" text="Email" />
+                        <TableColumn fx:id="colProfessorSubject" prefWidth="237.2000732421875" text="Predmet" />
                             </columns>
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ProfessorDAO {
     private static ProfessorDAO instance; //singleton klasa
-    private PreparedStatement getProfessorStatement, deleteProfessorStatement, searchProfessorStatement, changeProfessorStatement, getProfessorsStatement, addProfessorStatement, determineIdProfessorStatement;
+    private PreparedStatement getProfessorStatement, deleteProfessorStatement, searchProfessorStatement, changeProfessorStatement, getProfessorsStatement, addProfessorStatement, determineIdProfessorStatement, getSubjectStatement;
     private Connection connection;
 
     public Connection getConnection() {
@@ -47,10 +47,11 @@ public class ProfessorDAO {
             //pripremljeni upiti za profesora
             deleteProfessorStatement = connection.prepareStatement("DELETE FROM professor WHERE id = ?");
             searchProfessorStatement = connection.prepareStatement("SELECT * FROM professor WHERE username LIKE ? ");
-            changeProfessorStatement = connection.prepareStatement("UPDATE professor SET name = ?, surname = ?, email = ?, username = ?, password = ? WHERE id=?");
+            changeProfessorStatement = connection.prepareStatement("UPDATE professor SET name = ?, surname = ?, email = ?, username = ?, password = ?, professors_subject=? WHERE id=?");
             getProfessorsStatement = connection.prepareStatement("SELECT * FROM professor");
-            addProfessorStatement = connection.prepareStatement("INSERT INTO professor VALUES(?,?,?,?,?,?) ");
+            addProfessorStatement = connection.prepareStatement("INSERT INTO professor VALUES(?,?,?,?,?,?,?) ");
             determineIdProfessorStatement = connection.prepareStatement("SELECT MAX(id)+1 FROM professor");
+            getSubjectStatement = connection.prepareStatement("SELECT * FROM subject WHERE id=?");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,7 +65,7 @@ public class ProfessorDAO {
     }
 
 
-    private void close() {
+    public void close() {
         try {
             connection.close();
         } catch (SQLException e) {
@@ -99,7 +100,26 @@ public class ProfessorDAO {
 
 
     private Professor getProfessorResultSet(ResultSet rs) throws SQLException {
-        return new Professor(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),null);
+        Professor professor = new  Professor(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),null);
+        professor.setSubject(getSubject(rs.getInt(7),professor));
+        return professor;
+
+    }
+
+    private Subject getSubject(int id, Professor professor) {
+        try {
+            getSubjectStatement.setInt(1, id);
+            ResultSet rs = getSubjectStatement.executeQuery();
+            if (!rs.next()) return null;
+            return getSubjectResultSet(rs, professor);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private Subject getSubjectResultSet(ResultSet rs, Professor professor) throws SQLException {
+        return new Subject(rs.getInt(1),rs.getString(2), professor);
     }
 
     private Professor getProfessor(int id) {
@@ -122,7 +142,8 @@ public class ProfessorDAO {
             changeProfessorStatement.setString(3,professor.getEmail());
             changeProfessorStatement.setString(4,professor.getUsername());
             changeProfessorStatement.setString(5,professor.getPassword());
-            changeProfessorStatement.setInt(6,professor.getId());
+            changeProfessorStatement.setInt(6,professor.getSubject().getId());
+            changeProfessorStatement.setInt(7,professor.getId());
 
             changeProfessorStatement.executeUpdate();
         } catch (SQLException e) {
@@ -173,6 +194,7 @@ public class ProfessorDAO {
             addProfessorStatement.setString(4,professor.getEmail());
             addProfessorStatement.setString(5,professor.getUsername());
             addProfessorStatement.setString(6,professor.getPassword());
+            addProfessorStatement.setInt(7,professor.getSubject().getId());
 
             addProfessorStatement.executeUpdate();
         } catch (SQLException e) {

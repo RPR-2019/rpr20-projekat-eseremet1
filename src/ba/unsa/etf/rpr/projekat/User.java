@@ -104,4 +104,9 @@ public class User {
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
+    @Override
+    public String toString() {
+        return name.get() + " " + surname.get();
+    }
 }

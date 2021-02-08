@@ -17,7 +17,7 @@ import java.io.IOException;
 public class LogInController {
     public TextField userNameField;
     public PasswordField passwordField;
-    public ProfessorDAO professor;
+    private ProfessorDAO professor;
 
     @FXML
     public void initialize() {

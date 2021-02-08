@@ -144,6 +144,28 @@
                               </textFill>
                           </Label>
                         <PasswordField fx:id="passwordField" editable="false" />
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="257.0" layoutY="234.0" text="Predmet">
+                           <font>
+                              <Font name="Candara Light" size="33.0" />
+                           </font>
+                           <textFill>
+                              <LinearGradient endX="0.8969466085652358" endY="0.48091604327427523" startX="0.8854961668262045" startY="0.36259541984732824">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
+                        </Label>
+                        <ChoiceBox fx:id="choiceSubject" prefWidth="150.0" />
                      </children>
                   </VBox>
                </children>
