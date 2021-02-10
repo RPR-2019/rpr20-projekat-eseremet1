@@ -19,6 +19,11 @@ public class LogInController {
     public PasswordField passwordField;
     private ProfessorDAO professor;
 
+    public LogInController() {
+        professor = ProfessorDAO.getInstance();
+
+
+    }
     @FXML
     public void initialize() {
         userNameField.textProperty().addListener(new ChangeListener<String>() {
@@ -79,6 +84,15 @@ public class LogInController {
                 alert.setContentText("Uspješno ste prijavljeni kao profesor");
 
                 alert.showAndWait();
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/homeProfessor.fxml"));
+                stage.setTitle("Početna stranica za profesora");
+                stage.setScene(new Scene(root, 1500, 700)); //stavljamo početni ekran
+                stage.setMinHeight(500); //da se ne može više smanjivati
+                stage.setMinWidth(200);
+                stage.show();
+                Stage stageClose = (Stage) userNameField.getScene().getWindow();
+                stageClose.close();
 
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);

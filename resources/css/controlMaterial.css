@@ -1,0 +1,16 @@
+#addDocumentBtn:pressed {
+    -fx-background-color:  #bf5c4e;
+}
+
+#profilBtn:pressed {
+    -fx-background-color:  #bf5c4e;
+}
+#profilBtn:hover {
+    -fx-background-color:  #bf5c4e;
+}
+#logoutBtn:pressed {
+    -fx-background-color:  #bf5c4e;
+}
+#logoutBtn:hover {
+    -fx-background-color:  #bf5c4e;
+}
