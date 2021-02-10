@@ -60,7 +60,7 @@ public class AddSubjectController {
         }
 
         for (Subject oldSubject: subjectDAO.subjects()) {
-            if(oldSubject.getName().equals(nameField.getText())) {
+            if(oldSubject.getName().toUpperCase().equals(nameField.getText().toUpperCase())) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
 
                 alert.setTitle("Upozorenje");
