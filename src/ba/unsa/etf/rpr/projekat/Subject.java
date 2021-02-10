@@ -6,15 +6,13 @@ import javafx.beans.property.SimpleStringProperty;
 public class Subject {
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
-    private Professor professor;
 
     public Subject() {
     }
 
-    public Subject(Integer id, String name, Professor professor) {
+    public Subject(Integer id, String name) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.professor = professor;
     }
 
     public int getId() {
@@ -41,13 +39,6 @@ public class Subject {
         this.name=new SimpleStringProperty(name);
     }
 
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
-    }
 
     @Override
     public String toString() {
