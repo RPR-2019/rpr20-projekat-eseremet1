@@ -85,7 +85,11 @@ public class LogInController {
 
                 alert.showAndWait();
                 Stage stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("/fxml/homeProfessor.fxml"));
+                Parent root = null;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeProfessor.fxml"));
+                HomeProfessorController professorContoller=new HomeProfessorController(professor.searchProfessor(userNameField.getText()));
+                loader.setController(professorContoller);
+                root=loader.load();
                 stage.setTitle("Početna stranica za profesora");
                 stage.setScene(new Scene(root, 1500, 700)); //stavljamo početni ekran
                 stage.setMinHeight(500); //da se ne može više smanjivati

@@ -6,21 +6,13 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1513.0" style="-fx-background-color: #a6a2a5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.HomeProfessorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1513.0" style="-fx-background-color: #a6a2a5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@../css/controlMaterial.css" />
     </stylesheets>
 
     <left>
-        <VBox style="-fx-background-color: #a6a2a5;" BorderPane.alignment="CENTER">
-            <children>
-                <HBox prefHeight="100.0" prefWidth="200.0" />
-            <TreeView prefHeight="200.0" prefWidth="200.0" />
-            </children>
-            <BorderPane.margin>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </BorderPane.margin>
-        </VBox>
+      <ListView fx:id="listViewSubject" />
     </left>
     <center>
         <VBox alignment="CENTER" prefHeight="519.0" prefWidth="973.0" style="-fx-background-color: #d6d4d6;">
