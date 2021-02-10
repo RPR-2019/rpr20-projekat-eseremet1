@@ -86,7 +86,17 @@ public class HomeProfessorController {
 
     }
 
-    public void logoutAction(ActionEvent actionEvent) {
+    public void logoutAction(ActionEvent actionEvent) throws IOException {
+        Stage stageClose = (Stage) profilBtn.getScene().getWindow();
+        stageClose.close();
+        Stage stage = new Stage();
+        Parent root = null;
+        root = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
+        stage.setTitle("Prijavite se!");
+        stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+        stage.setResizable(false);
 
+
+        stage.show();
     }
 }
