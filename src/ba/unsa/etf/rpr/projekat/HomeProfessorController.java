@@ -64,7 +64,7 @@ public class HomeProfessorController {
             Stage stage = new Stage();
             Parent root = null;
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseDocType.fxml"));
-            DocTypeController docTypeController=new DocTypeController(listViewSubject.getSelectionModel().getSelectedItem());
+            DocTypeController docTypeController=new DocTypeController(listViewSubject.getSelectionModel().getSelectedItem(), activeProfessor);
             loader.setController(docTypeController);
             root=loader.load();
             stage.setTitle("Izbor vrste željenog materijala");
@@ -74,8 +74,6 @@ public class HomeProfessorController {
             stage.setResizable(false);
 
             stage.show();
-            Stage stage1 = (Stage) addDocumentBtn.getScene().getWindow();
-            stage1.close();
         }
     }
 

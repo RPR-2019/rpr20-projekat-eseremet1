@@ -11,10 +11,12 @@ import java.io.IOException;
 
 public class DocTypeController {
     public Button pdfBtn;
-    public Subject selectedSubject;
+    private Subject selectedSubject;
+    private Professor activeProfessor;
 
-    public DocTypeController(Subject subject) {
+    public DocTypeController(Subject subject, Professor professor) {
         selectedSubject = subject;
+        activeProfessor = professor;
     }
 
     public void uploadPDFDocumentAction(ActionEvent actionEvent) {
@@ -25,7 +27,7 @@ public class DocTypeController {
         Stage stage = new Stage();
         Parent root = null;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addWordDocument.fxml"));
-        WordDocumentController wordDocumentController=new WordDocumentController(selectedSubject);
+        WordDocumentController wordDocumentController=new WordDocumentController(selectedSubject,activeProfessor);
         loader.setController(wordDocumentController);
         root=loader.load();
         stage.setTitle("Word document");
