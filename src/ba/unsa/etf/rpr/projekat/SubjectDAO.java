@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class SubjectDAO {
     private static SubjectDAO instance; //singleton klasa
-    private PreparedStatement getSubjectStatement, deleteSubjectStatement, searchSubjectStatement, changeSubjectStatement, getSubjectsStatement, addSubjectStatement, addProfessorStatement, determineIdSubjectStatement, deleteProfessorForSubjectStatement, getProfessorStatement, determineIdProfessorStatement;
+    private PreparedStatement getSubjectStatement, deleteSubjectStatement, searchSubjectStatement, changeSubjectStatement, getSubjectsStatement, addSubjectStatement, addProfessorStatement, determineIdSubjectStatement;
     private Connection connection;
 
     public Connection getConnection() {
@@ -47,14 +47,10 @@ public class SubjectDAO {
             //pripremljeni upiti za profesora
             deleteSubjectStatement = connection.prepareStatement("DELETE FROM subject WHERE id = ?");
             searchSubjectStatement = connection.prepareStatement("SELECT * FROM subject WHERE name LIKE ? ");
-            changeSubjectStatement = connection.prepareStatement("UPDATE subject SET name = ?, subjects_professor=? WHERE id=?");
+            changeSubjectStatement = connection.prepareStatement("UPDATE subject SET name = ? WHERE id=?");
             getSubjectsStatement = connection.prepareStatement("SELECT * FROM subject");
-            addSubjectStatement = connection.prepareStatement("INSERT INTO subject VALUES(?,?,?) ");
+            addSubjectStatement = connection.prepareStatement("INSERT INTO subject VALUES(?,?) ");
             determineIdSubjectStatement = connection.prepareStatement("SELECT MAX(id)+1 FROM subject");
-            deleteProfessorForSubjectStatement = connection.prepareStatement("DELETE from professor where professors_subject = ?");
-            getProfessorStatement = connection.prepareStatement("SELECT * FROM professor WHERE id=?");
-            addProfessorStatement = connection.prepareStatement("INSERT INTO professor VALUES(?,?,?,?,?,?,?) ");
-            determineIdProfessorStatement = connection.prepareStatement("SELECT MAX(id)+1 FROM professor");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -101,17 +97,17 @@ public class SubjectDAO {
     }
 
 
-    private Subject getSubjectResultSet(ResultSet rs, Professor professor) throws SQLException {
-        Subject newSubject = new Subject(rs.getInt(1), rs.getString(2), professor);
+    private Subject getSubjectResultSet(ResultSet rs) throws SQLException {
+        Subject newSubject = new Subject(rs.getInt(1), rs.getString(2));
         return newSubject;
     }
 
-    private Subject getSubject(int id, Professor professor) {
+    private Subject getSubject(int id) {
         try {
             getSubjectStatement.setInt(1, id);
             ResultSet rs = getSubjectStatement.executeQuery();
             if (!rs.next()) return null;
-            return getSubjectResultSet(rs, professor);
+            return getSubjectResultSet(rs);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -123,7 +119,6 @@ public class SubjectDAO {
 
             changeSubjectStatement.setString(1,subject.getName());
             changeSubjectStatement.setInt(3,subject.getId());
-            changeSubjectStatement.setInt(2,subject.getProfessor().getId());
 
             changeSubjectStatement.executeUpdate();
         } catch (SQLException e) {
@@ -137,9 +132,7 @@ public class SubjectDAO {
             searchSubjectStatement.setString(1,name);
             ResultSet rs = searchSubjectStatement.executeQuery();
             if(!rs.next()) return;
-            Subject subject = getSubjectResultSet(rs,null);
-            deleteProfessorForSubjectStatement.setInt(1,subject.getId());
-            deleteProfessorForSubjectStatement.executeUpdate();
+            Subject subject = getSubjectResultSet(rs);
 
             deleteSubjectStatement.setInt(1, subject.getId());
             deleteSubjectStatement.executeUpdate();
@@ -154,10 +147,9 @@ public class SubjectDAO {
     public ArrayList<Subject> subjects() {
         ArrayList<Subject> result = new ArrayList<>();
         try {
-            ResultSet rs =getSubjectsStatement.executeQuery();
+            ResultSet rs = getSubjectsStatement.executeQuery();
             while(rs.next()) {
-                Professor professor = getProfessor(rs.getInt(3));
-                Subject subject = getSubjectResultSet(rs, professor);
+                Subject subject = getSubjectResultSet(rs);
                 result.add(subject);
             }
         } catch (SQLException e) {
@@ -176,24 +168,8 @@ public class SubjectDAO {
             }
             addSubjectStatement.setInt(1,id);
             addSubjectStatement.setString(2,subject.getName());
-            addSubjectStatement.setInt(3,subject.getProfessor().getId());
             addSubjectStatement.executeUpdate();
 
-            ResultSet rs1 = determineIdProfessorStatement.executeQuery();
-            int id1=1;
-            if(rs1.next()) {
-                id1=rs1.getInt(1);
-            }
-            Professor professor = subject.getProfessor();
-            addProfessorStatement.setInt(1,id1);
-            addProfessorStatement.setString(2,professor.getName());
-            addProfessorStatement.setString(3,professor.getSurname());
-            addProfessorStatement.setString(4,professor.getEmail());
-            addProfessorStatement.setString(5,professor.getUsername());
-            addProfessorStatement.setString(6,professor.getPassword());
-            addProfessorStatement.setInt(7,id);
-
-            addProfessorStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -206,7 +182,7 @@ public class SubjectDAO {
             searchSubjectStatement.setString(1,name);
             ResultSet rs = searchSubjectStatement.executeQuery();
             if(!rs.next()) return null;
-            return getSubjectResultSet(rs, getProfessor(rs.getInt(3)));
+            return getSubjectResultSet(rs);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -214,22 +190,4 @@ public class SubjectDAO {
 
     }
 
-    private Professor getProfessor(int id) {
-        try {
-            getProfessorStatement.setInt(1, id);
-            ResultSet rs = getProfessorStatement.executeQuery();
-            if (!rs.next()) return null;
-            return getProfessorResultSet(rs);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
-    private Professor getProfessorResultSet(ResultSet rs) throws SQLException {
-        Professor professor = new Professor(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),null);
-        professor.setSubject(getSubject(rs.getInt(7),professor));
-        return professor;
-    }
 }

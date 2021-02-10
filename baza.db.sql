@@ -13,12 +13,10 @@ CREATE TABLE IF NOT EXISTS "professor" (
 CREATE TABLE IF NOT EXISTS "subject" (
 	"id"	INTEGER,
 	"name"	TEXT,
-	"subjects_professor" INTEGER,
-	PRIMARY KEY("id"),
-	FOREIGN KEY("subjects_professor") REFERENCES "professor"("id")
+	PRIMARY KEY("id")
 );
 INSERT INTO "professor" VALUES (1,'Elma','Šeremet','eseremet1@etf.unsa.ba','eseremet1','proba',1);
 INSERT INTO "professor" VALUES (2,'Samir','Šeremet','sseremet1@etf.unsa.ba','sseremet1','proba',2);
-INSERT INTO "subject" VALUES (1,'RPR',1);
-INSERT INTO "subject" VALUES (2,'OBP',2);
+INSERT INTO "subject" VALUES (1,'RPR');
+INSERT INTO "subject" VALUES (2,'OBP');
 COMMIT;

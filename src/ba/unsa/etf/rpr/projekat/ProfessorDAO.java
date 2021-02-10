@@ -111,15 +111,15 @@ public class ProfessorDAO {
             getSubjectStatement.setInt(1, id);
             ResultSet rs = getSubjectStatement.executeQuery();
             if (!rs.next()) return null;
-            return getSubjectResultSet(rs, professor);
+            return getSubjectResultSet(rs);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    private Subject getSubjectResultSet(ResultSet rs, Professor professor) throws SQLException {
-        return new Subject(rs.getInt(1),rs.getString(2), professor);
+    private Subject getSubjectResultSet(ResultSet rs) throws SQLException {
+        return new Subject(rs.getInt(1),rs.getString(2));
     }
 
     private Professor getProfessor(int id) {

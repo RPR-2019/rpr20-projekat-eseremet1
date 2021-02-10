@@ -38,7 +38,6 @@ public class AdminSubjectController {
         tableViewSubjects.setItems(collection);
         colSubjectID.setCellValueFactory(new PropertyValueFactory("id"));
         colSubjectName.setCellValueFactory(new PropertyValueFactory("name"));
-        colSubjectProfessor.setCellValueFactory(new PropertyValueFactory("professor"));
 
         FilteredList<Subject> filteredList = new FilteredList<>(collection, tmp->true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {

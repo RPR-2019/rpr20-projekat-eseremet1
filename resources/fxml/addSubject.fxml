@@ -78,28 +78,6 @@
                                     </textFill>
                                 </Label>
                                 <TextField fx:id="nameField" layoutX="10.0" layoutY="208.0" />
-                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="10.0" text="Profesor">
-                           <font>
-                              <Font name="Candara Light" size="33.0" />
-                           </font>
-                           <textFill>
-                              <LinearGradient endX="0.8969466085652358" endY="0.48091604327427523" startX="0.8854961668262045" startY="0.36259541984732824">
-                                 <stops>
-                                    <Stop>
-                                       <color>
-                                          <Color />
-                                       </color>
-                                    </Stop>
-                                    <Stop offset="1.0">
-                                       <color>
-                                          <Color />
-                                       </color>
-                                    </Stop>
-                                 </stops>
-                              </LinearGradient>
-                           </textFill>
-                        </Label>
-                        <ChoiceBox fx:id="choiceProfessor" prefWidth="150.0" />
                             </children>
                         </VBox>
                     </children>

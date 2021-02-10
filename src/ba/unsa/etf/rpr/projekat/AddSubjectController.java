@@ -17,19 +17,16 @@ public class AddSubjectController {
     private SubjectDAO subjectDAO;
     private Subject subject;
     public Button addBtn;
-    public ChoiceBox<Professor> choiceProfessor;
-    private ObservableList<Professor> professors;
+
 
 
     public AddSubjectController(Subject subject, ArrayList<Professor> professors) {
         subjectDAO = SubjectDAO.getInstance();
         this.subject = subject;
-        this.professors= FXCollections.observableArrayList(professors);
     }
 
     @FXML
     public void initialize() {
-        choiceProfessor.setItems(professors);
         if(subject!=null) {
             nameField.setText(subject.getName());
             addBtn.setText("Izmijeni");
@@ -83,7 +80,6 @@ public class AddSubjectController {
 
         if (subject== null) subject = new Subject();
         subject.setName(nameField.getText());
-        subject.setProfessor(choiceProfessor.getValue());
 
         Stage stageClose = (Stage) nameField.getScene().getWindow();
         stageClose.close();
