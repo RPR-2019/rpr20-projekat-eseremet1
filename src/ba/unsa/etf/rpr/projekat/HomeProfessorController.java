@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -95,6 +96,23 @@ public class HomeProfessorController {
         stage.setTitle("Prijavite se!");
         stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
         stage.setResizable(false);
+
+
+        stage.show();
+    }
+
+    public void profileAction(ActionEvent actionEvent) throws IOException {
+        Stage stageClose = (Stage) addDocumentBtn.getScene().getWindow();
+        stageClose.close();
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"));
+        ProfileController profileController =new ProfileController(activeProfessor);
+        loader.setController(profileController);
+        root=loader.load();
+        stage.setTitle("Prijavite se!");
+        stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
+        stage.setResizable(true);
 
 
         stage.show();
