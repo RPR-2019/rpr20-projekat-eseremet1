@@ -46,7 +46,7 @@ public class HomeProfessorController {
         ObservableList<Subject> professorsSubjects = FXCollections.observableArrayList(activeSubjects);
         listViewSubject.setItems(professorsSubjects);
     }
-    public void addDocumentAction(ActionEvent actionEvent) {
+    public void addDocumentAction(ActionEvent actionEvent) throws IOException {
         if(listViewSubject.getSelectionModel().getSelectedItem()==null) {
             try {
                 throw new IllegalAction("You must select one item");
@@ -62,11 +62,10 @@ public class HomeProfessorController {
         } else {
             Stage stage = new Stage();
             Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource("/fxml/chooseDocType.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseDocType.fxml"));
+            DocTypeController docTypeController=new DocTypeController(listViewSubject.getSelectionModel().getSelectedItem());
+            loader.setController(docTypeController);
+            root=loader.load();
             stage.setTitle("Izbor vrste željenog materijala");
             stage.setScene(new Scene(root, 500, 300)); //stavljamo početni ekran
             stage.setMinHeight(300); //da se ne može više smanjivati
