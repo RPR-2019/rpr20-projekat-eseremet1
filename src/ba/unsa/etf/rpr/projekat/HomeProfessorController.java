@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -46,23 +47,36 @@ public class HomeProfessorController {
         listViewSubject.setItems(professorsSubjects);
     }
     public void addDocumentAction(ActionEvent actionEvent) {
-        Stage stage = new Stage();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("/fxml/chooseDocType.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(listViewSubject.getSelectionModel().getSelectedItem()==null) {
+            try {
+                throw new IllegalAction("You must select one item");
+            } catch (IllegalAction illegalAction) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Morate izabrati predmet za koji želite dodati materijal!");
+
+                alert.showAndWait();
+            }
+        } else {
+            Stage stage = new Stage();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("/fxml/chooseDocType.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.setTitle("Izbor vrste željenog materijala");
+            stage.setScene(new Scene(root, 500, 300)); //stavljamo početni ekran
+            stage.setMinHeight(300); //da se ne može više smanjivati
+            stage.setMinWidth(200);
+            stage.setResizable(false);
+
+            stage.show();
+            Stage stage1 = (Stage) addDocumentBtn.getScene().getWindow();
+            stage1.close();
         }
-        stage.setTitle("Izbor vrste željenog materijala");
-        stage.setScene(new Scene(root, 500, 300)); //stavljamo početni ekran
-        stage.setMinHeight(300); //da se ne može više smanjivati
-        stage.setMinWidth(200);
-        stage.setResizable(false);
-
-        stage.show();
-        Stage stage1 = (Stage) addDocumentBtn.getScene().getWindow();
-        stage1.close();
-
     }
 
     public void homeworkAction(ActionEvent actionEvent) {
