@@ -64,7 +64,7 @@
                     </graphic></Button>
                 <Button fx:id="profilBtn" layoutX="10.0" layoutY="10.0" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#backAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;">
                     <graphic>
-                        <ImageView disable="true" fitHeight="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView disable="true" fitHeight="36.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/backIcon.png" />
                             </image>

@@ -100,6 +100,8 @@ public class AdminSubjectController {
             stage.setOnHiding(event -> {
                 Subject newSubject = subjectController.getSubject();
                 if (subject != null) {
+                    professorDAO.close();
+                    subjectDAO=SubjectDAO.getInstance();
                     subjectDAO.changeSubject(subject);
                     collection.setAll(subjectDAO.subjects());
                 }

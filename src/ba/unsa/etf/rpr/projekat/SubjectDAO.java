@@ -118,7 +118,7 @@ public class SubjectDAO {
         try {
 
             changeSubjectStatement.setString(1,subject.getName());
-            changeSubjectStatement.setInt(3,subject.getId());
+            changeSubjectStatement.setInt(2,subject.getId());
 
             changeSubjectStatement.executeUpdate();
         } catch (SQLException e) {
