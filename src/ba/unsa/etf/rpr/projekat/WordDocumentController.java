@@ -47,7 +47,7 @@ public class WordDocumentController {
                 pdfNameLabel.getStyleClass().add("poljeNijeIspravno");
             }
             else {
-                Path absolutePath = Paths.get("C:\\Users\\User\\IdeaProjects\\upravljanjeNastavnimMaterijalom\\resources\\materials\\"+chooser.getName());
+                Path absolutePath = Paths.get(getClass().getResource("/materials/").getPath()+chooser.getName());
                 File file = new File(String.valueOf(absolutePath));
                 Files.move(path1,absolutePath);
                 Desktop.getDesktop().open(absolutePath.toFile());
