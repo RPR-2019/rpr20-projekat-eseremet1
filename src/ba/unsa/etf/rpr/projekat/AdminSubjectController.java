@@ -25,7 +25,6 @@ public class AdminSubjectController {
     private ObservableList<Subject> collection;
     public TableColumn colSubjectID;
     public TableColumn colSubjectName;
-    public TableColumn colSubjectProfessor;
     public ProfessorDAO professorDAO;
 
 

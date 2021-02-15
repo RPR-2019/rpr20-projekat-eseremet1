@@ -80,7 +80,6 @@ public class AdminProfessorController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"));
             AddProfessorController professorContoller=new AddProfessorController(null, subjectDAO.subjects());
-            subjectDAO.close();
             loader.setController(professorContoller);
             root=loader.load();
             stage.setTitle("Dodavanje profesora");
