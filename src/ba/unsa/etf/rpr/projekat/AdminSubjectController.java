@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 public class AdminSubjectController {
     public TableView<Subject> tableViewSubjects;
     public TextField filterField;
@@ -129,12 +131,36 @@ public class AdminSubjectController {
 
     public void showReportAction(ActionEvent actionEvent) {
     }
+
     public void backAction(ActionEvent actionEvent) throws IOException {
         Stage stageClose = (Stage) tableViewSubjects.getScene().getWindow();
         stageClose.close();
         Stage stage = new Stage();
         Parent root = null;
         root = FXMLLoader.load(getClass().getResource("/fxml/homeAdmin.fxml"));
+        stage.setTitle("Prijavite se!");
+        stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+        stage.setResizable(false);
+
+
+        stage.show();
+    }
+
+    public void aboutAction(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/about.fxml"));
+        myStage.setTitle("About");
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
+    }
+
+    public void logoutAction(ActionEvent actionEvent) throws IOException {
+        Stage stageClose = (Stage) tableViewSubjects.getScene().getWindow();
+        stageClose.close();
+        Stage stage = new Stage();
+        Parent root = null;
+        root = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
         stage.setTitle("Prijavite se!");
         stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
         stage.setResizable(false);
