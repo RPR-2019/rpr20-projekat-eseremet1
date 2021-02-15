@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 public class AdminProfessorController {
 
     public TableView<Professor> tableViewProfessors;
@@ -171,5 +173,14 @@ public class AdminProfessorController {
 
 
         stage.show();
+    }
+
+    public void aboutAction(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/about.fxml"));
+        myStage.setTitle("About");
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
     }
 }
