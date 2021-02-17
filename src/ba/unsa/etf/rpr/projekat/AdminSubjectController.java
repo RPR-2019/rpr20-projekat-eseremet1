@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -91,6 +92,7 @@ public class AdminSubjectController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"));
             AddSubjectController subjectController=new AddSubjectController(subject, professorDAO.professors());
+            professorDAO.close();
             loader.setController(subjectController);
             root=loader.load();
             stage.setTitle("Izmjena predmeta");
@@ -129,6 +131,12 @@ public class AdminSubjectController {
     }
 
     public void showReportAction(ActionEvent actionEvent) {
+        try {
+            new PrintReport().showReportSubjects(subjectDAO.getConnection());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+
     }
 
     public void backAction(ActionEvent actionEvent) throws IOException {
