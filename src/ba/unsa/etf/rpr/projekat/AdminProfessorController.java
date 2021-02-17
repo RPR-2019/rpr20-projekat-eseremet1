@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -144,6 +145,12 @@ public class AdminProfessorController {
     }
 
     public void showReportAction(ActionEvent actionEvent) {
+        try {
+            new PrintReport().showReportProfessors(professorDAO.getConnection());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+
     }
 
     public void logoutAction(ActionEvent actionEvent) throws IOException {
