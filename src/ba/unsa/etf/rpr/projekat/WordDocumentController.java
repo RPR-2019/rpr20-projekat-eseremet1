@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,8 +48,9 @@ public class WordDocumentController {
                 pdfNameLabel.getStyleClass().add("poljeNijeIspravno");
             }
             else {
-                Path absolutePath = Paths.get(getClass().getResource("/materials/").getPath()+chooser.getName());
-                File file = new File(String.valueOf(absolutePath));
+
+                File file = new File("materials",chooser.getName());
+                Path absolutePath = Paths.get(file.getAbsolutePath());
                 Files.move(path1,absolutePath);
                 Desktop.getDesktop().open(absolutePath.toFile());
             }
