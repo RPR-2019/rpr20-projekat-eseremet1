@@ -7,7 +7,16 @@ public class Material {
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
     private Subject subject;
+    public enum Visibility { PUBLIC("1"), PRIVATE("2"), CUSTOM("3");
+        private final String type;
+        Visibility(String type) {
+            this.type = type;
+        }
 
+        public String getType() {
+            return type;
+        }
+    }
     public Material() {
     }
 

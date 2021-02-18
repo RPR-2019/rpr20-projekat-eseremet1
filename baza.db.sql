@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS "material" (
 	"id"	INTEGER,
 	"name"	TEXT,
 	"subject"	INTEGER,
+	"visibility" INTEGER,
 	PRIMARY KEY("id"),
 	FOREIGN KEY("subject") REFERENCES "subject"("id")
 );
