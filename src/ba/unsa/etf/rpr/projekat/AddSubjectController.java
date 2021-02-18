@@ -14,14 +14,14 @@ import java.util.ArrayList;
 
 public class AddSubjectController {
     public TextField nameField;
-    private SubjectDAO subjectDAO;
+    private MaterialManagementDAO materialManagementDAO;
     private Subject subject;
     public Button addBtn;
 
 
 
     public AddSubjectController(Subject subject, ArrayList<Professor> professors) {
-        subjectDAO = SubjectDAO.getInstance();
+        materialManagementDAO= MaterialManagementDAO.getInstance();
         this.subject = subject;
     }
 
@@ -59,7 +59,7 @@ public class AddSubjectController {
             nameField.getStyleClass().add("poljeIspravno");
         }
 
-        for (Subject oldSubject: subjectDAO.subjects()) {
+        for (Subject oldSubject: materialManagementDAO.subjects()) {
             if(oldSubject.getName().toUpperCase().equals(nameField.getText().toUpperCase())) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
 

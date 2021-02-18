@@ -131,6 +131,9 @@ public class TXTDocumentController {
                      PrintWriter p = new PrintWriter(b);) {
                     p.println(textAreaField.getText());
                     statusBarLabel.setText("Materijal je objavljen!");
+                    MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
+                    Material material = new Material(materialManagementDAO.getId(), docNameField.getText(),selectedSubject);
+                    materialManagementDAO.addMaterial(material);
                     Stage stage = (Stage) docNameField.getScene().getWindow();
                     stage.close();
                 } catch (IOException i) {

@@ -22,8 +22,7 @@ public class HomeProfessorController {
 
     @FXML
     private ListView<Subject> listViewSubject;
-    private SubjectDAO subjectDAO;
-    private ProfessorDAO professorDAO;
+    private MaterialManagementDAO materialManagementDAO;
     private ObservableList<Subject> subjectCollection;
     private ObservableList<Professor> professorCollection;
     private Professor activeProfessor;
@@ -32,11 +31,9 @@ public class HomeProfessorController {
     public Button profilBtn;
 
     public HomeProfessorController(Professor professor) {
-        subjectDAO = SubjectDAO.getInstance();
-        subjectCollection = FXCollections.observableArrayList(subjectDAO.subjects());
-        subjectDAO.close();
-        professorDAO = ProfessorDAO.getInstance();
-        professorCollection = FXCollections.observableArrayList(professorDAO.professors());
+        materialManagementDAO = MaterialManagementDAO.getInstance();
+        subjectCollection = FXCollections.observableArrayList(materialManagementDAO.subjects());
+        professorCollection = FXCollections.observableArrayList(materialManagementDAO.professors());
         activeProfessor = professor;
     }
 

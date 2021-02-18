@@ -17,10 +17,10 @@ import java.io.IOException;
 public class LogInController {
     public TextField userNameField;
     public PasswordField passwordField;
-    private ProfessorDAO professor;
+    private MaterialManagementDAO materialManagementDAO;
 
     public LogInController() {
-        professor = ProfessorDAO.getInstance();
+        materialManagementDAO = MaterialManagementDAO.getInstance();
 
 
     }
@@ -76,8 +76,8 @@ public class LogInController {
             stage.show();
             Stage stageClose = (Stage) userNameField.getScene().getWindow();
             stageClose.close();
-        } else if (professor.searchProfessor(userNameField.getText()) != null) {
-            if (professor.searchProfessor(userNameField.getText()).getPassword().equals(passwordField.getText())) {
+        } else if (materialManagementDAO.searchProfessor(userNameField.getText()) != null) {
+            if (materialManagementDAO.searchProfessor(userNameField.getText()).getPassword().equals(passwordField.getText())) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Obavijest");
                 alert.setHeaderText(null);
@@ -87,7 +87,7 @@ public class LogInController {
                 Stage stage = new Stage();
                 Parent root = null;
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeProfessor.fxml"));
-                HomeProfessorController professorContoller=new HomeProfessorController(professor.searchProfessor(userNameField.getText()));
+                HomeProfessorController professorContoller=new HomeProfessorController(materialManagementDAO.searchProfessor(userNameField.getText()));
                 loader.setController(professorContoller);
                 root=loader.load();
                 stage.setTitle("Početna stranica za profesora");

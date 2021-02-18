@@ -22,17 +22,15 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public class AdminSubjectController {
     public TableView<Subject> tableViewSubjects;
     public TextField filterField;
-    private SubjectDAO subjectDAO;
     private ObservableList<Subject> collection;
     public TableColumn colSubjectID;
     public TableColumn colSubjectName;
-    public ProfessorDAO professorDAO;
+    public MaterialManagementDAO materialManagementDAO;
 
 
     public AdminSubjectController() {
-        subjectDAO = SubjectDAO.getInstance();
-        collection = FXCollections.observableArrayList(subjectDAO.subjects());
-        professorDAO = ProfessorDAO.getInstance();
+        materialManagementDAO = MaterialManagementDAO.getInstance();
+        collection = FXCollections.observableArrayList(materialManagementDAO.subjects());
     }
 
     @FXML
@@ -61,8 +59,7 @@ public class AdminSubjectController {
         Stage stage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"));
-            AddSubjectController subjectController=new AddSubjectController(null, professorDAO.professors());
-            professorDAO.close();
+            AddSubjectController subjectController=new AddSubjectController(null, materialManagementDAO.professors());
             loader.setController(subjectController);
             root=loader.load();
             stage.setTitle("Dodavanje profesora");
@@ -73,8 +70,8 @@ public class AdminSubjectController {
             stage.setOnHiding(event -> {
                 Subject subject = subjectController.getSubject();
                 if (subject != null) {
-                    subjectDAO.addSubject(subject);
-                    collection.setAll(subjectDAO.subjects());
+                    materialManagementDAO.addSubject(subject);
+                    collection.setAll(materialManagementDAO.subjects());
                 }
             });
         } catch (IOException e) {
@@ -91,8 +88,7 @@ public class AdminSubjectController {
         Stage stage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"));
-            AddSubjectController subjectController=new AddSubjectController(subject, professorDAO.professors());
-            professorDAO.close();
+            AddSubjectController subjectController=new AddSubjectController(subject, materialManagementDAO.professors());
             loader.setController(subjectController);
             root=loader.load();
             stage.setTitle("Izmjena predmeta");
@@ -103,10 +99,8 @@ public class AdminSubjectController {
             stage.setOnHiding(event -> {
                 Subject newSubject = subjectController.getSubject();
                 if (subject != null) {
-                    professorDAO.close();
-                    subjectDAO=SubjectDAO.getInstance();
-                    subjectDAO.changeSubject(subject);
-                    collection.setAll(subjectDAO.subjects());
+                    materialManagementDAO.changeSubject(subject);
+                    collection.setAll(materialManagementDAO.subjects());
                 }
             });
         } catch (IOException e) {
@@ -125,14 +119,14 @@ public class AdminSubjectController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (((Optional) result).get() == ButtonType.OK){
-            subjectDAO.deleteSubject(subject.getName());
-            collection.setAll(subjectDAO.subjects());
+            materialManagementDAO.deleteSubject(subject.getName());
+            collection.setAll(materialManagementDAO.subjects());
         }
     }
 
     public void showReportAction(ActionEvent actionEvent) {
         try {
-            new PrintReport().showReportSubjects(subjectDAO.getConnection());
+            new PrintReport().showReportSubjects(materialManagementDAO.getConnection());
         } catch (JRException e1) {
             e1.printStackTrace();
         }

@@ -19,12 +19,12 @@ public class AddProfessorController {
     public PasswordField passwordField;
     public ChoiceBox<Subject> choiceSubject;
     private ObservableList<Subject> subjects;
-    private ProfessorDAO professorDAO;
+    private MaterialManagementDAO materialManagementDAO;
     private Professor professor;
     public Button addBtn;
 
     public AddProfessorController(Professor professor, ArrayList<Subject> subjects) {
-        professorDAO = ProfessorDAO.getInstance();
+        materialManagementDAO = MaterialManagementDAO.getInstance();
         this.professor = professor;
         this.subjects= FXCollections.observableArrayList(subjects);
     }
@@ -150,7 +150,7 @@ public class AddProfessorController {
         }
 
         if(professor==null) {
-            for (Professor oldProffesor : professorDAO.professors()) {
+            for (Professor oldProffesor : materialManagementDAO.professors()) {
                 if (oldProffesor.getUsername().equals(usernameField.getText())) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Upozorenje");

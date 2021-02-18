@@ -23,7 +23,6 @@ public class AdminProfessorController {
 
     public TableView<Professor> tableViewProfessors;
     public TextField filterField;
-    private ProfessorDAO professorDAO;
     private ObservableList<Professor> collection;
     public TableColumn colProfessorId;
     public TableColumn colProfessorName;
@@ -32,13 +31,12 @@ public class AdminProfessorController {
     public TableColumn colProfessorPassword;
     public TableColumn colProfessorEmail;
     public TableColumn colProfessorSubject;
-    private SubjectDAO subjectDAO;
+    private MaterialManagementDAO materialManagementDAO;
 
 
     public AdminProfessorController() {
-        professorDAO = ProfessorDAO.getInstance();
-        collection = FXCollections.observableArrayList(professorDAO.professors());
-        subjectDAO=SubjectDAO.getInstance();
+        materialManagementDAO= MaterialManagementDAO.getInstance();
+        collection = FXCollections.observableArrayList(materialManagementDAO.professors());
     }
 
     @FXML
@@ -80,7 +78,7 @@ public class AdminProfessorController {
         Stage stage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"));
-            AddProfessorController professorContoller=new AddProfessorController(null, subjectDAO.subjects());
+            AddProfessorController professorContoller=new AddProfessorController(null, materialManagementDAO.subjects());
             loader.setController(professorContoller);
             root=loader.load();
             stage.setTitle("Dodavanje profesora");
@@ -91,8 +89,8 @@ public class AdminProfessorController {
             stage.setOnHiding(event -> {
                 Professor professor = professorContoller.getProfessor();
                 if (professor != null) {
-                    professorDAO.addProfessor(professor);
-                    collection.setAll(professorDAO.professors());
+                    materialManagementDAO.addProfessor(professor);
+                    collection.setAll(materialManagementDAO.professors());
                 }
             });
         } catch (IOException e) {
@@ -108,7 +106,7 @@ public class AdminProfessorController {
         Parent root = null;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"));
-            AddProfessorController professorContoller=new AddProfessorController(professor, subjectDAO.subjects());
+            AddProfessorController professorContoller=new AddProfessorController(professor, materialManagementDAO.subjects());
             loader.setController(professorContoller);
             root=loader.load();
             stage.setTitle("Izmjena profesora");
@@ -119,8 +117,8 @@ public class AdminProfessorController {
             stage.setOnHiding( event -> {
                 Professor newProfessor = professorContoller.getProfessor();
                 if (newProfessor != null) {
-                    professorDAO.changeProfessor(newProfessor);
-                    collection.setAll(professorDAO.professors());
+                    materialManagementDAO.changeProfessor(newProfessor);
+                    collection.setAll(materialManagementDAO.professors());
                 }
             } );
         } catch (IOException e) {
@@ -139,14 +137,14 @@ public class AdminProfessorController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (((Optional) result).get() == ButtonType.OK){
-            professorDAO.deleteProfessor(professor.getUsername());
-            collection.setAll(professorDAO.professors());
+            materialManagementDAO.deleteProfessor(professor.getUsername());
+            collection.setAll(materialManagementDAO.professors());
         }
     }
 
     public void showReportAction(ActionEvent actionEvent) {
         try {
-            new PrintReport().showReportProfessors(professorDAO.getConnection());
+            new PrintReport().showReportProfessors(materialManagementDAO.getConnection());
         } catch (JRException e1) {
             e1.printStackTrace();
         }

@@ -48,6 +48,9 @@ public class WordDocumentController {
                 Path absolutePath = Paths.get(file.getAbsolutePath());
                 Files.move(path1,absolutePath);
                 Desktop.getDesktop().open(absolutePath.toFile());
+                MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
+                Material material = new Material(materialManagementDAO.getId(), chooser.getName(),selectedSubject);
+                materialManagementDAO.addMaterial(material);
             }
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -17,10 +17,10 @@ public class PasswordController {
     public PasswordField newPasswordField1;
     public PasswordField newPasswordField;
     private Professor professor;
-    private ProfessorDAO professorDAO;
+    private MaterialManagementDAO materialManagementDAO;
 
     public PasswordController(Professor professor) {
-        professorDAO = ProfessorDAO.getInstance();
+        materialManagementDAO = MaterialManagementDAO.getInstance();
         this.professor=professor;
     }
 
@@ -37,7 +37,7 @@ public class PasswordController {
             correct = passwordCheck(newPasswordField.getText());
             if(correct==true) {
                 professor.setPassword(newPasswordField.getText());
-                professorDAO.changeProfessor(professor);
+                materialManagementDAO.changeProfessor(professor);
                 Stage stageClose = (Stage) newPasswordField.getScene().getWindow();
                 stageClose.close();
                 Stage stage = new Stage();
