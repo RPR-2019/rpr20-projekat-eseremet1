@@ -94,8 +94,22 @@ public class HomeProfessorController {
 
     }
 
-    public void reviewAction(ActionEvent actionEvent) {
+    public void reviewAction(ActionEvent actionEvent) throws IOException {
+        Stage stageClose = (Stage) addDocumentBtn.getScene().getWindow();
+        stageClose.close();
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/review.fxml"));
+        ReviewController reviewController = new ReviewController(listViewSubject.getSelectionModel().getSelectedItem(), activeProfessor);
+        loader.setController(reviewController);
+        root = loader.load();
+        stage.setTitle("Izbor vrste željenog materijala");
+        stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
+        stage.setMinHeight(300); //da se ne može više smanjivati
+        stage.setMinWidth(200);
+        stage.setResizable(true);
 
+        stage.show();
     }
 
     public void logoutAction(ActionEvent actionEvent) throws IOException {

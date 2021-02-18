@@ -49,4 +49,9 @@ public class Material {
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
+
+    @Override
+    public String toString() {
+        return name.get();
+    }
 }

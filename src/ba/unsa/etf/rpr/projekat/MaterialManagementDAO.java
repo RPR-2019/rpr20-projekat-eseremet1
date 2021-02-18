@@ -71,7 +71,7 @@ public class MaterialManagementDAO {
             addMaterialStatement = connection.prepareStatement("INSERT INTO material VALUES(?,?,?) ");
             determineIdMaterialStatement = connection.prepareStatement("SELECT MAX(id)+1 FROM material");
             getSubjectStatement = connection.prepareStatement("SELECT * FROM subject WHERE id=?");
-            getMaterialsStatement = connection.prepareStatement("SELECT * FROM material WHERE id=?");
+            getMaterialsStatement = connection.prepareStatement("SELECT * FROM material");
 
         } catch (SQLException e) {
             e.printStackTrace();

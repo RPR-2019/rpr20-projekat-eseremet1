@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1513.0" style="-fx-background-color: #a6a2a5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.ReviewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1513.0" style="-fx-background-color: #a6a2a5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@../css/controlMaterial.css" />
     </stylesheets>
@@ -27,15 +27,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <children>
-                      <Button fx:id="addStudentBtn" maxHeight="30.4" maxWidth="40.0" mnemonicParsing="false" onAction="#showMaterialAction" prefHeight="30.4" prefWidth="40.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/showIcon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                      </Button>
+                      <Button fx:id="addMaterialBtn" maxHeight="30.4" maxWidth="40.0" mnemonicParsing="false" onAction="#showMaterialAction" prefHeight="30.4" prefWidth="40.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;" />
                         <Label prefHeight="35.0" prefWidth="190.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Pogledaj materijal">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -53,15 +45,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <children>
-                  <Button maxHeight="30.4" maxWidth="40.0" mnemonicParsing="false" onAction="#deleteMaterialAction" prefHeight="30.4" prefWidth="40.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/deleteIcon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <Button fx:id="deleteMaterialBtn" maxHeight="30.4" maxWidth="40.0" mnemonicParsing="false" onAction="#deleteMaterialAction" prefHeight="30.4" prefWidth="40.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;" />
                   <Label prefHeight="35.0" prefWidth="190.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Ukloni materijal">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -137,7 +121,7 @@
                     </graphic></Button>
                 <Button fx:id="profilBtn" layoutX="10.0" layoutY="10.0" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#backAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;">
                     <graphic>
-                        <ImageView disable="true" fitHeight="40.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView disable="true" fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/backIcon.png" />
                             </image>
