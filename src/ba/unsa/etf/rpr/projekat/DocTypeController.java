@@ -55,6 +55,20 @@ public class DocTypeController {
     }
 
     public void createTxtDocumentAction(ActionEvent actionEvent) {
-
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addTXTDocument.fxml"));
+            TXTDocumentController TXTDocumentController=new TXTDocumentController(selectedSubject,activeProfessor);
+            loader.setController(TXTDocumentController);
+            root=loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setTitle("Izbor vrste željenog materijala");
+        stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+        stage.setMinHeight(300); //da se ne može više smanjivati
+        stage.setMinWidth(200);
+        stage.show();
     }
 }
