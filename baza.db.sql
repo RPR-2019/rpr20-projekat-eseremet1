@@ -18,9 +18,9 @@ CREATE TABLE IF NOT EXISTS "subject" (
 CREATE TABLE IF NOT EXISTS "material" (
 	"id"	INTEGER,
 	"name"	TEXT,
-	"professor"	INTEGER,
+	"subject"	INTEGER,
 	PRIMARY KEY("id"),
-	FOREIGN KEY("professor") REFERENCES "professor"("id")
+	FOREIGN KEY("subject") REFERENCES "subject"("id")
 );
 INSERT INTO "professor" VALUES (1,'Elma','Šeremet','eseremet1@etf.unsa.ba','eseremet1','Seremet123',1);
 INSERT INTO "professor" VALUES (2,'Samir','Šeremet','sseremet1@etf.unsa.ba','sseremet1','samirproba',2);
