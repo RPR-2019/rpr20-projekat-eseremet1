@@ -45,7 +45,13 @@ public class HomeProfessorController {
         //pronalazak svih predmeta koje profesor može uređivati
         ArrayList<Subject> activeSubjects = subjectCollection.stream().filter(subject -> subject.getId() == activeProfessor.getSubject().getId()).collect(Collectors.toCollection(ArrayList::new));
         ObservableList<Subject> professorsSubjects = FXCollections.observableArrayList(activeSubjects);
-        listViewSubject.setItems(professorsSubjects);
+        for (int i=0; i<subjectCollection.size(); i++) {
+            if(professorsSubjects.contains(subjectCollection.get(i))) {
+                Subject subject = subjectCollection.get(i);
+                subjectCollection.get(i).setName(subject+"*");
+            }
+        }
+        listViewSubject.setItems(subjectCollection);
     }
     public void addDocumentAction(ActionEvent actionEvent) throws IOException {
         if(listViewSubject.getSelectionModel().getSelectedItem()==null) {
@@ -61,19 +67,29 @@ public class HomeProfessorController {
                 alert.showAndWait();
             }
         } else {
-            Stage stage = new Stage();
-            Parent root = null;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseDocType.fxml"));
-            DocTypeController docTypeController=new DocTypeController(listViewSubject.getSelectionModel().getSelectedItem(), activeProfessor);
-            loader.setController(docTypeController);
-            root=loader.load();
-            stage.setTitle("Izbor vrste željenog materijala");
-            stage.setScene(new Scene(root, 500, 300)); //stavljamo početni ekran
-            stage.setMinHeight(300); //da se ne može više smanjivati
-            stage.setMinWidth(200);
-            stage.setResizable(false);
+            if(!listViewSubject.getSelectionModel().getSelectedItem().getName().contains("*")) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
 
-            stage.show();
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Materijale može dodavati samo profesor na predmetu!");
+
+                alert.showAndWait();
+            } else {
+                Stage stage = new Stage();
+                Parent root = null;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseDocType.fxml"));
+                DocTypeController docTypeController = new DocTypeController(listViewSubject.getSelectionModel().getSelectedItem(), activeProfessor);
+                loader.setController(docTypeController);
+                root = loader.load();
+                stage.setTitle("Izbor vrste željenog materijala");
+                stage.setScene(new Scene(root, 500, 300)); //stavljamo početni ekran
+                stage.setMinHeight(300); //da se ne može više smanjivati
+                stage.setMinWidth(200);
+                stage.setResizable(false);
+
+                stage.show();
+            }
         }
     }
 
