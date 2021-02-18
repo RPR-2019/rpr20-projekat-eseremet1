@@ -27,7 +27,6 @@
                               <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
-                    <MenuItem text="_Close" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="mniExit" onAction="#exitAction" text="E_xit">
                            <accelerator>
@@ -36,14 +35,9 @@
                         </MenuItem>
                   </items>
                 </Menu>
-                <Menu text="_Edit">
-                  <items>
-                    <MenuItem text="_Delete" />
-                  </items>
-                </Menu>
                 <Menu text="_Help">
                   <items>
-                    <MenuItem text="_About" />
+                    <MenuItem onAction="#aboutAction" text="_About" />
                   </items>
                 </Menu>
               </menus>
@@ -53,7 +47,6 @@
                 <Button fx:id="uploadBtn" mnemonicParsing="false" onAction="#uploadAction" />
                   <TextField fx:id="docNameField" prefHeight="26.0" prefWidth="162.0" promptText="Naziv dokumenta" />
                   <Separator orientation="VERTICAL" />
-                  <Button mnemonicParsing="false" style="-fx-background-color: #a6a2a5;" />
               </items>
             </ToolBar>
          </children>

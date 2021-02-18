@@ -70,5 +70,8 @@ public class DocTypeController {
         stage.setMinHeight(300); //da se ne može više smanjivati
         stage.setMinWidth(200);
         stage.show();
+
+        Stage stage1 = (Stage) pdfBtn.getScene().getWindow();
+        stage1.close();
     }
 }

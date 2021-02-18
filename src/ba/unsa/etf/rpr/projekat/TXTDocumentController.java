@@ -6,6 +6,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -14,6 +17,8 @@ import javax.swing.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class TXTDocumentController {
     private Subject selectedSubject;
@@ -49,24 +54,25 @@ public class TXTDocumentController {
     }
 
     public void exitAction(ActionEvent actionEvent) {
-        System.exit(0);
+        Stage stage1 = (Stage) textAreaField.getScene().getWindow();
+        stage1.close();
     }
 
     public void openAction(ActionEvent actionEvent) {
-        FileChooser izbornik = new FileChooser();
-        izbornik.setTitle("Izaberite datoteku");
-        izbornik.getExtensionFilters().add(new FileChooser.ExtensionFilter("Tektualna datoteka","*.txt"));
-        File izabrani = izbornik.showOpenDialog(textAreaField.getScene().getWindow());
-        if(izabrani==null) return;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Izaberite datoteku");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Tektualna datoteka","*.txt"));
+        File file = fileChooser.showOpenDialog(textAreaField.getScene().getWindow());
+        if(file==null) return;
         try {
-            String text = new String(Files.readAllBytes(izabrani.toPath()));
+            String text = new String(Files.readAllBytes(file.toPath()));
             textAreaField.setText(text);
             statusBarLabel.setText("Datoteka uspješno učitana!");
-            ObservableList<String> items = FXCollections.observableArrayList(izabrani.getName());
+            ObservableList<String> items = FXCollections.observableArrayList(file.getName());
             listView.setItems(items);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Pojavila se greška prilikom učitavanja .txt datoteke -" + izabrani.getName());
+            alert.setHeaderText("Pojavila se greška prilikom učitavanja .txt datoteke -" + file.getName());
             alert.setContentText(e.getMessage());
             alert.setTitle("Error");
             alert.showAndWait();
@@ -134,6 +140,15 @@ public class TXTDocumentController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public void aboutAction(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/aboutTXT.fxml"));
+        myStage.setTitle("About");
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
     }
 
 }
