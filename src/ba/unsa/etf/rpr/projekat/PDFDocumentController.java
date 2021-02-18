@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.projekat;
 
+import ba.unsa.etf.rpr.projekat.Professor;
+import ba.unsa.etf.rpr.projekat.Subject;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,21 +17,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class WordDocumentController {
+public class PDFDocumentController {
     public Button loadBtn;
     public Label pdfNameLabel;
     public ProgressBar pdfProgressBar;
     private Subject selectedSubject;
     private Professor activeProfessor;
-    public WordDocumentController(Subject subject, Professor professor) {
+    public PDFDocumentController(Subject subject, Professor professor) {
         selectedSubject = subject;
         activeProfessor = professor;
     }
 
-    public void uploadWordAction(ActionEvent actionEvent) {
+    public void uploadPDFAction(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Izaberite datoteku");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Word document","*.docx"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF document","*.pdf"));
         File chooser = fileChooser.showOpenDialog(loadBtn.getScene().getWindow());
         Path path1= Paths.get(chooser.getAbsolutePath());
         if(chooser==null) return;
@@ -51,7 +53,7 @@ public class WordDocumentController {
             }
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Pojavila se greška prilikom učitavanja .docx datoteke -" + chooser.getName());
+            alert.setHeaderText("Pojavila se greška prilikom učitavanja .pdf datoteke -" + chooser.getName());
             alert.setContentText(e.getMessage());
             alert.setTitle("Error");
             alert.showAndWait();

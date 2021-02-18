@@ -19,8 +19,21 @@ public class DocTypeController {
         activeProfessor = professor;
     }
 
-    public void uploadPDFDocumentAction(ActionEvent actionEvent) {
+    public void uploadPDFDocumentAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addPDFDocument.fxml"));
+        PDFDocumentController PDFDocumentController=new PDFDocumentController(selectedSubject,activeProfessor);
+        loader.setController(PDFDocumentController);
+        root=loader.load();
+        stage.setTitle("PDF document");
+        stage.setScene(new Scene(root, 500, 300)); //stavljamo početni ekran
+        stage.setMinHeight(300); //da se ne može više smanjivati
+        stage.setMinWidth(200);
+        stage.show();
 
+        Stage stage1 = (Stage) pdfBtn.getScene().getWindow();
+        stage1.close();
     }
 
     public void createWordDocumentAction(ActionEvent actionEvent) throws IOException {
