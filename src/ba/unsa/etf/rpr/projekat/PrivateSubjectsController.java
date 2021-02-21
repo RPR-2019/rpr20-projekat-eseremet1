@@ -108,15 +108,24 @@ public class PrivateSubjectsController {
     }
 
     public void publicAction(ActionEvent actionEvent) {
-        MaterialManagementDAO instance = MaterialManagementDAO.getInstance();
-        Material material = instance.searchMaterial(listView.getSelectionModel().getSelectedItem().toString());
+        if(listView.getSelectionModel().getSelectedItem()!=null) {
+            MaterialManagementDAO instance = MaterialManagementDAO.getInstance();
+            Material material = instance.searchMaterial(listView.getSelectionModel().getSelectedItem().toString());
             material.setType(Visibility.PUBLIC);
-        instance.changeMaterial(material);
-        ArrayList<Material> materials = materialCollection.stream().filter(material1 -> material1.getSubject().getId() == activeSubject.getId() && (material1.getType()==Visibility.PRIVATE || material1.getType()==Visibility.CUSTOM)).collect(Collectors.toCollection(ArrayList::new));
-        for (int i=0; i<materials.size(); i++) {
-            collection.add(materials.get(i).getName());
+            instance.changeMaterial(material);
+            ArrayList<Material> materials = materialCollection.stream().filter(material1 -> material1.getSubject().getId() == activeSubject.getId() && (material1.getType() == Visibility.PRIVATE || material1.getType() == Visibility.CUSTOM)).collect(Collectors.toCollection(ArrayList::new));
+            for (int i = 0; i < materials.size(); i++) {
+                collection.add(materials.get(i).getName());
+            }
+            ObservableList<String> result = FXCollections.observableArrayList(collection);
+            listView.setItems(result);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Obavijest");
+            alert.setHeaderText(null);
+            alert.setContentText("Morate izabrati određeni materijal");
+
+            alert.showAndWait();
         }
-        ObservableList<String> result = FXCollections.observableArrayList(collection);
-        listView.setItems(result);
     }
 }
