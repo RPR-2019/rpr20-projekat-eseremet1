@@ -113,7 +113,9 @@ public class PrivateSubjectsController {
             Material material = instance.searchMaterial(listView.getSelectionModel().getSelectedItem().toString());
             material.setType(Visibility.PUBLIC);
             instance.changeMaterial(material);
+            materialCollection= FXCollections.observableArrayList(materialManagementDAO.materials());
             ArrayList<Material> materials = materialCollection.stream().filter(material1 -> material1.getSubject().getId() == activeSubject.getId() && (material1.getType() == Visibility.PRIVATE || material1.getType() == Visibility.CUSTOM)).collect(Collectors.toCollection(ArrayList::new));
+            collection.clear();
             for (int i = 0; i < materials.size(); i++) {
                 collection.add(materials.get(i).getName());
             }
