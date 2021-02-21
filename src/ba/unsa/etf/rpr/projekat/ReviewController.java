@@ -24,11 +24,6 @@ import java.util.stream.Collectors;
 
 public class ReviewController {
     public ListView listView;
-    public RadioButton pdfRadioBtn;
-    public ToggleGroup materialToggle;
-    public RadioButton wordRadioBtn;
-    public RadioButton txtRadioBtn;
-    public RadioButton allMaterialsRadioBtn;
     private Professor activeProfessor;
     private Subject activeSubject;
     private MaterialManagementDAO materialManagementDAO;
@@ -40,8 +35,8 @@ public class ReviewController {
         activeSubject=selectedItem;
         materialManagementDAO = MaterialManagementDAO.getInstance();
         materialCollection= FXCollections.observableArrayList(materialManagementDAO.materials());
-        //pronalazak svih materijala za dati predmet
-        ArrayList<Material> materials = materialCollection.stream().filter(material -> material.getSubject().getId() == activeSubject.getId()).collect(Collectors.toCollection(ArrayList::new));
+        //pronalazak svih materijala za dati predmet koji su javni
+        ArrayList<Material> materials = materialCollection.stream().filter(material -> material.getSubject().getId() == activeSubject.getId() && material.getType()==Visibility.PUBLIC).collect(Collectors.toCollection(ArrayList::new));
         for (int i=0; i<materials.size(); i++) {
             collection.add(materials.get(i).getName());
         }
@@ -111,5 +106,25 @@ public class ReviewController {
 
             alert.showAndWait();
         }
+    }
+
+    public void showAllMaterialsAction(ActionEvent actionEvent) throws IOException {
+
+        Stage stageClose = (Stage) listView.getScene().getWindow();
+        stageClose.close();
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/privateSubjects.fxml"));
+        PrivateSubjectsController reviewController = new PrivateSubjectsController(activeSubject, activeProfessor);
+        loader.setController(reviewController);
+        root = loader.load();
+        stage.setTitle("Izbor vrste željenog materijala");
+        stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
+        stage.setMinHeight(300); //da se ne može više smanjivati
+        stage.setMinWidth(200);
+        stage.setResizable(true);
+
+        stage.show();
+
     }
 }

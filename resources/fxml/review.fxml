@@ -56,6 +56,22 @@
                   </Label>
                </children>
             </HBox>
+            <HBox layoutX="10.0" layoutY="187.0" prefWidth="266.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Button fx:id="reviewMaterialBtn" maxHeight="30.4" maxWidth="40.0" mnemonicParsing="false" onAction="#showAllMaterialsAction" prefHeight="30.4" prefWidth="40.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;" />
+                  <Label prefHeight="35.0" prefWidth="190.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Skriveni materijali">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
 
             </children>
             <BorderPane.margin>

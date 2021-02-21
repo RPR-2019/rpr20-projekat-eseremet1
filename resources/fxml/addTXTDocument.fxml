@@ -47,6 +47,7 @@
                 <Button fx:id="uploadBtn" mnemonicParsing="false" onAction="#uploadAction" />
                   <TextField fx:id="docNameField" prefHeight="26.0" prefWidth="162.0" promptText="Naziv dokumenta" />
                   <Separator orientation="VERTICAL" />
+                  <ChoiceBox fx:id="visibilityBox" prefWidth="150.0" />
               </items>
             </ToolBar>
          </children>

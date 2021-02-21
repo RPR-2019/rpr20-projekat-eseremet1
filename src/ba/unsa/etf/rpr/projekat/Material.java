@@ -7,23 +7,21 @@ public class Material {
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
     private Subject subject;
-    public enum Visibility { PUBLIC("1"), PRIVATE("2"), CUSTOM("3");
-        private final String type;
-        Visibility(String type) {
-            this.type = type;
-        }
-
-        public String getType() {
-            return type;
-        }
-    }
+    private Visibility type;
     public Material() {
     }
 
-    public Material(Integer id, String name, Subject subject) {
+    public Material(Integer id, String name, Subject subject, int type) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.subject = subject;
+        if(type==1) {
+            this.type = ba.unsa.etf.rpr.projekat.Visibility.PUBLIC;
+        } else if(type==2) {
+            this.type = ba.unsa.etf.rpr.projekat.Visibility.PRIVATE;
+        } else {
+            this.type = ba.unsa.etf.rpr.projekat.Visibility.CUSTOM;
+        }
     }
 
     public int getId() {
@@ -57,6 +55,14 @@ public class Material {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
+    }
+
+    public ba.unsa.etf.rpr.projekat.Visibility getType() {
+        return type;
+    }
+
+    public void setType(ba.unsa.etf.rpr.projekat.Visibility type) {
+        this.type = type;
     }
 
     @Override

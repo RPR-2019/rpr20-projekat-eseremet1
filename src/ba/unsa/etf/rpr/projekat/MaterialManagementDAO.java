@@ -10,7 +10,7 @@ public class MaterialManagementDAO {
     private static MaterialManagementDAO instance; //singleton klasa
     private PreparedStatement getProfessorStatement, deleteProfessorStatement, searchProfessorStatement, changeProfessorStatement, getProfessorsStatement, addProfessorStatement, determineIdProfessorStatement, getSubjectStatement;
     private PreparedStatement deleteSubjectStatement, searchSubjectStatement, changeSubjectStatement, getSubjectsStatement, addSubjectStatement, determineIdSubjectStatement;
-    private PreparedStatement getMaterialStatement, deleteMaterialStatement, searchMaterialStatement, getMaterialsStatement, addMaterialStatement, determineIdMaterialStatement;
+    private PreparedStatement getMaterialStatement, deleteMaterialStatement, searchMaterialStatement, getMaterialsStatement, addMaterialStatement, determineIdMaterialStatement, changeMaterialStatement;
 
     private Connection connection;
 
@@ -56,6 +56,7 @@ public class MaterialManagementDAO {
             determineIdProfessorStatement = connection.prepareStatement("SELECT MAX(id)+1 FROM professor");
             getSubjectStatement = connection.prepareStatement("SELECT * FROM subject WHERE id=?");
 
+
             //pripremljeni upiti za predmet
             deleteSubjectStatement = connection.prepareStatement("DELETE FROM subject WHERE id = ?");
             searchSubjectStatement = connection.prepareStatement("SELECT * FROM subject WHERE name LIKE ? ");
@@ -68,10 +69,11 @@ public class MaterialManagementDAO {
             deleteMaterialStatement = connection.prepareStatement("DELETE FROM material WHERE id = ?");
             searchMaterialStatement = connection.prepareStatement("SELECT * FROM material WHERE name LIKE ? ");
             getMaterialsStatement = connection.prepareStatement("SELECT * FROM material");
-            addMaterialStatement = connection.prepareStatement("INSERT INTO material VALUES(?,?,?) ");
+            addMaterialStatement = connection.prepareStatement("INSERT INTO material VALUES(?,?,?,?) ");
             determineIdMaterialStatement = connection.prepareStatement("SELECT MAX(id)+1 FROM material");
             getSubjectStatement = connection.prepareStatement("SELECT * FROM subject WHERE id=?");
             getMaterialsStatement = connection.prepareStatement("SELECT * FROM material");
+            changeMaterialStatement = connection.prepareStatement("UPDATE material SET visibility = ? WHERE id=?");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -261,6 +263,27 @@ public class MaterialManagementDAO {
         }
     }
 
+    public void changeMaterial(Material material) {
+        try {
+            searchMaterialStatement.setString(1,material.getName());
+            ResultSet rs = searchMaterialStatement.executeQuery();
+            if(!rs.next()) return;
+            Material materialNew = getMaterialResultSet(rs);
+
+            if(material.getType().equals(Visibility.PUBLIC)) {
+               changeMaterialStatement.setInt(1,1);
+            } else if(material.getType().equals(Visibility.PRIVATE)) {
+                changeMaterialStatement.setInt(1,2);
+            } else {
+                changeMaterialStatement.setInt(1,3);
+            }
+            changeMaterialStatement.setInt(2,materialNew.getId());
+
+            changeMaterialStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void deleteSubject(String name) {
         try {
@@ -331,7 +354,7 @@ public class MaterialManagementDAO {
 
 
     private Material getMaterialResultSet(ResultSet rs) throws SQLException {
-        Material material = new Material(rs.getInt(1), rs.getString(2),null);
+        Material material = new Material(rs.getInt(1), rs.getString(2),null,rs.getInt(4));
         material.setSubject(getSubject(rs.getInt(3),material));
         return material;
 
@@ -402,7 +425,13 @@ public class MaterialManagementDAO {
             addMaterialStatement.setInt(1,id);
             addMaterialStatement.setString(2,material.getName());
             addMaterialStatement.setInt(3,material.getSubject().getId());
-
+            if(material.getType().equals(Visibility.PUBLIC)) {
+                addMaterialStatement.setInt(4,1);
+            } else if(material.getType().equals(Visibility.PRIVATE)) {
+                addMaterialStatement.setInt(4,2);
+            } else {
+                addMaterialStatement.setInt(4,3);
+            }
             addMaterialStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

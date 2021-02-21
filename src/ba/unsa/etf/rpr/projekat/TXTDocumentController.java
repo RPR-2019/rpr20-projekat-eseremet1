@@ -27,16 +27,21 @@ public class TXTDocumentController {
     public Label statusBarLabel;
     public ListView listView;
     public TextField docNameField;
+    public ChoiceBox<Visibility> visibilityBox;
+    private ObservableList<Visibility> visibilities;
 
     public TXTDocumentController(Subject subject, Professor professor) {
         selectedSubject = subject;
         activeProfessor = professor;
+        visibilities = FXCollections.observableArrayList(Visibility.values());
     }
 
 
     ArrayList<File> fileList = new ArrayList<>();
     @FXML
     public void initialize() {
+        visibilityBox.setItems(visibilities);
+        visibilityBox.setValue(visibilities.get(0));
         docNameField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
@@ -132,8 +137,16 @@ public class TXTDocumentController {
                     p.println(textAreaField.getText());
                     statusBarLabel.setText("Materijal je objavljen!");
                     MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
-                    Material material = new Material(materialManagementDAO.getId(), docNameField.getText(),selectedSubject);
-                    materialManagementDAO.addMaterial(material);
+                    if(visibilityBox.getValue().equals(Visibility.PUBLIC)) {
+                        Material material = new Material(materialManagementDAO.getId(), docNameField.getText(), selectedSubject, 1);
+                        materialManagementDAO.addMaterial(material);
+                    } else if(visibilityBox.getValue().equals(Visibility.PRIVATE)) {
+                        Material material = new Material(materialManagementDAO.getId(), docNameField.getText(), selectedSubject, 2);
+                        materialManagementDAO.addMaterial(material);
+                    } else {
+                        Material material = new Material(materialManagementDAO.getId(),docNameField.getText(), selectedSubject, 3);
+                        materialManagementDAO.addMaterial(material);
+                    }
                     Stage stage = (Stage) docNameField.getScene().getWindow();
                     stage.close();
                 } catch (IOException i) {

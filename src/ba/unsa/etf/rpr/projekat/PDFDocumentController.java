@@ -2,11 +2,13 @@ package ba.unsa.etf.rpr.projekat;
 
 import ba.unsa.etf.rpr.projekat.Professor;
 import ba.unsa.etf.rpr.projekat.Subject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -16,17 +18,30 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class PDFDocumentController {
+    private ObservableList<Visibility> visibilities;
     public Button loadBtn;
     public Label pdfNameLabel;
     public ProgressBar pdfProgressBar;
     private Subject selectedSubject;
     private Professor activeProfessor;
+    public ChoiceBox<Visibility> visibilityBox;
+    private Material material;
     public PDFDocumentController(Subject subject, Professor professor) {
         selectedSubject = subject;
         activeProfessor = professor;
+        visibilities = FXCollections.observableArrayList(Visibility.values());
     }
+
+    @FXML
+    public void initialize() {
+        visibilityBox.setItems(visibilities);
+        visibilityBox.setValue(visibilities.get(0));
+    }
+
 
     public void uploadPDFAction(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
@@ -51,8 +66,10 @@ public class PDFDocumentController {
                 Files.move(path1,absolutePath);
                 Desktop.getDesktop().open(absolutePath.toFile());
                 MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
-                Material material = new Material(materialManagementDAO.getId(), chooser.getName(),selectedSubject);
+                    material = new Material(materialManagementDAO.getId(), chooser.getName(), selectedSubject, 1);
+
                 materialManagementDAO.addMaterial(material);
+
             }
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -65,6 +82,16 @@ public class PDFDocumentController {
     }
 
     public void cancelAction(ActionEvent actionEvent) throws IOException {
+        MaterialManagementDAO instance = MaterialManagementDAO.getInstance();
+        Material material = instance.searchMaterial(pdfNameLabel.getText());
+        if(visibilityBox.getValue().equals(Visibility.PUBLIC)) {
+            material.setType(Visibility.PUBLIC);
+        } else if(visibilityBox.getValue().equals(Visibility.PRIVATE)) {
+            material.setType(Visibility.PRIVATE);
+        } else {
+            material.setType(Visibility.CUSTOM);
+        }
+        instance.changeMaterial(material);
         Stage stageClose = (Stage) pdfNameLabel.getScene().getWindow();
         stageClose.close();
     }
