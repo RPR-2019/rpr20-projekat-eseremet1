@@ -139,7 +139,31 @@ public class AdminStudentController {
     }
 
     public void editStudentAction(ActionEvent actionEvent) {
+        Student student = tableViewStudents.getSelectionModel().getSelectedItem();
+        if (student == null) return;
 
+        Stage stage = new Stage();
+        Parent root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addStudent.fxml"));
+            AddStudentController studentController =new AddStudentController(student);
+            loader.setController(studentController);
+            root=loader.load();
+            stage.setTitle("Izmjena studenta");
+            stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+            stage.setResizable(false);
+            stage.show();
+
+            stage.setOnHiding( event -> {
+                Student newStudent = studentController.getStudent();
+                if (newStudent != null) {
+                    materialManagementDAO.changeStudent(newStudent);
+                    collection.setAll(materialManagementDAO.students());
+                }
+            } );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteStudentAction(ActionEvent actionEvent) {
