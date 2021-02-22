@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 
 public class HomeProfessorController {
 
@@ -150,5 +152,13 @@ public class HomeProfessorController {
 
 
         stage.show();
+    }
+    public void aboutAction(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/about.fxml"));
+        myStage.setTitle("About");
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
     }
 }

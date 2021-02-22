@@ -118,5 +118,14 @@ public class ProfileController {
 
         stage.show();
     }
+
+    public void aboutAction(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/about.fxml"));
+        myStage.setTitle("About");
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
+    }
     }
 

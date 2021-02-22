@@ -168,26 +168,38 @@
         </HBox>
     </bottom>
     <top>
-        <ToolBar nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
-            <items>
-                <Button fx:id="logoutBtn" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;">
-                    <graphic>
-                        <ImageView disable="true" fitHeight="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/logoutIcon.png" />
-                            </image>
-                        </ImageView>
-                    </graphic></Button>
-                <Button fx:id="profilBtn" layoutX="10.0" layoutY="10.0" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#backAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;">
-                    <graphic>
-                        <ImageView disable="true" fitHeight="30.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/backIcon.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            </items>
-        </ToolBar>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Language">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Bosanski" />
+                                <MenuItem mnemonicParsing="false" text="English" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <ToolBar nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: transparent;">
+                    <items>
+                        <Button fx:id="logoutBtn" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;" />
+                        <Button fx:id="profilBtn" layoutX="10.0" layoutY="10.0" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#backAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;">
+                            <graphic>
+                                <ImageView disable="true" fitHeight="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/profilIcon.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </items>
+                </ToolBar>
+            </children>
+        </VBox>
     </top>
 </BorderPane>
