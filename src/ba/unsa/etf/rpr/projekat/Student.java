@@ -21,6 +21,6 @@ public class Student extends User {
     }
 
     public void setIndex(String index) {
-        this.index.set(index);
+        this.index = new SimpleStringProperty(index);
     }
 }

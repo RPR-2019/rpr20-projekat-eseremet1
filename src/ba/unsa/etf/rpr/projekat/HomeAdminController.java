@@ -25,7 +25,16 @@ public class HomeAdminController {
         stageClose.close();
     }
 
-    public void studentAction(ActionEvent actionEvent) {
+    public void studentAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/controlStudents.fxml"));
+        stage.setTitle("Upravljanje studentima");
+        stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
+        stage.setMinHeight(300); //da se ne može više smanjivati
+        stage.setMinWidth(200);
+        stage.show();
+        Stage stageClose = (Stage) proffesorBtn.getScene().getWindow();
+        stageClose.close();
     }
 
     public void subjectAction(ActionEvent actionEvent) throws IOException {

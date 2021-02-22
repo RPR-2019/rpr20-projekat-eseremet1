@@ -11,7 +11,7 @@ public class MaterialManagementDAO {
     private PreparedStatement getProfessorStatement, deleteProfessorStatement, searchProfessorStatement, changeProfessorStatement, getProfessorsStatement, addProfessorStatement, determineIdProfessorStatement, getSubjectStatement;
     private PreparedStatement deleteSubjectStatement, searchSubjectStatement, changeSubjectStatement, getSubjectsStatement, addSubjectStatement, determineIdSubjectStatement;
     private PreparedStatement getMaterialStatement, deleteMaterialStatement, searchMaterialStatement, getMaterialsStatement, addMaterialStatement, determineIdMaterialStatement, changeMaterialStatement;
-    private PreparedStatement getStudentStatement, deleteStudentStatement, searchStudentStatement, changeStudentStatement, getStudentsStatement, addStudentStatement, determineIdStudentStatement;
+    private PreparedStatement getStudentStatement, deleteStudentStatement, searchStudentStatement, changeStudentStatement, getStudentsStatement, addStudentStatement, determineIdStudentStatement, determineIndexStudentStatement;
     private Connection connection;
 
     public Connection getConnection() {
@@ -81,8 +81,9 @@ public class MaterialManagementDAO {
             searchStudentStatement = connection.prepareStatement("SELECT * FROM student WHERE username LIKE ? ");
             changeStudentStatement = connection.prepareStatement("UPDATE student SET name = ?, surname = ?, email = ?, username = ?, password = ?, picture=?, number_index=? WHERE id=?");
             getStudentsStatement = connection.prepareStatement("SELECT * FROM student");
-            addStudentStatement = connection.prepareStatement("INSERT INTO professor VALUES(?,?,?,?,?,?,?,?) ");
+            addStudentStatement = connection.prepareStatement("INSERT INTO student VALUES(?,?,?,?,?,?,?,?) ");
             determineIdStudentStatement = connection.prepareStatement("SELECT MAX(id)+1 FROM student");
+            determineIndexStudentStatement = connection.prepareStatement("SELECT max(number_index)+1 FROM student");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -275,6 +276,23 @@ public class MaterialManagementDAO {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public String getIndex() {
+        try {
+            if (students().isEmpty()) return "10000";
+            else {
+                ResultSet rs = determineIndexStudentStatement.executeQuery();
+                int index = 10000;
+                if (rs.next()) {
+                    index = rs.getInt(1);
+                }
+                return String.valueOf(index);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void addProfessor(Professor professor) {
