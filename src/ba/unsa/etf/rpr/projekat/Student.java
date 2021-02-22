@@ -1,7 +1,5 @@
 package ba.unsa.etf.rpr.projekat;
 
-
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Student extends User {
