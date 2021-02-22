@@ -23,7 +23,7 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public class HomeProfessorController {
 
     @FXML
-    private ListView<Subject> listViewSubject;
+    public ListView<Subject> listViewSubject;
     private MaterialManagementDAO materialManagementDAO;
     private ObservableList<Subject> subjectCollection;
     private ObservableList<Professor> professorCollection;

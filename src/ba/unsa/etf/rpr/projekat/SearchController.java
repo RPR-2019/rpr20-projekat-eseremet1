@@ -28,9 +28,16 @@ public class SearchController {
     public Button btnCancel;
     public Button btnOk;
     private Professor professor;
+    private User user;
+    private Student student;
 
-    public SearchController(Professor activeProfessor) {
-        professor=activeProfessor;
+    public SearchController(User user) {
+        this.user = user;
+        if(user instanceof Professor) {
+            professor = (Professor) user;
+        } else {
+            student = (Student) user;
+        }
     }
 
     @FXML
@@ -95,9 +102,15 @@ public class SearchController {
             stage.close();
 
         } else {
-            professor.setPicture(url);
-            MaterialManagementDAO instance = MaterialManagementDAO.getInstance();
-            instance.changeProfessor(professor);
+            if(user instanceof Professor) {
+                professor.setPicture(url);
+                MaterialManagementDAO instance = MaterialManagementDAO.getInstance();
+                instance.changeProfessor(professor);
+            } else {
+                student.setPicture(url);
+                MaterialManagementDAO instance = MaterialManagementDAO.getInstance();
+                instance.changeStudent(student);
+            }
             Stage stage = (Stage) btnCancel.getScene().getWindow();
             stage.close();
         }

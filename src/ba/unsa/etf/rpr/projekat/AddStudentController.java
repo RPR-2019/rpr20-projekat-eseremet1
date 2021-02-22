@@ -189,6 +189,7 @@ public class AddStudentController {
         student.setPassword(passwordField.getText());
         student.setEmail(usernameField.getText()+"@etf.unsa.ba");
         student.setIndex(materialManagementDAO.getIndex());
+        if(student.getPicture()==null || student.getPicture()=="")
         student.setPicture("");
 
         Stage stageClose = (Stage) nameField.getScene().getWindow();

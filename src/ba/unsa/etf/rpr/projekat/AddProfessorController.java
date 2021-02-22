@@ -195,6 +195,7 @@ public class AddProfessorController {
         professor.setPassword(passwordField.getText());
         professor.setEmail(usernameField.getText()+"@etf.unsa.ba");
         professor.setSubject(choiceSubject.getValue());
+        if(professor.getPicture()==null || professor.getPicture()=="")
         professor.setPicture("");
 
         Stage stageClose = (Stage) nameField.getScene().getWindow();
