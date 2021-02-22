@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class PrivateSubjectsController {
@@ -72,7 +73,8 @@ public class PrivateSubjectsController {
         stageClose.close();
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/review.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/review.fxml"), bundle);
         ReviewController reviewController = new ReviewController(activeSubject, activeProfessor);
         loader.setController(reviewController);
         root = loader.load();

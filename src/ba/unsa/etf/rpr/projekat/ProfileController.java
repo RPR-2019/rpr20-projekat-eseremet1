@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -72,7 +73,8 @@ public class ProfileController {
             stageClose.close();
             Stage stage = new Stage();
             Parent root = null;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeProfessor.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeProfessor.fxml"), bundle);
             HomeProfessorController professorContoller=new HomeProfessorController(professor);
             loader.setController(professorContoller);
             root=loader.load();
@@ -87,7 +89,8 @@ public class ProfileController {
             stageClose.close();
             Stage stage = new Stage();
             Parent root = null;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeStudent.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeStudent.fxml"), bundle);
             HomeStudentController studentController = new HomeStudentController(student);
             loader.setController(studentController);
             root=loader.load();
@@ -106,7 +109,8 @@ public class ProfileController {
         stageClose.close();
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/changePassword.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/changePassword.fxml"), bundle);
         PasswordController passwordController =new PasswordController(user);
         loader.setController(passwordController);
         root=loader.load();
@@ -124,7 +128,8 @@ public class ProfileController {
                 SearchController ctrl = new SearchController(user);
 
                 Parent root = null;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/search.fxml"));
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/search.fxml"), bundle);
                 SearchController searchController =new SearchController(user);
                 loader.setController(searchController);
                 root = loader.load();
@@ -157,7 +162,9 @@ public class ProfileController {
         stageClose.close();
         Stage stage = new Stage();
         Parent root = null;
-        root = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
+        root = loader.load();
         stage.setTitle("Prijavite se!");
         stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
         stage.setResizable(false);
@@ -168,7 +175,9 @@ public class ProfileController {
 
     public void aboutAction(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/about.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/about.fxml" ), bundle);
+        Parent root = loader.load();
         myStage.setTitle("About");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);

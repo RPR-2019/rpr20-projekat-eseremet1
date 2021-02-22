@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -76,7 +77,8 @@ public class HomeProfessorController {
             } else {
                 Stage stage = new Stage();
                 Parent root = null;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseDocType.fxml"));
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseDocType.fxml"), bundle);
                 DocTypeController docTypeController = new DocTypeController(listViewSubject.getSelectionModel().getSelectedItem(), activeProfessor);
                 loader.setController(docTypeController);
                 root = loader.load();
@@ -122,7 +124,8 @@ public class HomeProfessorController {
                     Stage stage = new Stage();
                     Parent root = null;
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/quiz.fxml"));
+                        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/quiz.fxml"), bundle);
                         QuizController quizController = new QuizController(activeProfessor);
                         loader.setController(quizController);
                         root = loader.load();
@@ -144,7 +147,8 @@ public class HomeProfessorController {
             stageClose.close();
             Stage stage = new Stage();
             Parent root = null;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/review.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/review.fxml"), bundle);
             ReviewController reviewController = new ReviewController(listViewSubject.getSelectionModel().getSelectedItem(), activeProfessor);
             loader.setController(reviewController);
             root = loader.load();
@@ -170,7 +174,9 @@ public class HomeProfessorController {
         stageClose.close();
         Stage stage = new Stage();
         Parent root = null;
-        root = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
+        root = loader.load();
         stage.setTitle("Prijavite se!");
         stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
         stage.setResizable(false);
@@ -184,7 +190,8 @@ public class HomeProfessorController {
         stageClose.close();
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"), bundle);
         ProfileController profileController =new ProfileController(activeProfessor);
         loader.setController(profileController);
         root=loader.load();
@@ -197,7 +204,9 @@ public class HomeProfessorController {
     }
     public void aboutAction(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/about.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/about.fxml" ), bundle);
+        Parent root = loader.load();
         myStage.setTitle("About");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);

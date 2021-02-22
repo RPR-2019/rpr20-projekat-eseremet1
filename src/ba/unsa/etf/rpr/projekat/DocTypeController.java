@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class DocTypeController {
     public Button pdfBtn;
@@ -22,7 +23,8 @@ public class DocTypeController {
     public void uploadPDFDocumentAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addPDFDocument.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addPDFDocument.fxml"), bundle);
         PDFDocumentController PDFDocumentController=new PDFDocumentController(selectedSubject,activeProfessor);
         loader.setController(PDFDocumentController);
         root=loader.load();
@@ -39,7 +41,8 @@ public class DocTypeController {
     public void createWordDocumentAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addWordDocument.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addWordDocument.fxml"), bundle);
         WordDocumentController wordDocumentController=new WordDocumentController(selectedSubject,activeProfessor);
         loader.setController(wordDocumentController);
         root=loader.load();
@@ -58,7 +61,8 @@ public class DocTypeController {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addTXTDocument.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addTXTDocument.fxml"), bundle);
             TXTDocumentController TXTDocumentController=new TXTDocumentController(selectedSubject,activeProfessor);
             loader.setController(TXTDocumentController);
             root=loader.load();

@@ -16,6 +16,7 @@ import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -76,12 +77,14 @@ public class AdminStudentController {
 
 
     public void aboutAction(ActionEvent actionEvent) throws IOException {
-            Stage myStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/about.fxml"));
-            myStage.setTitle("About");
-            myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            myStage.setResizable(false);
-            myStage.show();
+        Stage myStage = new Stage();
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/about.fxml" ), bundle);
+        Parent root = loader.load();
+        myStage.setTitle("About");
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
     }
 
     public void logoutAction(ActionEvent actionEvent) throws IOException {
@@ -89,7 +92,9 @@ public class AdminStudentController {
         stageClose.close();
         Stage stage = new Stage();
         Parent root = null;
-        root = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
+        root = loader.load();
         stage.setTitle("Prijavite se!");
         stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
         stage.setResizable(false);
@@ -103,7 +108,9 @@ public class AdminStudentController {
         stageClose.close();
         Stage stage = new Stage();
         Parent root = null;
-        root = FXMLLoader.load(getClass().getResource("/fxml/homeAdmin.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/homeAdmin.fxml" ), bundle);
+        root = loader.load();
         stage.setTitle("Prijavite se!");
         stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
         stage.setResizable(false);
@@ -116,7 +123,8 @@ public class AdminStudentController {
         Parent root = null;
         Stage stage = new Stage();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addStudent.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addStudent.fxml"), bundle);
             AddStudentController studentController=new AddStudentController(null);
             loader.setController(studentController);
             root=loader.load();
@@ -145,7 +153,8 @@ public class AdminStudentController {
         Stage stage = new Stage();
         Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addStudent.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addStudent.fxml"), bundle);
             AddStudentController studentController =new AddStudentController(student);
             loader.setController(studentController);
             root=loader.load();

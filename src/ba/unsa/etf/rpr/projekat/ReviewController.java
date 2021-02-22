@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class ReviewController {
@@ -72,7 +73,8 @@ public class ReviewController {
             stageClose.close();
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeProfessor.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeProfessor.fxml"), bundle);
         HomeProfessorController professorContoller=new HomeProfessorController(materialManagementDAO.searchProfessor(activeProfessor.getUsername()));
         loader.setController(professorContoller);
         root=loader.load();
@@ -112,7 +114,8 @@ public class ReviewController {
         stageClose.close();
         Stage stage = new Stage();
         Parent root = null;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/privateSubjects.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/privateSubjects.fxml"), bundle);
         PrivateSubjectsController reviewController = new PrivateSubjectsController(activeSubject, activeProfessor);
         loader.setController(reviewController);
         root = loader.load();

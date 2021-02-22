@@ -14,6 +14,7 @@ import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class LogInController {
     public TextField userNameField;
@@ -78,7 +79,9 @@ public class LogInController {
             alert.showAndWait();
 
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/homeAdmin.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/homeAdmin.fxml" ), bundle);
+            Parent root = loader.load();
             stage.setTitle("Upravljanje korisnicima");
             stage.setScene(new Scene(root, 1200, 700));
             stage.setResizable(false);
@@ -95,7 +98,8 @@ public class LogInController {
                 alert.showAndWait();
                 Stage stage = new Stage();
                 Parent root = null;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeProfessor.fxml"));
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeProfessor.fxml"), bundle);
                 HomeProfessorController professorContoller=new HomeProfessorController(materialManagementDAO.searchProfessor(userNameField.getText()));
                 loader.setController(professorContoller);
                 root=loader.load();
@@ -126,7 +130,8 @@ public class LogInController {
                 alert.showAndWait();
                 Stage stage = new Stage();
                 Parent root = null;
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeStudent.fxml"));
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeStudent.fxml"), bundle);
                 HomeStudentController studentController=new HomeStudentController(materialManagementDAO.searchStudent(userNameField.getText()));
                 loader.setController(studentController);
                 root=loader.load();

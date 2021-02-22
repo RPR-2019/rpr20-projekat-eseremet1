@@ -8,13 +8,16 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class InitialController {
     public Button logInBtn;
 
     public void logInAction(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
+        Parent root = loader.load();
         stage.setTitle("Prijava");
         stage.setScene(new Scene(root, 1200, 700));
         stage.setResizable(false);

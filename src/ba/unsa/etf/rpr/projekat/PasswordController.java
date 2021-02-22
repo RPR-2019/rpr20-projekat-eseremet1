@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 
 public class PasswordController {
@@ -53,7 +54,8 @@ public class PasswordController {
                     stageClose.close();
                     Stage stage = new Stage();
                     Parent root = null;
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"));
+                    ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"), bundle);
                     ProfileController profileController = new ProfileController(professor);
                     loader.setController(profileController);
                     root = loader.load();
@@ -68,7 +70,8 @@ public class PasswordController {
                     stageClose.close();
                     Stage stage = new Stage();
                     Parent root = null;
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"));
+                    ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"), bundle);
                     ProfileController profileController = new ProfileController(student);
                     loader.setController(profileController);
                     root = loader.load();
@@ -118,7 +121,8 @@ public class PasswordController {
             stageClose.close();
             Stage stage = new Stage();
             Parent root = null;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"), bundle);
             ProfileController profileController = new ProfileController(professor);
             loader.setController(profileController);
             root = loader.load();
@@ -131,7 +135,8 @@ public class PasswordController {
             stageClose.close();
             Stage stage = new Stage();
             Parent root = null;
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/myProfile.fxml"), bundle);
             ProfileController profileController = new ProfileController(student);
             loader.setController(profileController);
             root = loader.load();
