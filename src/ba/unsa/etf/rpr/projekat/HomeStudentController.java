@@ -45,7 +45,30 @@ public class HomeStudentController {
     }
 
     public void reviewAction(ActionEvent actionEvent) throws IOException {
+        if(listViewSubject.getSelectionModel().getSelectedItem()!=null) {
+            Stage stageClose = (Stage) profilBtn.getScene().getWindow();
+            stageClose.close();
+            Stage stage = new Stage();
+            Parent root = null;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewStudent.fxml"));
+            ReviewStudentController reviewStudentController = new ReviewStudentController(listViewSubject.getSelectionModel().getSelectedItem(), activeStudent);
+            loader.setController(reviewStudentController);
+            root = loader.load();
+            stage.setTitle("Izbor vrste željenog materijala");
+            stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
+            stage.setMinHeight(300); //da se ne može više smanjivati
+            stage.setMinWidth(200);
+            stage.setResizable(true);
 
+            stage.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Obavijest");
+            alert.setHeaderText(null);
+            alert.setContentText("Morate izabrati određeni predmet");
+
+            alert.showAndWait();
+        }
     }
 
     public void logoutAction(ActionEvent actionEvent) throws IOException {

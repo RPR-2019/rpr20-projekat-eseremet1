@@ -40,7 +40,4 @@ INSERT INTO "subject" VALUES (1,'OBP');
 INSERT INTO "subject" VALUES (2,'RPR');
 INSERT INTO "subject" VALUES (3,'AFJ');
 INSERT INTO "subject" VALUES (4,'IM1');
-INSERT INTO "material" VALUES (0,'Elma',2,1);
-INSERT INTO "material" VALUES (1,'Elma',2,1);
-INSERT INTO "material" VALUES (2,'Proba-quiz',2,1);
 COMMIT;
