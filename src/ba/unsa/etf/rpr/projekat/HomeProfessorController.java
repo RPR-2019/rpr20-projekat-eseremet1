@@ -29,7 +29,6 @@ public class HomeProfessorController {
     private ObservableList<Professor> professorCollection;
     private Professor activeProfessor;
     public Button addDocumentBtn;
-    public Button pdfBtn;
     public Button profilBtn;
 
     public HomeProfessorController(Professor professor) {
@@ -94,6 +93,49 @@ public class HomeProfessorController {
 
     public void homeworkAction(ActionEvent actionEvent) {
 
+    }
+
+    public void quizAction(ActionEvent actionEvent) {
+        if(listViewSubject.getSelectionModel().getSelectedItem()==null) {
+            try {
+                throw new IllegalAction("You must select one item");
+            } catch (IllegalAction illegalAction) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Morate izabrati predmet za koji želite dodati materijal!");
+
+                alert.showAndWait();
+            }
+        }
+            else{
+                if (!listViewSubject.getSelectionModel().getSelectedItem().getName().contains("*")) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+
+                    alert.setTitle("Upozorenje");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Kviz može dodavati samo profesor na predmetu!");
+
+                    alert.showAndWait();
+                } else {
+                    Stage stage = new Stage();
+                    Parent root = null;
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/quiz.fxml"));
+                        QuizController quizController = new QuizController(activeProfessor);
+                        loader.setController(quizController);
+                        root = loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    stage.setTitle("Izbor vrste željenog materijala");
+                    stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+                    stage.setMinHeight(300); //da se ne može više smanjivati
+                    stage.setMinWidth(200);
+                    stage.show();
+                }
+            }
     }
 
     public void reviewAction(ActionEvent actionEvent) throws IOException {
