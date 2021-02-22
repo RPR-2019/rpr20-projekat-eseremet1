@@ -110,13 +110,13 @@ public class QuizController {
                     statusBarLabel.setText("Kviz je objavljen!");
                     MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
                     if(visibilityBox.getValue().equals(Visibility.PUBLIC)) {
-                        Material material = new Material(materialManagementDAO.getId(), docNameField.getText(), activeProfessor.getSubject(), 1);
+                        Material material = new Material(materialManagementDAO.getId(), docNameField.getText()+"-QUIZ", activeProfessor.getSubject(), 1);
                         materialManagementDAO.addMaterial(material);
                     } else if(visibilityBox.getValue().equals(Visibility.PRIVATE)) {
-                        Material material = new Material(materialManagementDAO.getId(), docNameField.getText(), activeProfessor.getSubject(), 2);
+                        Material material = new Material(materialManagementDAO.getId(), docNameField.getText()+"-QUIZ", activeProfessor.getSubject(), 2);
                         materialManagementDAO.addMaterial(material);
                     } else {
-                        Material material = new Material(materialManagementDAO.getId(),docNameField.getText(), activeProfessor.getSubject(), 3);
+                        Material material = new Material(materialManagementDAO.getId(),docNameField.getText()+"-QUIZ", activeProfessor.getSubject(), 3);
                         materialManagementDAO.addMaterial(material);
                     }
                     Stage stage = (Stage) docNameField.getScene().getWindow();

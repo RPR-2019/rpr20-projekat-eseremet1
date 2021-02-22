@@ -104,7 +104,7 @@ public class HomeProfessorController {
 
                 alert.setTitle("Upozorenje");
                 alert.setHeaderText(null);
-                alert.setContentText("Morate izabrati predmet za koji želite dodati materijal!");
+                alert.setContentText("Morate izabrati predmet za koji želite dodati kviz!");
 
                 alert.showAndWait();
             }
