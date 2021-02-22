@@ -43,6 +43,11 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="0.0" prefWidth="1202.0" VBox.vgrow="ALWAYS">
                     <children>
+                  <VBox prefHeight="315.0" prefWidth="281.0">
+                     <children>
+                        <Button fx:id="imageUser" alignment="TOP_LEFT" maxHeight="200.0" maxWidth="200.0" mnemonicParsing="false" onAction="#imageAction" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
                         <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="394.0" prefWidth="150.0" spacing="10.0">
                             <children>
                                 <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Ime ">
