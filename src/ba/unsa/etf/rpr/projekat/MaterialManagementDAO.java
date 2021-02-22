@@ -50,9 +50,9 @@ public class MaterialManagementDAO {
             //pripremljeni upiti za profesora
             deleteProfessorStatement = connection.prepareStatement("DELETE FROM professor WHERE id = ?");
             searchProfessorStatement = connection.prepareStatement("SELECT * FROM professor WHERE username LIKE ? ");
-            changeProfessorStatement = connection.prepareStatement("UPDATE professor SET name = ?, surname = ?, email = ?, username = ?, password = ?, professors_subject=? WHERE id=?");
+            changeProfessorStatement = connection.prepareStatement("UPDATE professor SET name = ?, surname = ?, email = ?, username = ?, password = ?, professors_subject=?, picture=? WHERE id=?");
             getProfessorsStatement = connection.prepareStatement("SELECT * FROM professor");
-            addProfessorStatement = connection.prepareStatement("INSERT INTO professor VALUES(?,?,?,?,?,?,?) ");
+            addProfessorStatement = connection.prepareStatement("INSERT INTO professor VALUES(?,?,?,?,?,?,?,?) ");
             determineIdProfessorStatement = connection.prepareStatement("SELECT MAX(id)+1 FROM professor");
             getSubjectStatement = connection.prepareStatement("SELECT * FROM subject WHERE id=?");
 
@@ -122,7 +122,7 @@ public class MaterialManagementDAO {
 
 
     private Professor getProfessorResultSet(ResultSet rs) throws SQLException {
-        Professor professor = new  Professor(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),null);
+        Professor professor = new  Professor(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(8));
         professor.setSubject(getSubject(rs.getInt(7),professor));
         return professor;
 
@@ -165,7 +165,8 @@ public class MaterialManagementDAO {
             changeProfessorStatement.setString(4,professor.getUsername());
             changeProfessorStatement.setString(5,professor.getPassword());
             changeProfessorStatement.setInt(6,professor.getSubject().getId());
-            changeProfessorStatement.setInt(7,professor.getId());
+            changeProfessorStatement.setString(7, professor.getPicture());
+            changeProfessorStatement.setInt(8,professor.getId());
 
             changeProfessorStatement.executeUpdate();
         } catch (SQLException e) {
@@ -217,7 +218,7 @@ public class MaterialManagementDAO {
             addProfessorStatement.setString(5,professor.getUsername());
             addProfessorStatement.setString(6,professor.getPassword());
             addProfessorStatement.setInt(7,professor.getSubject().getId());
-
+            addProfessorStatement.setString(8, professor.getPicture());
             addProfessorStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

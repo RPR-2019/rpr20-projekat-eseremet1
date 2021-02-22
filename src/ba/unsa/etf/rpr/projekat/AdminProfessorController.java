@@ -31,6 +31,7 @@ public class AdminProfessorController {
     public TableColumn colProfessorPassword;
     public TableColumn colProfessorEmail;
     public TableColumn colProfessorSubject;
+    public TableColumn colProfessorPicture;
     private MaterialManagementDAO materialManagementDAO;
 
 
@@ -48,7 +49,9 @@ public class AdminProfessorController {
         colProfessorUsername.setCellValueFactory(new PropertyValueFactory("username"));
         colProfessorPassword.setCellValueFactory(new PropertyValueFactory("password"));
         colProfessorEmail.setCellValueFactory(new PropertyValueFactory("email"));
+        colProfessorPicture.setCellValueFactory(new PropertyValueFactory("picture"));
         colProfessorSubject.setCellValueFactory(new PropertyValueFactory("subject"));
+
 
 
         FilteredList<Professor> filteredList = new FilteredList<>(collection, tmp->true);

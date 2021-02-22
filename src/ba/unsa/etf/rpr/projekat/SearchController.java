@@ -95,7 +95,9 @@ public class SearchController {
             stage.close();
 
         } else {
-                professor.setPicture(url);
+            professor.setPicture(url);
+            MaterialManagementDAO instance = MaterialManagementDAO.getInstance();
+            instance.changeProfessor(professor);
             Stage stage = (Stage) btnCancel.getScene().getWindow();
             stage.close();
         }

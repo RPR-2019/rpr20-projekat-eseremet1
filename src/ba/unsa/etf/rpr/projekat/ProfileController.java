@@ -39,6 +39,10 @@ public class ProfileController {
         usernameField.setText(professor.getUsername());
         passwordField.setText(professor.getPassword());
         emailField.setText(professor.getEmail());
+        ImageView choose = new ImageView(professor.getPicture());
+        choose.setFitWidth(200);
+        choose.setFitHeight(200);
+        imageUser.setGraphic(choose);
 
     }
 
