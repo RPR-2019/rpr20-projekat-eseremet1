@@ -31,7 +31,7 @@
             <ChoiceBox fx:id="visibilityBox" prefWidth="150.0" />
                 <Label fx:id="pdfNameLabel" />
                 <ProgressBar fx:id="pdfProgressBar" prefWidth="200.0" progress="0.0" />
-            <Button mnemonicParsing="false" onAction="#cancelAction" text="Završi" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#cancelAction" text="Završi" />
             </children>
         </VBox>
     </children>

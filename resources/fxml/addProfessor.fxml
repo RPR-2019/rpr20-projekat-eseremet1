@@ -193,7 +193,7 @@
                               </LinearGradient>
                           </textFill>
                       </Button>
-                      <Button fx:id="addBtn" alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addAction" opacity="0.6" prefWidth="600.0" text="Dodaj" textAlignment="CENTER">
+                      <Button fx:id="addBtn" alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addAction" opacity="0.6" prefWidth="600.0" text="Dodaj" textAlignment="CENTER">
                           <font>
                               <Font name="Candara Light" size="50.0" />
                           </font>

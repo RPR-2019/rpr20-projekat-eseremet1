@@ -31,7 +31,7 @@
                     <buttons>
                         <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchAction" prefHeight="0.0" prefWidth="180.0" text="Pretraži">
                </Button>
-                        <Button fx:id="btnOk" mnemonicParsing="false" onAction="#okAction" text="Ok" />
+                        <Button fx:id="btnOk" defaultButton="true" mnemonicParsing="false" onAction="#okAction" text="Ok" />
                         <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelAction" text="Cancel" />
                     </buttons>
                <padding>
