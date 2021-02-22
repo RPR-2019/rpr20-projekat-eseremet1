@@ -43,7 +43,23 @@ public class ProfileController {
         choose.setFitWidth(200);
         choose.setFitHeight(200);
         imageUser.setGraphic(choose);
+    }
 
+    public void backAction(ActionEvent actionEvent) throws IOException {
+        Stage stageClose = (Stage) imageUser.getScene().getWindow();
+        stageClose.close();
+        Stage stage = new Stage();
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeProfessor.fxml"));
+        HomeProfessorController professorContoller=new HomeProfessorController(professor);
+        loader.setController(professorContoller);
+        root=loader.load();
+        stage.setTitle("Početna stranica za profesora");
+        stage.setScene(new Scene(root, 1500, 700)); //stavljamo početni ekran
+        stage.setMinHeight(500); //da se ne može više smanjivati
+        stage.setMinWidth(200);
+        stage.setResizable(true);
+        stage.show();
     }
 
     public void changePassword(ActionEvent actionEvent) throws IOException {
@@ -88,5 +104,19 @@ public class ProfileController {
                 ex.printStackTrace();
             }
         }
+
+    public void logoutAction(ActionEvent actionEvent) throws IOException {
+        Stage stageClose = (Stage) imageUser.getScene().getWindow();
+        stageClose.close();
+        Stage stage = new Stage();
+        Parent root = null;
+        root = FXMLLoader.load(getClass().getResource("/fxml/logIn.fxml"));
+        stage.setTitle("Prijavite se!");
+        stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+        stage.setResizable(false);
+
+
+        stage.show();
+    }
     }
 
