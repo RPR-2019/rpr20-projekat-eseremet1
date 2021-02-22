@@ -33,7 +33,10 @@
                             </padding>
                             <HBox.margin>
                                 <Insets />
-                            </HBox.margin></Button>
+                            </HBox.margin>
+                     <tooltip>
+                        <Tooltip text="Empty Tooltip" />
+                     </tooltip></Button>
                         <Button mnemonicParsing="false" onAction="#quizAction" style="-fx-background-color: #bf5c4e;">
                             <graphic>
                                 <ImageView fx:id="addDocument" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">

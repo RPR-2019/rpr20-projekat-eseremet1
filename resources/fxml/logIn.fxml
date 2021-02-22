@@ -91,6 +91,9 @@
                   <font>
                       <Font size="23.0" />
                   </font>
+               <tooltip>
+                  <Tooltip />
+               </tooltip>
             </PasswordField>
               <Button alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#logInAction" opacity="0.6" prefWidth="600.0" text="Log in" textAlignment="CENTER">
                   <font>
