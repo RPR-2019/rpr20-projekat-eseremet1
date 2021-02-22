@@ -11,7 +11,7 @@ public class MaterialManagementDAO {
     private PreparedStatement getProfessorStatement, deleteProfessorStatement, searchProfessorStatement, changeProfessorStatement, getProfessorsStatement, addProfessorStatement, determineIdProfessorStatement, getSubjectStatement;
     private PreparedStatement deleteSubjectStatement, searchSubjectStatement, changeSubjectStatement, getSubjectsStatement, addSubjectStatement, determineIdSubjectStatement;
     private PreparedStatement getMaterialStatement, deleteMaterialStatement, searchMaterialStatement, getMaterialsStatement, addMaterialStatement, determineIdMaterialStatement, changeMaterialStatement;
-
+    private PreparedStatement getStudentStatement, deleteStudentStatement, searchStudentStatement, changeStudentStatement, getStudentsStatement, addStudentStatement, determineIdStudentStatement;
     private Connection connection;
 
     public Connection getConnection() {
@@ -75,6 +75,15 @@ public class MaterialManagementDAO {
             getMaterialsStatement = connection.prepareStatement("SELECT * FROM material");
             changeMaterialStatement = connection.prepareStatement("UPDATE material SET visibility = ? WHERE id=?");
 
+            //pripremljeni upiti za studenta
+            getStudentStatement = connection.prepareStatement("SELECT * FROM student WHERE id=?");
+            deleteStudentStatement = connection.prepareStatement("DELETE FROM student WHERE id = ?");
+            searchStudentStatement = connection.prepareStatement("SELECT * FROM student WHERE username LIKE ? ");
+            changeStudentStatement = connection.prepareStatement("UPDATE student SET name = ?, surname = ?, email = ?, username = ?, password = ?, picture=?, number_index=? WHERE id=?");
+            getStudentsStatement = connection.prepareStatement("SELECT * FROM student");
+            addStudentStatement = connection.prepareStatement("INSERT INTO professor VALUES(?,?,?,?,?,?,?,?) ");
+            determineIdStudentStatement = connection.prepareStatement("SELECT MAX(id)+1 FROM student");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -128,6 +137,12 @@ public class MaterialManagementDAO {
 
     }
 
+    private Student getStudentResultSet(ResultSet rs) throws SQLException {
+        Student student = new  Student(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8));
+        return student;
+
+    }
+
     private Subject getSubject(int id, Professor professor) {
         try {
             getSubjectStatement.setInt(1, id);
@@ -156,6 +171,18 @@ public class MaterialManagementDAO {
         }
     }
 
+    private Student getStudent(int id) {
+        try {
+            getStudentStatement.setInt(1,id);
+            ResultSet rs = getStudentStatement.executeQuery();
+            if(!rs.next()) return null;
+            return getStudentResultSet(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void changeProfessor(Professor professor) {
         try {
 
@@ -169,6 +196,24 @@ public class MaterialManagementDAO {
             changeProfessorStatement.setInt(8,professor.getId());
 
             changeProfessorStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changeStudent(Student student) {
+        try {
+
+            changeStudentStatement.setString(1,student.getName());
+            changeStudentStatement.setString(2,student.getSurname());
+            changeStudentStatement.setString(3,student.getEmail());
+            changeStudentStatement.setString(4,student.getUsername());
+            changeStudentStatement.setString(5,student.getPassword());
+            changeStudentStatement.setString(6,student.getPicture());
+            changeStudentStatement.setString(7, student.getIndex());
+            changeStudentStatement.setInt(8, student.getId());
+
+            changeStudentStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -189,6 +234,20 @@ public class MaterialManagementDAO {
 
     }
 
+    public void deleteStudent(String username) {
+        try {
+            searchStudentStatement.setString(1,username);
+            ResultSet rs = searchStudentStatement.executeQuery();
+            if(!rs.next()) return;
+            Student student = getStudentResultSet(rs);
+            deleteStudentStatement.setInt(1,student.getId());
+            deleteStudentStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public ArrayList<Professor> professors() {
         ArrayList<Professor> result = new ArrayList<>();
         try {
@@ -203,6 +262,20 @@ public class MaterialManagementDAO {
         return result;
     }
 
+
+    public ArrayList<Student> students() {
+        ArrayList<Student> result = new ArrayList<>();
+        try {
+            ResultSet rs = getStudentsStatement.executeQuery();
+            while(rs.next()) {
+                Student student = getStudentResultSet(rs);
+                result.add(student);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
     public void addProfessor(Professor professor) {
         try {
@@ -226,6 +299,28 @@ public class MaterialManagementDAO {
 
     }
 
+    public void addStudent(Student student) {
+        try {
+            ResultSet rs = determineIdStudentStatement.executeQuery();
+            int id=1;
+            if(rs.next()) {
+                id=rs.getInt(1);
+            }
+            addStudentStatement.setInt(1,id);
+            addStudentStatement.setString(2, student.getName());
+            addStudentStatement.setString(3, student.getSurname());
+            addStudentStatement.setString(4, student.getEmail());
+            addStudentStatement.setString(5, student.getUsername());
+            addStudentStatement.setString(6, student.getPassword());
+            addStudentStatement.setString(7, student.getPicture());
+            addStudentStatement.setString(8, student.getIndex());
+            addStudentStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public Professor searchProfessor(String username) {
         try {
@@ -233,6 +328,19 @@ public class MaterialManagementDAO {
             ResultSet rs = searchProfessorStatement.executeQuery();
             if(!rs.next()) return null;
             return getProfessorResultSet(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public Student searchStudent(String username) {
+        try {
+            searchStudentStatement.setString(1,username);
+            ResultSet rs = searchStudentStatement.executeQuery();
+            if(!rs.next()) return null;
+            return getStudentResultSet(rs);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

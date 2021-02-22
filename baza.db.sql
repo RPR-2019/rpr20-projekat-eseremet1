@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS "student" (
 	"username"	TEXT,
 	"password"	TEXT,
 	"picture"	TEXT,
-	"index"	TEXT,
+	"number_index"	TEXT,
 	PRIMARY KEY("id")
 );
 INSERT INTO "professor" VALUES (1,'Elma','Šeremet','eseremet1@etf.unsa.ba','eseremet1','Seremet123',2,'https://i.giphy.com/media/yFQ0ywscgobJK/giphy_s.gif');
