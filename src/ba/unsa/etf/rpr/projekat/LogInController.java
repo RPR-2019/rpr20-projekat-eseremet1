@@ -90,7 +90,7 @@ public class LogInController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Obavijest");
                 alert.setHeaderText(null);
-                alert.setContentText("Uspješno ste prijavljeni kao profesor");
+                alert.setContentText("Uspješno ste prijavljeni kao profesor!");
 
                 alert.showAndWait();
                 Stage stage = new Stage();
@@ -100,6 +100,37 @@ public class LogInController {
                 loader.setController(professorContoller);
                 root=loader.load();
                 stage.setTitle("Početna stranica za profesora");
+                stage.setScene(new Scene(root, 1500, 700)); //stavljamo početni ekran
+                stage.setMinHeight(500); //da se ne može više smanjivati
+                stage.setMinWidth(200);
+                stage.show();
+                Stage stageClose = (Stage) userNameField.getScene().getWindow();
+                stageClose.close();
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Pogrešna lozinka. Pokušajte ponovo!");
+
+                alert.showAndWait();
+            }
+        } else if (materialManagementDAO.searchStudent(userNameField.getText()) != null) {
+            if (materialManagementDAO.searchStudent(userNameField.getText()).getPassword().equals(passwordField.getText())) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Obavijest");
+                alert.setHeaderText(null);
+                alert.setContentText("Uspješno ste prijavljeni kao student!");
+
+                alert.showAndWait();
+                Stage stage = new Stage();
+                Parent root = null;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeStudent.fxml"));
+                HomeStudentController studentController=new HomeStudentController(materialManagementDAO.searchStudent(userNameField.getText()));
+                loader.setController(studentController);
+                root=loader.load();
+                stage.setTitle("Početna stranica za studenta");
                 stage.setScene(new Scene(root, 1500, 700)); //stavljamo početni ekran
                 stage.setMinHeight(500); //da se ne može više smanjivati
                 stage.setMinWidth(200);
