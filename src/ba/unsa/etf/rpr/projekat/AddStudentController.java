@@ -160,6 +160,24 @@ public class AddStudentController {
                 }
 
             }
+
+            for (Professor oldProffesor : materialManagementDAO.professors()) {
+                if (oldProffesor.getUsername().equals(usernameField.getText())) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Upozorenje");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Username već postoji!");
+
+                    alert.showAndWait();
+
+                    sveOk = false;
+                    break;
+
+                }
+
+            }
+
+
         }
 
         if (!sveOk) return;
