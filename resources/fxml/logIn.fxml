@@ -119,7 +119,7 @@
                       </LinearGradient>
                   </textFill>
               </Button>
-            <Button fx:id="cancelBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" defaultButton="true" layoutX="302.0" layoutY="560.0" mnemonicParsing="false" onAction="#cancelAction" opacity="0.6" prefWidth="600.0" text="%cancel" textAlignment="CENTER">
+            <Button fx:id="cancelBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" layoutX="302.0" layoutY="560.0" mnemonicParsing="false" onAction="#cancelAction" opacity="0.6" prefWidth="600.0" text="%cancel" textAlignment="CENTER">
                <font>
                   <Font name="Candara Light" size="50.0" />
                </font>
