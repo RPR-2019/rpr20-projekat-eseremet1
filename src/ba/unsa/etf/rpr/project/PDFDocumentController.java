@@ -80,15 +80,17 @@ public class PDFDocumentController {
 
     public void cancelAction(ActionEvent actionEvent) throws IOException {
         MaterialManagementDAO instance = MaterialManagementDAO.getInstance();
-        Material material = instance.searchMaterial(pdfNameLabel.getText());
-        if(visibilityBox.getValue().equals(Visibility.PUBLIC)) {
-            material.setType(Visibility.PUBLIC);
-        } else if(visibilityBox.getValue().equals(Visibility.PRIVATE)) {
-            material.setType(Visibility.PRIVATE);
-        } else {
-            material.setType(Visibility.CUSTOM);
+        if(!pdfNameLabel.getText().isEmpty()) {
+            Material material = instance.searchMaterial(pdfNameLabel.getText());
+            if (visibilityBox.getValue().equals(Visibility.PUBLIC)) {
+                material.setType(Visibility.PUBLIC);
+            } else if (visibilityBox.getValue().equals(Visibility.PRIVATE)) {
+                material.setType(Visibility.PRIVATE);
+            } else {
+                material.setType(Visibility.CUSTOM);
+            }
+            instance.changeMaterial(material);
         }
-        instance.changeMaterial(material);
         Stage stageClose = (Stage) pdfNameLabel.getScene().getWindow();
         stageClose.close();
     }

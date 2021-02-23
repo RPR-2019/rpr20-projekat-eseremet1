@@ -238,4 +238,8 @@ public class HomeProfessorController {
 
 
     }
+
+    public Parent getTheListUnderTesting() {
+        return listViewSubject;
+    }
 }

@@ -80,7 +80,7 @@ public class LogInControllerTest {
         robot.clickOn("#passwordField");
         robot.write("admin");
         robot.clickOn("#logInBtn");
-        alert_dialog_has_header_and_content(
+        check(
                 null, "Uspješno ste prijavljeni kao administrator!", robot);
         robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
     }
@@ -102,7 +102,7 @@ public class LogInControllerTest {
         robot.clickOn("#passwordField");
         robot.write("pass1");
         robot.clickOn("#logInBtn");
-        alert_dialog_has_header_and_content(
+        check(
                 null, "Uspješno ste prijavljeni kao profesor!", robot);
         robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
     }
@@ -121,13 +121,13 @@ public class LogInControllerTest {
         robot.clickOn("#passwordField");
         robot.write("elma");
         robot.clickOn("#logInBtn");
-        alert_dialog_has_header_and_content(
+        check(
                 null, "Uspješno ste prijavljeni kao student!", robot);
         robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
     }
 
 
-    public void alert_dialog_has_header_and_content(final String expectedHeader, final String expectedContent, FxRobot robot) {
+    public void check(final String expectedHeader, final String expectedContent, FxRobot robot) {
         final javafx.stage.Stage actualAlertDialog = getTopModalStage(robot);
         assertNotNull(actualAlertDialog);
 

@@ -23,7 +23,7 @@
             <children>
                 <Button fx:id="pdfBtn" mnemonicParsing="false" onAction="#uploadPDFDocumentAction" style="-fx-background-color: #a6a2a5;">
                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView disable="true" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/pdfIcon.png" />
                             </image>
@@ -61,4 +61,3 @@
         </HBox>
     </children>
 </GridPane>
-

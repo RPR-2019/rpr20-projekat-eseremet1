@@ -37,7 +37,7 @@
                      <tooltip>
                         <Tooltip text="Empty Tooltip" />
                      </tooltip></Button>
-                        <Button mnemonicParsing="false" onAction="#quizAction" style="-fx-background-color: #bf5c4e;">
+                        <Button fx:id="quizBtn" mnemonicParsing="false" onAction="#quizAction" style="-fx-background-color: #bf5c4e;">
                             <graphic>
                                 <ImageView fx:id="addDocument" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -55,7 +55,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#reviewAction" style="-fx-background-color: #a6a2a5;">
+                        <Button fx:id="reviewBtn" mnemonicParsing="false" onAction="#reviewAction" style="-fx-background-color: #a6a2a5;">
                             <graphic>
                                 <ImageView disable="true" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
