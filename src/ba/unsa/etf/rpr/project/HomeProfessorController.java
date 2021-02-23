@@ -168,7 +168,7 @@ public class HomeProfessorController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Obavijest");
             alert.setHeaderText(null);
-            alert.setContentText("Morate izabrati određeni predmet");
+            alert.setContentText("Morate izabrati određeni predmet!");
 
             alert.showAndWait();
         }

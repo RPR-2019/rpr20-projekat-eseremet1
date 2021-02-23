@@ -87,20 +87,14 @@ public class LogInControllerTest {
 
     @Test
     public void testlogInProfessorFxRobot (FxRobot robot) {
-        Subject subject = new Subject(1, "RPR");
-        Professor professor = new Professor(1,"Test","Test","eseremet1@etf.unsa.ba","eseremetproba","pass1","slika");
-        professor.setSubject(subject);
-        MaterialManagementDAO instance = MaterialManagementDAO.getInstance();
-        instance.addSubject(subject);
-        instance.addProfessor(professor);
 
         logInBtn = robot.lookup("#logInBtn").queryAs(Button.class);
         passwordField = robot.lookup("#passwordField").queryAs(PasswordField.class);
         userNameField = robot.lookup("#userNameField").queryAs(TextField.class);
         robot.clickOn("#userNameField");
-        robot.write("eseremetproba");
+        robot.write("eseremet1");
         robot.clickOn("#passwordField");
-        robot.write("pass1");
+        robot.write("Seremet123");
         robot.clickOn("#logInBtn");
         check(
                 null, "Uspješno ste prijavljeni kao profesor!", robot);
@@ -109,17 +103,15 @@ public class LogInControllerTest {
 
     @Test
     public void testlogInStudentFxRobot (FxRobot robot) {
-        Student student = new Student(1,"Test","Test","eseremettest@etf.unsa.ba","eseremettest","elma","","18318");
-        MaterialManagementDAO instance = MaterialManagementDAO.getInstance();
-        instance.addStudent(student);
+
 
         logInBtn = robot.lookup("#logInBtn").queryAs(Button.class);
         passwordField = robot.lookup("#passwordField").queryAs(PasswordField.class);
         userNameField = robot.lookup("#userNameField").queryAs(TextField.class);
         robot.clickOn("#userNameField");
-        robot.write("eseremettest");
+        robot.write("eseremet2");
         robot.clickOn("#passwordField");
-        robot.write("elma");
+        robot.write("Seremet123");
         robot.clickOn("#logInBtn");
         check(
                 null, "Uspješno ste prijavljeni kao student!", robot);

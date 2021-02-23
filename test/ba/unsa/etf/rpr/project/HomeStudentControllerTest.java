@@ -1,10 +1,11 @@
 package ba.unsa.etf.rpr.project;
 
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,20 +25,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(ApplicationExtension.class)
-public class HomeProfessorControllerTest {
-
+public class HomeStudentControllerTest {
     @Start
     public void start (Stage stage) throws Exception {
 
-
         Parent root = null;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeProfessor.fxml"), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeStudent.fxml"), bundle);
         MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
-        HomeProfessorController professorContoller=new HomeProfessorController(materialManagementDAO.searchProfessor("eseremet1"));
-        loader.setController(professorContoller);
+        HomeStudentController studentController=new HomeStudentController(materialManagementDAO.searchStudent("eseremet2"));
+        loader.setController(studentController);
         root=loader.load();
-        stage.setTitle("Početna stranica za profesora");
+        stage.setTitle("Početna stranica za studenta");
         stage.setScene(new Scene(root, 1500, 700)); //stavljamo početni ekran
         stage.setMinHeight(500); //da se ne može više smanjivati
         stage.setMinWidth(200);
@@ -48,37 +47,7 @@ public class HomeProfessorControllerTest {
 
     @Test
     public void testButtons (FxRobot robot) {
-        robot.lookup("#addDocumentBtn").queryAs(Button.class);
-        robot.lookup("#quizBtn").queryAs(Button.class);
         robot.lookup("#reviewBtn").queryAs(Button.class);
-    }
-
-    @Test
-    public void testAddDocument(FxRobot robot) {
-
-        Button btn = robot.lookup("#addDocumentBtn").queryAs(Button.class);
-        robot.clickOn("#addDocumentBtn");
-        check(
-                null, "Morate izabrati predmet za koji želite dodati materijal!", robot);
-        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
-        Button logout = robot.lookup("#logoutBtn").queryAs(Button.class);
-        robot.clickOn("#logoutBtn");
-        Button cancel = robot.lookup("#cancelBtn").queryAs(Button.class);
-        robot.clickOn("#cancelBtn");
-    }
-
-    @Test
-    public void testAddQuiz(FxRobot robot) {
-
-        Button btn = robot.lookup("#quizBtn").queryAs(Button.class);
-        robot.clickOn("#quizBtn");
-        check(
-                null, "Morate izabrati predmet za koji želite dodati kviz!", robot);
-        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
-        Button logout = robot.lookup("#logoutBtn").queryAs(Button.class);
-        robot.clickOn("#logoutBtn");
-        Button cancel = robot.lookup("#cancelBtn").queryAs(Button.class);
-        robot.clickOn("#cancelBtn");
     }
 
     @Test
@@ -108,7 +77,7 @@ public class HomeProfessorControllerTest {
         Button btn = robot.lookup("#profilBtn").queryAs(Button.class);
         robot.clickOn("#profilBtn");
         Label name = robot.lookup("#nameField").queryAs(Label.class);
-        assertEquals("Elma", name.getText());
+        assertEquals("Eldar", name.getText());
         Button btn1 = robot.lookup("#logoutBtn").queryAs(Button.class);
         robot.clickOn("#logoutBtn");
         Button cancel = robot.lookup("#cancelBtn").queryAs(Button.class);
@@ -137,7 +106,4 @@ public class HomeProfessorControllerTest {
                 .findFirst()
                 .orElse(null);
     }
-
-
-
 }

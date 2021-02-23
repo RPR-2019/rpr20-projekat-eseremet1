@@ -40,4 +40,6 @@ INSERT INTO "subject" VALUES (1,'OBP');
 INSERT INTO "subject" VALUES (2,'RPR');
 INSERT INTO "subject" VALUES (3,'AFJ');
 INSERT INTO "subject" VALUES (4,'IM1');
+INSERT INTO "student" VALUES (1,'Eldar','Šeremet','eseremet2@etf.unsa.ba','eseremet2','Seremet123','https://i.giphy.com/media/yFQ0ywscgobJK/giphy_s.gif','18318');
+
 COMMIT;
