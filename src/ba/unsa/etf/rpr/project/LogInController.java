@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.projekat;
+package ba.unsa.etf.rpr.project;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -153,5 +153,10 @@ public class LogInController {
                 alert.showAndWait();
             }
         }
+    }
+
+    public void cancelAction(ActionEvent actionEvent) {
+        Stage stageClose = (Stage) userNameField.getScene().getWindow();
+        stageClose.close();
     }
 }

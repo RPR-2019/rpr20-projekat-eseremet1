@@ -592,4 +592,14 @@ public class MaterialManagementDAO {
         }
 
     }
+
+    public void defaultData() throws SQLException {
+        Statement stmt = connection.createStatement();
+        stmt.executeUpdate("DELETE FROM student");
+        stmt.executeUpdate("DELETE FROM professor");
+        stmt.executeUpdate("DELETE FROM subject");
+        stmt.executeUpdate("DELETE FROM material");
+
+        regeneration();
+    }
 }

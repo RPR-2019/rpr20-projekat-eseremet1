@@ -119,6 +119,30 @@
                       </LinearGradient>
                   </textFill>
               </Button>
+            <Button fx:id="cancelBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" defaultButton="true" layoutX="302.0" layoutY="560.0" mnemonicParsing="false" onAction="#cancelAction" opacity="0.6" prefWidth="600.0" text="%cancel" textAlignment="CENTER">
+               <font>
+                  <Font name="Candara Light" size="50.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.055263157933950424" green="0.055263157933950424" blue="0.055263157933950424" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
          </children>
          <padding>
             <Insets top="300.0" />
