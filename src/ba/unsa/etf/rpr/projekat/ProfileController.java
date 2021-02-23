@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -28,6 +30,17 @@ public class ProfileController {
     private SearchController search;
     private User user;
     public Button imageUser;
+    public Menu languageMenu;
+    public Menu helpMenu;
+    public MenuItem bosnianMenu;
+    public MenuItem englishMenu;
+    public MenuItem aboutMenu;
+    public Label nameLabel;
+    public Label surnameLabel;
+    public Label usernameLabel;
+    public Label passwordLabel;
+    public Label emailLabel;
+    public Button changeBtn;
     public ProfileController(User user) {
         this.user = user;
         if(user instanceof Professor) {
@@ -187,12 +200,28 @@ public class ProfileController {
 
     public void bosnianAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("bs", "BA"));
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", Locale.getDefault());
+        translate();
     }
 
     public void englishAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("en", "US"));
+        translate();
+    }
+    private void translate() {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", Locale.getDefault());
+        languageMenu.setText(resourceBundle.getString("language"));
+        helpMenu.setText(resourceBundle.getString("_help"));
+        aboutMenu.setText(resourceBundle.getString("_about"));
+        bosnianMenu.setText(resourceBundle.getString("bosnian"));
+        englishMenu.setText(resourceBundle.getString("english"));
+        nameLabel.setText(resourceBundle.getString("name"));
+        surnameLabel.setText(resourceBundle.getString("surname"));
+        usernameLabel.setText(resourceBundle.getString("username"));
+        passwordLabel.setText(resourceBundle.getString("password"));
+        emailLabel.setText(resourceBundle.getString("email"));
+        changeBtn.setText(resourceBundle.getString("changePassword"));
+
+
     }
 
     }

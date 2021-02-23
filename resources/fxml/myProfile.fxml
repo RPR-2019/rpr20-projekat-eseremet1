@@ -50,31 +50,31 @@
                   </VBox>
                         <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="394.0" prefWidth="150.0" spacing="10.0">
                             <children>
-                                <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%name">
+                                <Label fx:id="nameLabel" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%name">
                                     <padding>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </Label>
-                                <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;" text="%surname">
+                                <Label fx:id="surnameLabel" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;" text="%surname">
                                     <padding>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </Label>
-                                <Label layoutX="10.0" layoutY="45.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%username">
+                                <Label fx:id="usernameLabel" layoutX="10.0" layoutY="45.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%username">
                                     <padding>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </Label>
                         <VBox>
                            <children>
-                                      <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;" text="%password">
+                                      <Label fx:id="passwordLabel" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;" text="%password">
                                           <padding>
                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                           </padding>
                                       </Label>
                            </children>
                         </VBox>
-                                <Label layoutX="10.0" layoutY="116.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%email">
+                                <Label fx:id="emailLabel" layoutX="10.0" layoutY="116.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%email">
                                     <padding>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
@@ -111,7 +111,7 @@
                             </children>
                         </VBox>
                     </children></HBox>
-            <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#changePassword" text="%changePassword">
+            <Button fx:id="changeBtn" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#changePassword" text="%changePassword">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -172,15 +172,15 @@
             <children>
                 <MenuBar>
                     <menus>
-                        <Menu mnemonicParsing="false" text="%language">
+                        <Menu fx:id="languageMenu" mnemonicParsing="false" text="%language">
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#bosnianAction" text="%bosnian" />
-                                <MenuItem mnemonicParsing="false" onAction="#englishAction" text="%english" />
+                                <MenuItem fx:id="bosnianMenu" mnemonicParsing="false" onAction="#bosnianAction" text="%bosnian" />
+                                <MenuItem fx:id="englishMenu" mnemonicParsing="false" onAction="#englishAction" text="%english" />
                             </items>
                         </Menu>
-                        <Menu text="%_help">
+                        <Menu fx:id="helpMenu" text="%_help">
                             <items>
-                                <MenuItem onAction="#aboutAction" text="%_about" />
+                                <MenuItem fx:id="aboutMenu" onAction="#aboutAction" text="%_about" />
                             </items>
                         </Menu>
                     </menus>

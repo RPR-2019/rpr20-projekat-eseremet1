@@ -56,15 +56,15 @@
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="%language">
+                <Menu fx:id="languageMenu" mnemonicParsing="false" text="%language">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#bosnianAction" text="%bosnian" />
-                    <MenuItem mnemonicParsing="false" onAction="#englishAction" text="%english" />
+                    <MenuItem fx:id="bosnianMenu" mnemonicParsing="false" onAction="#bosnianAction" text="%bosnian" />
+                    <MenuItem fx:id="englishMenu" mnemonicParsing="false" onAction="#englishAction" text="%english" />
                   </items>
                 </Menu>
-                <Menu text="%_help">
+                <Menu fx:id="helpMenu" text="%_help">
                   <items>
-                    <MenuItem onAction="#aboutAction" text="%_about" />
+                    <MenuItem fx:id="aboutMenu" onAction="#aboutAction" text="%_about" />
                   </items>
                 </Menu>
               </menus>
@@ -147,7 +147,7 @@
                                     </image></ImageView>
                             </graphic>
                         </Button>
-                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%addStudent">
+                        <Label fx:id="addLabel" prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%addStudent">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -172,7 +172,7 @@
                                     </image></ImageView>
                             </graphic>
                         </Button>
-                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%changeStudent">
+                        <Label fx:id="changeLabel" prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%changeStudent">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </padding>
@@ -197,7 +197,7 @@
                                     </image></ImageView>
                             </graphic>
                         </Button>
-                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%removeStudent">
+                        <Label fx:id="removeLabel" prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%removeStudent">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </padding>
@@ -222,7 +222,7 @@
                                     </image></ImageView>
                             </graphic>
                         </Button>
-                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%report">
+                        <Label fx:id="reportLabel" prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%report">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </padding>

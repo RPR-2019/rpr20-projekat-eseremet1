@@ -34,7 +34,15 @@ public class AdminStudentController {
     public TableColumn colStudentIndex;
     public TableColumn colStudentPicture;
     private MaterialManagementDAO materialManagementDAO;
-
+    public Menu languageMenu;
+    public Menu helpMenu;
+    public MenuItem bosnianMenu;
+    public MenuItem englishMenu;
+    public MenuItem aboutMenu;
+    public Label addLabel;
+    public Label changeLabel;
+    public Label removeLabel;
+    public Label reportLabel;
     public AdminStudentController() {
         materialManagementDAO= MaterialManagementDAO.getInstance();
         collection = FXCollections.observableArrayList(materialManagementDAO.students());
@@ -202,11 +210,34 @@ public class AdminStudentController {
 
     public void bosnianAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("bs", "BA"));
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", Locale.getDefault());
+        translate();
     }
 
     public void englishAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("en", "US"));
+        translate();
+    }
+
+    private void translate() {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", Locale.getDefault());
+        colStudentName.setText(resourceBundle.getString("name"));
+        colStudentId.setText(resourceBundle.getString("ID"));
+        colStudentUsername.setText(resourceBundle.getString("username"));
+        colStudentEmail.setText(resourceBundle.getString("email"));
+        colStudentPassword.setText(resourceBundle.getString("password"));
+        colStudentSurname.setText(resourceBundle.getString("surname"));
+        colStudentIndex.setText(resourceBundle.getString("index"));
+        colStudentPicture.setText(resourceBundle.getString("picture"));
+        filterField.setText(resourceBundle.getString("search"));
+        languageMenu.setText(resourceBundle.getString("language"));
+        helpMenu.setText(resourceBundle.getString("_help"));
+        aboutMenu.setText(resourceBundle.getString("_about"));
+        bosnianMenu.setText(resourceBundle.getString("bosnian"));
+        englishMenu.setText(resourceBundle.getString("english"));
+        addLabel.setText(resourceBundle.getString("addStudent"));
+        removeLabel.setText(resourceBundle.getString("removeStudent"));
+        reportLabel.setText(resourceBundle.getString("report"));
+        changeLabel.setText(resourceBundle.getString("changeStudent"));
+
     }
 }

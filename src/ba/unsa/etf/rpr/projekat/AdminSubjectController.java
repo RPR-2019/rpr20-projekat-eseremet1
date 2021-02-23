@@ -28,7 +28,15 @@ public class AdminSubjectController {
     public TableColumn colSubjectID;
     public TableColumn colSubjectName;
     public MaterialManagementDAO materialManagementDAO;
-
+    public Menu languageMenu;
+    public Menu helpMenu;
+    public MenuItem bosnianMenu;
+    public MenuItem englishMenu;
+    public MenuItem aboutMenu;
+    public Label addLabel;
+    public Label changeLabel;
+    public Label removeLabel;
+    public Label reportLabel;
 
     public AdminSubjectController() {
         materialManagementDAO = MaterialManagementDAO.getInstance();
@@ -182,11 +190,28 @@ public class AdminSubjectController {
 
     public void bosnianAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("bs", "BA"));
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", Locale.getDefault());
+        translate();
     }
 
     public void englishAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("en", "US"));
+        translate();
+    }
+
+    private void translate() {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", Locale.getDefault());
+        colSubjectName.setText(resourceBundle.getString("name"));
+        colSubjectID.setText(resourceBundle.getString("ID"));
+        filterField.setText(resourceBundle.getString("search"));
+        languageMenu.setText(resourceBundle.getString("language"));
+        helpMenu.setText(resourceBundle.getString("_help"));
+        aboutMenu.setText(resourceBundle.getString("_about"));
+        bosnianMenu.setText(resourceBundle.getString("bosnian"));
+        englishMenu.setText(resourceBundle.getString("english"));
+        addLabel.setText(resourceBundle.getString("addSubject"));
+        removeLabel.setText(resourceBundle.getString("removeSubject"));
+        reportLabel.setText(resourceBundle.getString("report"));
+        changeLabel.setText(resourceBundle.getString("changeSubject"));
+
     }
 }
