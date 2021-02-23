@@ -71,7 +71,7 @@ class UserTest {
         Student student = new Student(1,"Elma","Šeremet","eseremet1@etf.unsa.ba","eseremet1","elma","","18318");
         assertEquals("eseremet1@etf.unsa.ba", student.getEmail());
         Professor professor = new Professor(2,"Eldar","Šeremet","eseremet2@etf.unsa.ba","eseremet2","elma","");
-        assertEquals("eseremet2@etf.unsa.ba", professor.getSurname());
+        assertEquals("eseremet2@etf.unsa.ba", professor.getEmail());
     }
 
 
@@ -84,7 +84,7 @@ class UserTest {
         student.setEmail("eseremet2@etf.unsa.ba");
         professor.setEmail("ealkic2@etf.unsa.ba");
         assertEquals("eseremet2@etf.unsa.ba", student.getEmail());
-        assertEquals("ealki21@etf.unsa.ba", professor.getEmail());
+        assertEquals("ealkic2@etf.unsa.ba", professor.getEmail());
     }
 
     @Test
@@ -105,7 +105,7 @@ class UserTest {
         student.setUsername("eseremet2");
         professor.setUsername("ealkic2");
         assertEquals("eseremet2", student.getUsername());
-        assertEquals("ealki21", professor.getUsername());
+        assertEquals("ealkic2", professor.getUsername());
     }
 
     @Test
