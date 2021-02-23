@@ -18,4 +18,10 @@ class StudentTest {
         student.setIndex("10000");
         assertEquals("10000", student.getIndex());
     }
+
+    @Test
+    void testToString() {
+        Student student = new Student(1,"Elma","Šeremet","eseremet1@etf.unsa.ba","eseremet1","pass1","slika","18318");
+        assertEquals("Elma Šeremet", student.toString());
+    }
 }
