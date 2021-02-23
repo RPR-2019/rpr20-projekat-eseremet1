@@ -95,7 +95,7 @@
                   <Tooltip />
                </tooltip>
             </PasswordField>
-              <Button alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#logInAction" opacity="0.6" prefWidth="600.0" text="%login" textAlignment="CENTER">
+              <Button fx:id="logInBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#logInAction" opacity="0.6" prefWidth="600.0" text="%login" textAlignment="CENTER">
                   <font>
                       <Font name="Candara Light" size="50.0" />
                   </font>
