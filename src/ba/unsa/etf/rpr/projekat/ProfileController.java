@@ -220,8 +220,6 @@ public class ProfileController {
         passwordLabel.setText(resourceBundle.getString("password"));
         emailLabel.setText(resourceBundle.getString("email"));
         changeBtn.setText(resourceBundle.getString("changePassword"));
-
-
     }
 
     }

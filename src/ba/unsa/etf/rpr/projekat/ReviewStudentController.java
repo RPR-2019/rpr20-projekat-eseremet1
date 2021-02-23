@@ -14,13 +14,12 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ReviewStudentController {
@@ -52,13 +51,57 @@ public class ReviewStudentController {
     public void showMaterialAction(ActionEvent actionEvent) {
         if(listView.getSelectionModel().getSelectedItem()!=null) {
             String nameFile = (String) listView.getSelectionModel().getSelectedItem();
-            File file = new File("materials", nameFile);
-            Path absolutePath = Paths.get(file.getAbsolutePath());
+            if(nameFile.contains("-QUIZ")) {
+                Scanner reading;
+                String realName = nameFile.substring(0, nameFile.length() - 5);
+                try {
+                    reading = new Scanner(new FileReader(realName));
+                    int i = 1;
+                    String text = "";
+                    while (reading.hasNext()) {
+                        String row = reading.nextLine();
+                        if (!row.contains("Tačan odgovor:")) {
+                            text = text + row + "\n";
+                        }
+                        i = i + 1;
+                    }
+                    String path = "materials\\" + realName+"xxdeletexx";
+                    File file = new File(path);
+                    try {
+                        file.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try (FileWriter f = new FileWriter(file);
+                         BufferedWriter b = new BufferedWriter(f);
+                         PrintWriter p = new PrintWriter(b);) {
+                        p.println(text);
 
-            try {
-                Desktop.getDesktop().open(absolutePath.toFile());
-            } catch (IOException e) {
-                e.printStackTrace();
+                    }
+                } catch (FileNotFoundException e) {
+                    System.out.println("Datoteka " + realName + " ne postoji ili se ne može otvoriti");
+                    e.printStackTrace();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                File file = new File("materials", realName + "xxdeletexx");
+                Path absolutePath = Paths.get(file.getAbsolutePath());
+
+                try {
+                    Desktop.getDesktop().open(absolutePath.toFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                File file = new File("materials", nameFile);
+                Path absolutePath = Paths.get(file.getAbsolutePath());
+
+                try {
+                    Desktop.getDesktop().open(absolutePath.toFile());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         else {

@@ -49,6 +49,9 @@ public class ReviewController {
     public void showMaterialAction(ActionEvent actionEvent) {
         if(listView.getSelectionModel().getSelectedItem()!=null) {
             String nameFile = (String) listView.getSelectionModel().getSelectedItem();
+            if(nameFile.contains("-QUIZ")) {
+                nameFile=nameFile.substring(0,nameFile.length()-5);
+            }
             File file = new File("materials", nameFile);
             Path absolutePath = Paths.get(file.getAbsolutePath());
 

@@ -100,10 +100,13 @@ public class QuizController {
             docNameField.getStyleClass().add("poljeNijeIspravno");
         } else {
             String path = "materials\\" + docNameField.getText();
-
             File file = new File(path);
+
+            String pathCopy = docNameField.getText();
+            File fileCopy = new File(pathCopy);
             try {
                 file.createNewFile();
+                fileCopy.createNewFile();
                 try (FileWriter f = new FileWriter(file);
                      BufferedWriter b = new BufferedWriter(f);
                      PrintWriter p = new PrintWriter(b);) {
@@ -124,6 +127,11 @@ public class QuizController {
                     stage.close();
                 } catch (IOException i) {
                     i.printStackTrace();
+                }
+                try (FileWriter f = new FileWriter(fileCopy);
+                     BufferedWriter b = new BufferedWriter(f);
+                     PrintWriter p = new PrintWriter(b);) {
+                    p.println(textAreaField.getText());
                 }
             } catch (IOException e) {
                 System.out.println(e.getMessage());

@@ -21,7 +21,7 @@
                 <Menu text="%_file">
                   <items>
                         <MenuItem fx:id="mniNew" onAction="#newAction" text="%_new" />
-                        <MenuItem fx:id="mniOpen" onAction="#openAction" text="%_open" />
+                        <MenuItem fx:id="mniOpen" onAction="#openAction" text="%open" />
                         <MenuItem fx:id="mniSave" onAction="#saveAction" text="%_save">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -30,7 +30,7 @@
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="mniExit" onAction="#exitAction" text="%e_xit">
                            <accelerator>
-                              <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                              <KeyCodeCombination alt="UP" code="X" control="ANY" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
                   </items>
