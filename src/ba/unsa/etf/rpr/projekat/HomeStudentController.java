@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -115,5 +116,17 @@ public class HomeStudentController {
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
+    }
+
+    public void bosnianAction(ActionEvent actionEvent) {
+        Locale.setDefault(new Locale("bs", "BA"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", Locale.getDefault());
+
+
+    }
+
+    public void englishAction(ActionEvent actionEvent) {
+        Locale.setDefault(new Locale("en", "US"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", Locale.getDefault());
     }
 }

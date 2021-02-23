@@ -56,15 +56,15 @@
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="Language">
+                <Menu mnemonicParsing="false" text="%language">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Bosanski" />
-                    <MenuItem mnemonicParsing="false" text="English" />
+                    <MenuItem mnemonicParsing="false" onAction="#bosnianAction" text="%bosnian" />
+                    <MenuItem mnemonicParsing="false" onAction="#englishAction" text="%english" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu text="%_help">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="About" />
+                    <MenuItem onAction="#aboutAction" text="%_about" />
                   </items>
                 </Menu>
               </menus>
@@ -102,7 +102,7 @@
             <children>
                 <HBox prefHeight="157.0" prefWidth="1145.0">
                     <children>
-                        <TextField fx:id="filterField" alignment="CENTER" promptText="Potraži.." HBox.hgrow="ALWAYS">
+                        <TextField fx:id="filterField" alignment="CENTER" promptText="%search" HBox.hgrow="ALWAYS">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="70.0" right="70.0" top="70.0" />
                             </HBox.margin>
@@ -112,14 +112,14 @@
                     <children>
                         <TableView fx:id="tableViewStudents" prefHeight="287.0" prefWidth="1142.0">
                             <columns>
-                                <TableColumn fx:id="colStudentId" prefWidth="34.20001256465912" text="ID" />
-                                <TableColumn fx:id="colStudentName" prefWidth="104.19998168945312" text="Ime" />
-                                <TableColumn fx:id="colStudentSurname" prefWidth="142.0" text="Prezime" />
-                                <TableColumn fx:id="colStudentUsername" prefWidth="159.20001220703125" text="Korisničko ime" />
-                                <TableColumn fx:id="colStudentPassword" prefWidth="144.39996337890625" text="Lozika" />
-                                <TableColumn fx:id="colStudentEmail" minWidth="0.0" prefWidth="195.39996337890625" text="Email" />
-                        <TableColumn fx:id="colStudentPicture" prefWidth="255.2000732421875" text="Slika" />
-                        <TableColumn fx:id="colStudentIndex" text="Index" />
+                                <TableColumn fx:id="colStudentId" prefWidth="34.20001256465912" text="%ID" />
+                                <TableColumn fx:id="colStudentName" prefWidth="104.19998168945312" text="%name" />
+                                <TableColumn fx:id="colStudentSurname" prefWidth="142.0" text="%surname" />
+                                <TableColumn fx:id="colStudentUsername" prefWidth="159.20001220703125" text="%username" />
+                                <TableColumn fx:id="colStudentPassword" prefWidth="144.39996337890625" text="%password" />
+                                <TableColumn fx:id="colStudentEmail" minWidth="0.0" prefWidth="195.39996337890625" text="%email" />
+                        <TableColumn fx:id="colStudentPicture" prefWidth="255.2000732421875" text="%picture" />
+                        <TableColumn fx:id="colStudentIndex" text="%index" />
                             </columns>
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -147,7 +147,7 @@
                                     </image></ImageView>
                             </graphic>
                         </Button>
-                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Dodaj studenta">
+                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%addStudent">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -172,7 +172,7 @@
                                     </image></ImageView>
                             </graphic>
                         </Button>
-                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Izmijeni podatke ">
+                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%changeStudent">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </padding>
@@ -197,7 +197,7 @@
                                     </image></ImageView>
                             </graphic>
                         </Button>
-                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Obriši studenta">
+                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%removeStudent">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </padding>
@@ -222,7 +222,7 @@
                                     </image></ImageView>
                             </graphic>
                         </Button>
-                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Izvještaj">
+                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%report">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </padding>

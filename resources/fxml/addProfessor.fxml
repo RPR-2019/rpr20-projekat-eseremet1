@@ -56,7 +56,7 @@
                <children>
                   <VBox alignment="CENTER" spacing="5.0" GridPane.halignment="CENTER">
                      <children>
-                          <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="Ime">
+                          <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="%name">
                               <font>
                                   <Font name="Candara Light" size="33.0" />
                               </font>
@@ -78,7 +78,7 @@
                               </textFill>
                           </Label>
                         <TextField fx:id="nameField" layoutX="10.0" layoutY="208.0" />
-                          <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="Prezime">
+                          <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="%surname">
                               <font>
                                   <Font name="Candara Light" size="33.0" />
                               </font>
@@ -100,7 +100,7 @@
                               </textFill>
                           </Label>
                         <TextField fx:id="surnameField" />
-                          <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="Korisničko ime">
+                          <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="%username">
                               <font>
                                   <Font name="Candara Light" size="33.0" />
                               </font>
@@ -122,7 +122,7 @@
                               </textFill>
                           </Label>
                         <TextField fx:id="usernameField" />
-                          <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="Lozinka">
+                          <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="%password">
                               <font>
                                   <Font name="Candara Light" size="33.0" />
                               </font>
@@ -144,7 +144,7 @@
                               </textFill>
                           </Label>
                         <PasswordField fx:id="passwordField" editable="false" />
-                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="257.0" layoutY="234.0" text="Predmet">
+                        <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" layoutX="257.0" layoutY="234.0" text="%subject">
                            <font>
                               <Font name="Candara Light" size="33.0" />
                            </font>
@@ -172,7 +172,7 @@
             </GridPane>
               <HBox>
                   <children>
-                      <Button alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" mnemonicParsing="false" onAction="#generateAction" opacity="0.6" prefWidth="600.0" text="Generiši lozinku" textAlignment="CENTER">
+                      <Button alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" mnemonicParsing="false" onAction="#generateAction" opacity="0.6" prefWidth="600.0" text="%generate" textAlignment="CENTER">
                           <font>
                               <Font name="Candara Light" size="50.0" />
                           </font>
@@ -193,7 +193,7 @@
                               </LinearGradient>
                           </textFill>
                       </Button>
-                      <Button fx:id="addBtn" alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addAction" opacity="0.6" prefWidth="600.0" text="Dodaj" textAlignment="CENTER">
+                      <Button fx:id="addBtn" alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addAction" opacity="0.6" prefWidth="600.0" text="%add" textAlignment="CENTER">
                           <font>
                               <Font name="Candara Light" size="50.0" />
                           </font>
@@ -214,7 +214,7 @@
                               </LinearGradient>
                           </textFill>
                       </Button>
-                      <Button fx:id="odustaniClick" alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" layoutX="610.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancelAction" opacity="0.6" prefWidth="600.0" text="Odustani" textAlignment="CENTER">
+                      <Button fx:id="odustaniClick" alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" layoutX="610.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancelAction" opacity="0.6" prefWidth="600.0" text="%cancel" textAlignment="CENTER">
                           <font>
                               <Font name="Candara Light" size="50.0" />
                           </font>

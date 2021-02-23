@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -197,5 +198,15 @@ public class AdminStudentController {
         } catch (JRException e1) {
             e1.printStackTrace();
         }
+    }
+
+    public void bosnianAction(ActionEvent actionEvent) {
+        Locale.setDefault(new Locale("bs", "BA"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", Locale.getDefault());
+    }
+
+    public void englishAction(ActionEvent actionEvent) {
+        Locale.setDefault(new Locale("en", "US"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation", Locale.getDefault());
     }
 }

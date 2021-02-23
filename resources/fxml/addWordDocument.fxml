@@ -27,11 +27,11 @@
         </ImageView>
         <VBox alignment="CENTER" prefHeight="279.0" prefWidth="500.0" spacing="20.0">
             <children>
-                <Button fx:id="loadBtn" mnemonicParsing="false" onAction="#uploadWordAction" prefHeight="26.0" prefWidth="205.0" text="Izaberi word dokument" VBox.vgrow="ALWAYS" />
+                <Button fx:id="loadBtn" mnemonicParsing="false" onAction="#uploadWordAction" prefHeight="26.0" prefWidth="205.0" text="%chooseWord" VBox.vgrow="ALWAYS" />
             <ChoiceBox fx:id="visibilityBox" prefWidth="150.0" />
                 <Label fx:id="pdfNameLabel" />
                 <ProgressBar fx:id="pdfProgressBar" prefWidth="200.0" progress="0.0" />
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#cancelAction" text="Završi" />
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#cancelAction" text="%finish" />
             </children>
         </VBox>
     </children>

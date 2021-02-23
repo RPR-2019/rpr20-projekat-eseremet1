@@ -31,17 +31,17 @@
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Aplikacija Vam omogućava da sami napravite svoj .txt dokument." GridPane.rowIndex="2">
+      <Label text="%sentence1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Ukoliko želite, imate opciju dodavanja .txt dokumenta sa svog računara, kao i spremanje napisanog na računar." GridPane.rowIndex="4">
+      <Label text="%sentence2" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </GridPane.margin>
       </Label>
-      <Label text="Ako dođe do neke greške, tu je opcija exit za izlaz, kao i opcija New za kreiranje ispočetka." GridPane.rowIndex="5">
+      <Label text="%sentence3" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </GridPane.margin>

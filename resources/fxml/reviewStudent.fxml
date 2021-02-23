@@ -28,7 +28,7 @@
                     </padding>
                     <children>
                       <Button fx:id="addMaterialBtn" maxHeight="30.4" maxWidth="40.0" mnemonicParsing="false" onAction="#showMaterialAction" prefHeight="30.4" prefWidth="40.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;" />
-                        <Label prefHeight="35.0" prefWidth="190.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Pogledaj materijal">
+                        <Label prefHeight="35.0" prefWidth="190.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%open">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </padding>

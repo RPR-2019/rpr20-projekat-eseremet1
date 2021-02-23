@@ -34,7 +34,7 @@
         </ImageView>
       <VBox alignment="CENTER" spacing="20.0">
          <children>
-              <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="Username:">
+              <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" text="%username">
                   <font>
                       <Font name="Candara Light" size="33.0" />
                   </font>
@@ -63,7 +63,7 @@
                       <Font name="Candara" size="21.0" />
                   </font>
               </TextField>
-              <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="76.0" prefWidth="144.0" text="Password:">
+              <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="76.0" prefWidth="144.0" text="%password">
                   <font>
                       <Font name="Candara Light" size="33.0" />
                   </font>
@@ -95,7 +95,7 @@
                   <Tooltip />
                </tooltip>
             </PasswordField>
-              <Button alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#logInAction" opacity="0.6" prefWidth="600.0" text="Log in" textAlignment="CENTER">
+              <Button alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#logInAction" opacity="0.6" prefWidth="600.0" text="%login" textAlignment="CENTER">
                   <font>
                       <Font name="Candara Light" size="50.0" />
                   </font>

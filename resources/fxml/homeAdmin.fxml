@@ -25,7 +25,7 @@
         </ImageView>
         <VBox alignment="CENTER" spacing="30.0" GridPane.halignment="CENTER">
             <children>
-                <Button fx:id="proffesorBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#proffesorAction" opacity="0.6" prefWidth="600.0" text="Profesori" textAlignment="CENTER">
+                <Button fx:id="proffesorBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#proffesorAction" opacity="0.6" prefWidth="600.0" text="%professors" textAlignment="CENTER">
                     <font>
                         <Font name="Candara Light" size="50.0" />
                     </font>
@@ -51,7 +51,7 @@
                   </LinearGradient>
                     </textFill>
                 </Button>
-                <Button fx:id="studentBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#studentAction" opacity="0.6" prefWidth="600.0" text="Studenti" textAlignment="CENTER">
+                <Button fx:id="studentBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#studentAction" opacity="0.6" prefWidth="600.0" text="%students" textAlignment="CENTER">
                     <font>
                         <Font name="Candara Light" size="50.0" />
                     </font>
@@ -72,7 +72,7 @@
                         </LinearGradient>
                     </textFill>
                 </Button>
-                <Button fx:id="subjectBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" layoutX="310.0" layoutY="375.0" mnemonicParsing="false" onAction="#subjectAction" opacity="0.6" prefWidth="600.0" text="Predmeti" textAlignment="CENTER">
+                <Button fx:id="subjectBtn" alignment="CENTER" blendMode="HARD_LIGHT" contentDisplay="CENTER" layoutX="310.0" layoutY="375.0" mnemonicParsing="false" onAction="#subjectAction" opacity="0.6" prefWidth="600.0" text="%subjects" textAlignment="CENTER">
                     <font>
                         <Font name="Candara Light" size="50.0" />
                     </font>

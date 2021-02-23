@@ -50,31 +50,31 @@
                   </VBox>
                         <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="394.0" prefWidth="150.0" spacing="10.0">
                             <children>
-                                <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Ime ">
+                                <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%name">
                                     <padding>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </Label>
-                                <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;" text="Prezime">
+                                <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;" text="%surname">
                                     <padding>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </Label>
-                                <Label layoutX="10.0" layoutY="45.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="Korisničko ime">
+                                <Label layoutX="10.0" layoutY="45.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%username">
                                     <padding>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
                                 </Label>
                         <VBox>
                            <children>
-                                      <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;" text="Lozinka">
+                                      <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;" text="%password">
                                           <padding>
                                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                           </padding>
                                       </Label>
                            </children>
                         </VBox>
-                                <Label layoutX="10.0" layoutY="116.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="E-mail">
+                                <Label layoutX="10.0" layoutY="116.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%email">
                                     <padding>
                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                     </padding>
@@ -111,7 +111,7 @@
                             </children>
                         </VBox>
                     </children></HBox>
-            <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#changePassword" text="Promijeni lozinku">
+            <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#changePassword" text="%changePassword">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -172,15 +172,15 @@
             <children>
                 <MenuBar>
                     <menus>
-                        <Menu mnemonicParsing="false" text="Language">
+                        <Menu mnemonicParsing="false" text="%language">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Bosanski" />
-                                <MenuItem mnemonicParsing="false" text="English" />
+                                <MenuItem mnemonicParsing="false" onAction="#bosnianAction" text="%bosnian" />
+                                <MenuItem mnemonicParsing="false" onAction="#englishAction" text="%english" />
                             </items>
                         </Menu>
-                        <Menu mnemonicParsing="false" text="Help">
+                        <Menu text="%_help">
                             <items>
-                                <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="About" />
+                                <MenuItem onAction="#aboutAction" text="%_about" />
                             </items>
                         </Menu>
                     </menus>

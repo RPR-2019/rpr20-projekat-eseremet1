@@ -124,15 +124,15 @@
          <children>
             <MenuBar>
               <menus>
-                <Menu mnemonicParsing="false" text="Language">
+                <Menu mnemonicParsing="false" text="%language">
                   <items>
-                        <MenuItem mnemonicParsing="false" text="Bosanski" />
-                    <MenuItem mnemonicParsing="false" text="English" />
+                        <MenuItem mnemonicParsing="false" onAction="#bosnianAction" text="%bosnian" />
+                    <MenuItem mnemonicParsing="false" onAction="#englishAction" text="%english" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu text="%_help">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#aboutAction" text="About" />
+                    <MenuItem onAction="#aboutAction" text="%_about" />
                   </items>
                 </Menu>
               </menus>

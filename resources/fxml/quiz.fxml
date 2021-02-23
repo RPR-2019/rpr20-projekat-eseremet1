@@ -18,25 +18,25 @@
          <children>
             <MenuBar style="-fx-background-color: #a6a2a5;">
               <menus>
-                <Menu text="_File">
+                <Menu text="%_file">
                   <items>
-                        <MenuItem fx:id="mniNew" onAction="#newAction" text="_New" />
-                        <MenuItem fx:id="mniSave" onAction="#saveAction" text="_Save">
+                        <MenuItem fx:id="mniNew" onAction="#newAction" text="%_new" />
+                        <MenuItem fx:id="mniSave" onAction="#saveAction" text="%_save">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="mniExit" onAction="#exitAction" text="E_xit">
+                        <MenuItem fx:id="mniExit" onAction="#exitAction" text="%e_xit">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator>
                         </MenuItem>
                   </items>
                 </Menu>
-                <Menu text="_Help">
+                <Menu text="%_help">
                   <items>
-                    <MenuItem onAction="#aboutAction" text="_About" />
+                    <MenuItem onAction="#aboutAction" text="%_about" />
                   </items>
                 </Menu>
               </menus>
@@ -44,7 +44,7 @@
             <ToolBar>
               <items>
                 <Button fx:id="uploadBtn" mnemonicParsing="false" onAction="#uploadAction" />
-                  <TextField fx:id="docNameField" prefHeight="26.0" prefWidth="162.0" promptText="Naziv dokumenta" />
+                  <TextField fx:id="docNameField" prefHeight="26.0" prefWidth="162.0" promptText="%name" />
                   <Separator orientation="VERTICAL" />
                   <ChoiceBox fx:id="visibilityBox" prefWidth="150.0" />
               </items>
@@ -55,7 +55,7 @@
    <bottom>
       <HBox style="-fx-background-color: #a6a2a5;" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="statusBarLabel" text="Text editor je pokrenut!">
+            <Label fx:id="statusBarLabel" text="%initialStatus">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
