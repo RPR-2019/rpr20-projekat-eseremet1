@@ -84,6 +84,18 @@ public class HomeStudentControllerTest {
         robot.clickOn("#cancelBtn");
     }
 
+    @Test
+    public void testLanguage(FxRobot robot) {
+        robot.press(KeyCode.ALT).press(KeyCode.L).release(KeyCode.L).press(KeyCode.B).release(KeyCode.B).release(KeyCode.ALT);
+        Button btn = robot.lookup("#profilBtn").queryAs(Button.class);
+        robot.clickOn("#profilBtn");
+        Label name = robot.lookup("#nameLabel").queryAs(Label.class);
+        assertEquals("Ime", name.getText());
+        Button btn1 = robot.lookup("#logoutBtn").queryAs(Button.class);
+        robot.clickOn("#logoutBtn");
+        Button cancel = robot.lookup("#cancelBtn").queryAs(Button.class);
+        robot.clickOn("#cancelBtn");
+    }
     public void check(final String expectedHeader, final String expectedContent, FxRobot robot) {
         final javafx.stage.Stage actualAlertDialog = getTopModalStage(robot);
         assertNotNull(actualAlertDialog);

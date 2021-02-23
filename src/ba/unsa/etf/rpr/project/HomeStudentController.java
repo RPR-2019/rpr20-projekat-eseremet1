@@ -42,11 +42,6 @@ public class HomeStudentController {
     }
 
 
-
-    public void quizAction(ActionEvent actionEvent) {
-
-    }
-
     public void reviewAction(ActionEvent actionEvent) throws IOException {
         if(listViewSubject.getSelectionModel().getSelectedItem()!=null) {
             Stage stageClose = (Stage) profilBtn.getScene().getWindow();

@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.project;
 
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,12 +15,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import org.testfx.robot.Motion;
+import org.testfx.service.query.NodeQuery;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static java.util.Locale.lookup;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -109,6 +113,19 @@ public class HomeProfessorControllerTest {
         robot.clickOn("#profilBtn");
         Label name = robot.lookup("#nameField").queryAs(Label.class);
         assertEquals("Elma", name.getText());
+        Button btn1 = robot.lookup("#logoutBtn").queryAs(Button.class);
+        robot.clickOn("#logoutBtn");
+        Button cancel = robot.lookup("#cancelBtn").queryAs(Button.class);
+        robot.clickOn("#cancelBtn");
+    }
+
+    @Test
+    public void testLanguage(FxRobot robot) {
+        robot.press(KeyCode.ALT).press(KeyCode.L).release(KeyCode.L).press(KeyCode.B).release(KeyCode.B).release(KeyCode.ALT);
+        Button btn = robot.lookup("#profilBtn").queryAs(Button.class);
+        robot.clickOn("#profilBtn");
+        Label name = robot.lookup("#nameLabel").queryAs(Label.class);
+        assertEquals("Ime", name.getText());
         Button btn1 = robot.lookup("#logoutBtn").queryAs(Button.class);
         robot.clickOn("#logoutBtn");
         Button cancel = robot.lookup("#cancelBtn").queryAs(Button.class);
