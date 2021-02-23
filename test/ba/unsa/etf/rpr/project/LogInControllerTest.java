@@ -24,7 +24,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
