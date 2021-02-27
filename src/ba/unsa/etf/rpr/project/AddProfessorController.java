@@ -32,6 +32,7 @@ public class AddProfessorController {
     @FXML
     public void initialize() {
         choiceSubject.setItems(subjects);
+        choiceSubject.setValue(subjects.get(0));
         if(professor!=null) {
             nameField.setText(professor.getName());
             surnameField.setText(professor.getSurname());

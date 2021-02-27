@@ -30,7 +30,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#createWordDocumentAction" style="-fx-background-color: #a6a2a5;">
+                <Button fx:id="wordBtn" mnemonicParsing="false" onAction="#createWordDocumentAction" style="-fx-background-color: #a6a2a5;">
                     <graphic>
                         <ImageView disable="true" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -39,7 +39,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#createTxtDocumentAction" style="-fx-background-color: #a6a2a5;">
+                <Button fx:id="txtBtn" mnemonicParsing="false" onAction="#createTxtDocumentAction" style="-fx-background-color: #a6a2a5;">
                     <graphic>
                         <ImageView disable="true" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                             <image>
