@@ -150,7 +150,7 @@
             </GridPane>
               <HBox>
                   <children>
-                      <Button alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" mnemonicParsing="false" onAction="#generateAction" opacity="0.6" prefWidth="600.0" text="%generate" textAlignment="CENTER">
+                      <Button fx:id="generateBtn" alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" mnemonicParsing="false" onAction="#generateAction" opacity="0.6" prefWidth="600.0" text="%generate" textAlignment="CENTER">
                           <font>
                               <Font name="Candara Light" size="50.0" />
                           </font>
@@ -192,7 +192,7 @@
                               </LinearGradient>
                           </textFill>
                       </Button>
-                      <Button fx:id="odustaniClick" alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" layoutX="610.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancelAction" opacity="0.6" prefWidth="600.0" text="%cancel" textAlignment="CENTER">
+                      <Button fx:id="cancelBtn" alignment="CENTER" blendMode="COLOR_DODGE" contentDisplay="CENTER" layoutX="610.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancelAction" opacity="0.6" prefWidth="600.0" text="%cancel" textAlignment="CENTER">
                           <font>
                               <Font name="Candara Light" size="50.0" />
                           </font>
