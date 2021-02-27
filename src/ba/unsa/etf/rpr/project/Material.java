@@ -69,4 +69,5 @@ public class Material {
     public String toString() {
         return name.get();
     }
+
 }
