@@ -8,7 +8,8 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -17,7 +18,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,16 +28,16 @@ import java.util.ResourceBundle;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
-public class AddProfessorControllerTest {
+public class AddSubjectControllerTest {
     MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
     @Start
     public void start (Stage stage) throws Exception {
         Parent root = null;
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"), bundle);
-            AddProfessorController professorContoller=new AddProfessorController(null, materialManagementDAO.subjects());
-            loader.setController(professorContoller);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"), bundle);
+            AddSubjectController subjectController=new AddSubjectController(null, materialManagementDAO.professors());
+            loader.setController(subjectController);
             root=loader.load();
             stage.setTitle("Dodavanje profesora");
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
@@ -53,54 +53,30 @@ public class AddProfessorControllerTest {
 
     @Test
     public void testWindow(FxRobot robot) {
-        Button generateBtnn = robot.lookup("#generateBtn").queryAs(Button.class);
+        Button addBtn = robot.lookup("#addBtn").queryAs(Button.class);
+        Button cancelBtn = robot.lookup("#cancelBtn").queryAs(Button.class);
         TextField name = robot.lookup("#nameField").queryAs(TextField.class);
-        TextField surname = robot.lookup("#surnameField").queryAs(TextField.class);
+
     }
 
     @Test
-    public void testGenerate(FxRobot robot) {
-        Button generateBtnn = robot.lookup("#generateBtn").queryAs(Button.class);
-        robot.clickOn("#generateBtn");
-        PasswordField passwordField = robot.lookup("#passwordField").queryAs(PasswordField.class);
-        check(
-                "Vaša lozinka glasi: ", passwordField.getText(), robot);
-        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
-        assertTrue(!passwordField.getText().isEmpty());
-    }
-
-    @Test
-    public void testNewProfessor1(FxRobot robot) throws IOException {
-        robot.clickOn("#nameField");
-        robot.write("Elma");
-        robot.clickOn("#surnameField");
-        robot.write("Šeremet");
-        robot.clickOn("#usernameField");
-        robot.write("eseremet1");
-        robot.clickOn("#generateBtn");
-        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
+    public void testNewSubject1(FxRobot robot) throws IOException {
         robot.clickOn("#addBtn");
-        check(
-                null, "Username već postoji!", robot);
-        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
-    }
+        TextField name = robot.lookup("#nameField").queryAs(TextField.class);
+        Background bg = name.getBackground();
+        boolean color = false;
+        for (BackgroundFill bf : bg.getFills())
+            if (bf.getFill().toString().contains("d43417"))
+                color= true;
 
-    @Test
-    public void testNewProfessor2(FxRobot robot) throws IOException {
-        robot.clickOn("#nameField");
-        robot.write("Elma");
-        robot.clickOn("#surnameField");
-        robot.write("Šeremet");
-        robot.clickOn("#usernameField");
-        robot.write("eseremet100");
-        robot.clickOn("#generateBtn");
+        assertTrue(color);
         robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
         robot.clickOn("#cancelBtn");
     }
 
 
     public void check(final String expectedHeader, final String expectedContent, FxRobot robot) {
-        final javafx.stage.Stage actualAlertDialog = getTopModalStage(robot);
+        final Stage actualAlertDialog = getTopModalStage(robot);
         assertNotNull(actualAlertDialog);
 
         final DialogPane dialogPane = (DialogPane) actualAlertDialog.getScene().getRoot();
@@ -110,14 +86,14 @@ public class AddProfessorControllerTest {
 
     }
 
-    private javafx.stage.Stage getTopModalStage(FxRobot robot) {
+    private Stage getTopModalStage(FxRobot robot) {
         final List<Window> allWindows = new ArrayList<>(robot.robotContext().getWindowFinder().listWindows());
         Collections.reverse(allWindows);
 
-        return (javafx.stage.Stage) allWindows
+        return (Stage) allWindows
                 .stream()
-                .filter(window -> window instanceof javafx.stage.Stage)
-                .filter(window -> ((javafx.stage.Stage) window).getModality() == Modality.APPLICATION_MODAL)
+                .filter(window -> window instanceof Stage)
+                .filter(window -> ((Stage) window).getModality() == Modality.APPLICATION_MODAL)
                 .findFirst()
                 .orElse(null);
     }

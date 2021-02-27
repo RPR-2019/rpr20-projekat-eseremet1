@@ -42,6 +42,7 @@ public class AddStudentControllerTest {
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
             stage.show();
+            stage.toFront();
 
         } catch (IOException e) {
             e.printStackTrace();
