@@ -120,7 +120,7 @@ public class HomeProfessorControllerTest {
     }
 
     @Test
-    public void testLanguage(FxRobot robot) {
+    public void testLanguage1(FxRobot robot) {
         robot.press(KeyCode.ALT).press(KeyCode.L).release(KeyCode.L).press(KeyCode.B).release(KeyCode.B).release(KeyCode.ALT);
         Button btn = robot.lookup("#profilBtn").queryAs(Button.class);
         robot.clickOn("#profilBtn");
@@ -131,6 +131,7 @@ public class HomeProfessorControllerTest {
         Button cancel = robot.lookup("#cancelBtn").queryAs(Button.class);
         robot.clickOn("#cancelBtn");
     }
+
 
     public void check(final String expectedHeader, final String expectedContent, FxRobot robot) {
         final javafx.stage.Stage actualAlertDialog = getTopModalStage(robot);
