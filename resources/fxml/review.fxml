@@ -144,13 +144,21 @@
                         </ImageView>
                     </graphic>
                 </Button>
-            <RadioButton fx:id="checkBtn" mnemonicParsing="false" onAction="#checkAction" text="RadioButton">
-               <toggleGroup>
-                  <ToggleGroup fx:id="option" />
-               </toggleGroup></RadioButton>
-            <RadioButton fx:id="quizBtn" mnemonicParsing="false" onAction="#quizAction" text="RadioButton" toggleGroup="$option" />
-            <RadioButton fx:id="materialsBtn" mnemonicParsing="false" onAction="#allMaterialsAction" text="RadioButton" toggleGroup="$option" />
+            <ButtonBar nodeOrientation="RIGHT_TO_LEFT">
+               <buttons>
+                  <RadioButton fx:id="checkBtn" mnemonicParsing="false" onAction="#checkAction" prefWidth="100.0" text="%sortA-Z">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="option" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="quizBtn" mnemonicParsing="false" onAction="#quizAction" prefWidth="100.0" text="%quizzes" toggleGroup="$option" />
+                  <RadioButton fx:id="materialsBtn" mnemonicParsing="false" onAction="#allMaterialsAction" prefWidth="100.0" text="%allMaterials" toggleGroup="$option" />
+               </buttons>
+            </ButtonBar>
             </items>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
         </ToolBar>
     </top>
    <center>

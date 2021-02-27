@@ -32,7 +32,6 @@ public class ReviewController {
     private ArrayList<String> collection1 = new ArrayList<>();
     private ArrayList<String> collection2 = new ArrayList<>();
     private ArrayList<String> collection3 = new ArrayList<>();
-    private ObservableList<Material> materialSort;
     public RadioButton checkBtn;
     public RadioButton quizBtn;
     public RadioButton materialsBtn;
