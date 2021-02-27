@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -17,8 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class ReviewController {
@@ -27,7 +29,16 @@ public class ReviewController {
     private Subject activeSubject;
     private MaterialManagementDAO materialManagementDAO;
     private ObservableList<Material> materialCollection;
-    private ArrayList<String> collection = new ArrayList<>();
+    private ArrayList<String> collection1 = new ArrayList<>();
+    private ArrayList<String> collection2 = new ArrayList<>();
+    private ArrayList<String> collection3 = new ArrayList<>();
+    private ObservableList<Material> materialSort;
+    public RadioButton checkBtn;
+    public RadioButton quizBtn;
+    public RadioButton materialsBtn;
+    private ArrayList<Material> allMaterials;
+    private Set<Material> sortedMaterial;
+    private List<Material> allQuizs;
 
     public ReviewController(Subject selectedItem, Professor professor) {
         activeProfessor=professor;
@@ -37,13 +48,30 @@ public class ReviewController {
         //pronalazak svih materijala za dati predmet koji su javni
         ArrayList<Material> materials = materialCollection.stream().filter(material -> material.getSubject().getId() == activeSubject.getId() && material.getType()==Visibility.PUBLIC).collect(Collectors.toCollection(ArrayList::new));
         for (int i=0; i<materials.size(); i++) {
-            collection.add(materials.get(i).getName());
+            collection1.add(materials.get(i).getName());
         }
+        allMaterials = materials;
+        sortedMaterial = sort();
+        Iterator<Material> materialIterator = sortedMaterial.iterator();
+        while (materialIterator.hasNext()) {
+            Material material = materialIterator.next();
+            collection2.add(material.getName());
+        }
+        Collections.reverse(collection2);
+        allQuizs = getQuizs();
+
+        for (int i=0; i<allQuizs.size(); i++) {
+            collection3.add(allQuizs.get(i).getName());
+        }
+
+
     }
     @FXML
     public void initialize() throws IOException {
-        ObservableList<String> result = FXCollections.observableArrayList(collection);
-        listView.setItems(result);
+        ObservableList<String> result1 = FXCollections.observableArrayList(collection1);
+        materialsBtn.setSelected(true);
+        listView.setItems(result1);
+
         }
 
     public void showMaterialAction(ActionEvent actionEvent) {
@@ -97,7 +125,7 @@ public class ReviewController {
             Path absolutePath = Paths.get(file.getAbsolutePath());
             absolutePath.toFile().delete();
             //spisak bez tog izbrisanog
-            ArrayList<String> withoutFile = collection.stream().filter(name -> !name.equals(nameFile)).collect(Collectors.toCollection(ArrayList::new));
+            ArrayList<String> withoutFile = collection1.stream().filter(name -> !name.equals(nameFile)).collect(Collectors.toCollection(ArrayList::new));
             ObservableList<String> result = FXCollections.observableArrayList(withoutFile);
             listView.setItems(result);
         }
@@ -133,7 +161,40 @@ public class ReviewController {
     }
 
     public void checkAction(ActionEvent actionEvent) {
+        ObservableList<String> result1 = FXCollections.observableArrayList(collection1);
+        ObservableList<String> result2 = FXCollections.observableArrayList(collection2);
+        if(checkBtn.isSelected()) {
+            listView.setItems(result2);
+        } else {
+            listView.setItems(result1);
+        }
+    }
 
+    public Set<Material> sort(){
+        return new TreeSet<>(allMaterials);
+    }
+
+    public List<Material> getQuizs(){
+        return filter(material -> material.getName().contains("-QUIZ"));
+    }
+
+    public List<Material> filter(Predicate<Material> criterion){
+        return allMaterials.stream().filter(criterion).collect(Collectors.toList());
+    }
+
+    public void quizAction(ActionEvent actionEvent) {
+        ObservableList<String> result1 = FXCollections.observableArrayList(collection1);
+        ObservableList<String> result2 = FXCollections.observableArrayList(collection3);
+        if(quizBtn.isSelected()) {
+            listView.setItems(result2);
+        } else {
+            listView.setItems(result1);
+        }
+    }
+
+    public void allMaterialsAction(ActionEvent actionEvent) {
+        ObservableList<String> result1 = FXCollections.observableArrayList(collection1);
+            listView.setItems(result1);
 
     }
 }

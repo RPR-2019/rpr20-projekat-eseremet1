@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import java.net.URL?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1513.0" style="-fx-background-color: #a6a2a5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@../css/controlMaterial.css" />
@@ -143,6 +144,12 @@
                         </ImageView>
                     </graphic>
                 </Button>
+            <RadioButton fx:id="checkBtn" mnemonicParsing="false" onAction="#checkAction" text="RadioButton">
+               <toggleGroup>
+                  <ToggleGroup fx:id="option" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="quizBtn" mnemonicParsing="false" onAction="#quizAction" text="RadioButton" toggleGroup="$option" />
+            <RadioButton fx:id="materialsBtn" mnemonicParsing="false" onAction="#allMaterialsAction" text="RadioButton" toggleGroup="$option" />
             </items>
         </ToolBar>
     </top>

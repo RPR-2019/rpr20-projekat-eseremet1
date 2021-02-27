@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr.project;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Material {
+public class Material implements Comparable<Material>{
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
     private Subject subject;
@@ -70,4 +70,8 @@ public class Material {
         return name.get();
     }
 
+    @Override
+    public int compareTo(Material material) {
+        return material.getName().compareTo(name.get());
+    }
 }

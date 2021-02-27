@@ -56,7 +56,7 @@ public class WordDocumentController {
             }
             else {
 
-                File file = new File("materials",chooser.getName());
+                File file = new File("materials", chooser.getName());
                 Path absolutePath = Paths.get(file.getAbsolutePath());
                 Files.move(path1,absolutePath);
                 Desktop.getDesktop().open(absolutePath.toFile());
@@ -67,7 +67,8 @@ public class WordDocumentController {
             }
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Pojavila se greška prilikom učitavanja .docx datoteke -" + chooser.getName());
+            alert.setHeaderText("Pojavila se greška prilikom učitavanja .docx datoteke - " + chooser.getName());
+            System.out.println(e.getMessage());
             alert.setContentText(e.getMessage());
             alert.setTitle("Error");
             alert.showAndWait();
