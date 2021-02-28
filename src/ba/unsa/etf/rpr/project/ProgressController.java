@@ -23,7 +23,6 @@ public class ProgressController implements Initializable {
         indicator.progressProperty().bind(task.progressProperty());
         label.textProperty().bind(task.messageProperty());
         new Thread(task).start();
-
     }
 
 }
