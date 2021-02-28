@@ -42,6 +42,14 @@ public class PDFDocumentController {
     public void initialize() {
         visibilityBox.setItems(visibilities);
         visibilityBox.setValue(visibilities.get(0));
+        Tooltip toolTip1 = new Tooltip();
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        if(bundle.getLocale().toString().equals("bs")) {
+            toolTip1.setText("Učitajte PDF dokument sa računara");
+        } else {
+            toolTip1.setText("Load your PDF file from PC");
+        }
+        loadBtn.setTooltip(toolTip1);
     }
 
 
@@ -78,10 +86,16 @@ public class PDFDocumentController {
 
             }
         } catch (IOException e) {
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Pojavila se greška prilikom učitavanja .pdf datoteke - " + chooser.getName());
-            alert.setContentText(e.getMessage());
-            alert.setTitle("Error");
+            if(bundle.getLocale().toString().equals("bs")) {
+                alert.setHeaderText("Pojavila se greška prilikom učitavanja .pdf datoteke - " + chooser.getName());
+                alert.setContentText(e.getMessage());
+                alert.setTitle("Greška");
+            } else {
+                alert.setHeaderText("There was an error while loading .pdf document - " + chooser.getName());
+                alert.setContentText(e.getMessage());
+                alert.setTitle("Error");            }
             alert.showAndWait();
 
         }
