@@ -291,8 +291,6 @@ public class HomeProfessorController {
         Tooltip toolTip5 = new Tooltip();
         Tooltip toolTip6 = new Tooltip();
 
-
-
         if(bundle.getLocale().toString().equals("bs")) {
             toolTip1.setText("Prikaži materijale za odabrani predmet");
             toolTip2.setText("Želite se odjaviti?");
