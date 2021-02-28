@@ -90,28 +90,7 @@ public class AdminProfessorController {
         SortedList<Professor> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(tableViewProfessors.comparatorProperty());
         tableViewProfessors.setItems(sortedList);
-
-        Tooltip toolTip1 = new Tooltip();
-        toolTip1.setText("Add a new professor");
-        addProffesorBtn.setTooltip(toolTip1);
-        Tooltip toolTip2 = new Tooltip();
-        toolTip2.setText("Modify an existing professor");
-        editProffesorBtn.setTooltip(toolTip2);
-        Tooltip toolTip3 = new Tooltip();
-        toolTip3.setText("Delete this professor");
-        deleteProffesorBtn.setTooltip(toolTip3);
-        Tooltip toolTip4 = new Tooltip();
-        toolTip4.setText("Report of all professors");
-        reportBtn.setTooltip(toolTip4);
-        Tooltip toolTip5 = new Tooltip();
-        toolTip5.setText("Search by name, surname, username or email");
-        filterField.setTooltip(toolTip5);
-        Tooltip toolTip6 = new Tooltip();
-        toolTip6.setText("Return to home page");
-        backBtn.setTooltip(toolTip6);
-        Tooltip toolTip7 = new Tooltip();
-        toolTip7.setText("You want to log out?");
-        logoutBtn.setTooltip(toolTip7);
+        translateTooltips();
     }
 
     public void addProfessorAction(ActionEvent actionEvent) {
@@ -262,12 +241,14 @@ public class AdminProfessorController {
     public void bosnianAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("bs", "BA"));
         translate();
+        translateTooltips();
     }
 
 
     public void englishAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("en", "US"));
         translate();
+        translateTooltips();
     }
 
     private void translate() {
@@ -291,6 +272,44 @@ public class AdminProfessorController {
         reportLabel.setText(resourceBundle.getString("report"));
         changeLabel.setText(resourceBundle.getString("changeProfessor"));
         tableViewProfessors.setItems(collection);
+    }
+
+    private void translateTooltips() {
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        Tooltip toolTip1 = new Tooltip();
+        Tooltip toolTip2 = new Tooltip();
+        Tooltip toolTip3 = new Tooltip();
+        Tooltip toolTip4 = new Tooltip();
+        Tooltip toolTip5 = new Tooltip();
+        Tooltip toolTip6 = new Tooltip();
+        Tooltip toolTip7 = new Tooltip();
+
+
+        if(bundle.getLocale().toString().equals("bs")) {
+            toolTip1.setText("Dodaj novog profesora");
+            toolTip2.setText("Uredi izabranog profesora");
+            toolTip3.setText("Obriši izabranog profesora");
+            toolTip4.setText("Pogledaj izvještaj svih profesora");
+            toolTip5.setText("Pretraži profesore po imenu, prezimenu, korisničkom imenu ili emailu");
+            toolTip6.setText("Povratak na početnu stranicu");
+            toolTip7.setText("Želite se odjaviti?");
+        } else {
+            toolTip1.setText("Add a new professor");
+            toolTip2.setText("Modify an existing professor");
+            toolTip3.setText("Delete this professor");
+            toolTip4.setText("Report of all professors");
+            toolTip5.setText("Search by name, surname, username or email");
+            toolTip6.setText("Return to home page");
+            toolTip7.setText("You want to log out?");
+        }
+
+        addProffesorBtn.setTooltip(toolTip1);
+        editProffesorBtn.setTooltip(toolTip2);
+        deleteProffesorBtn.setTooltip(toolTip3);
+        reportBtn.setTooltip(toolTip4);
+        filterField.setTooltip(toolTip5);
+        backBtn.setTooltip(toolTip6);
+        logoutBtn.setTooltip(toolTip7);
     }
 
 }

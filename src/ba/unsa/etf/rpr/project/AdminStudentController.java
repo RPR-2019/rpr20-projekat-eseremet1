@@ -87,27 +87,7 @@ public class AdminStudentController {
         SortedList<Student> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(tableViewStudents.comparatorProperty());
         tableViewStudents.setItems(sortedList);
-        Tooltip toolTip1 = new Tooltip();
-        toolTip1.setText("Add a new student");
-        addProffesorBtn.setTooltip(toolTip1);
-        Tooltip toolTip2 = new Tooltip();
-        toolTip2.setText("Modify an existing student");
-        editProffesorBtn.setTooltip(toolTip2);
-        Tooltip toolTip3 = new Tooltip();
-        toolTip3.setText("Delete this student");
-        deleteProffesorBtn.setTooltip(toolTip3);
-        Tooltip toolTip4 = new Tooltip();
-        toolTip4.setText("Report of all students");
-        reportBtn.setTooltip(toolTip4);
-        Tooltip toolTip5 = new Tooltip();
-        toolTip5.setText("Search by name, surname, username or email");
-        filterField.setTooltip(toolTip5);
-        Tooltip toolTip6 = new Tooltip();
-        toolTip6.setText("Return to home page");
-        backBtn.setTooltip(toolTip6);
-        Tooltip toolTip7 = new Tooltip();
-        toolTip7.setText("You want to log out?");
-        logoutBtn.setTooltip(toolTip7);
+        translateTooltips();
     }
 
 
@@ -256,11 +236,51 @@ public class AdminStudentController {
     public void bosnianAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("bs", "BA"));
         translate();
+        translateTooltips();
+    }
+
+    private void translateTooltips() {
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        Tooltip toolTip1 = new Tooltip();
+        Tooltip toolTip2 = new Tooltip();
+        Tooltip toolTip3 = new Tooltip();
+        Tooltip toolTip4 = new Tooltip();
+        Tooltip toolTip5 = new Tooltip();
+        Tooltip toolTip6 = new Tooltip();
+        Tooltip toolTip7 = new Tooltip();
+
+
+        if(bundle.getLocale().toString().equals("bs")) {
+            toolTip1.setText("Dodaj novog studenta");
+            toolTip2.setText("Uredi izabranog studenta");
+            toolTip3.setText("Obriši izabranog studenta");
+            toolTip4.setText("Pogledaj izvještaj svih studenata");
+            toolTip5.setText("Pretraži studente po imenu, prezimenu, korisničkom imenu ili emailu");
+            toolTip6.setText("Povratak na početnu stranicu");
+            toolTip7.setText("Želite se odjaviti?");
+        } else {
+            toolTip1.setText("Add a new student");
+            toolTip2.setText("Modify an existing student");
+            toolTip3.setText("Delete this student");
+            toolTip4.setText("Report of all students");
+            toolTip5.setText("Search by name, surname, username or email");
+            toolTip6.setText("Return to home page");
+            toolTip7.setText("You want to log out?");
+        }
+
+        addProffesorBtn.setTooltip(toolTip1);
+        editProffesorBtn.setTooltip(toolTip2);
+        deleteProffesorBtn.setTooltip(toolTip3);
+        reportBtn.setTooltip(toolTip4);
+        filterField.setTooltip(toolTip5);
+        backBtn.setTooltip(toolTip6);
+        logoutBtn.setTooltip(toolTip7);
     }
 
     public void englishAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("en", "US"));
         translate();
+        translateTooltips();
     }
 
     private void translate() {
