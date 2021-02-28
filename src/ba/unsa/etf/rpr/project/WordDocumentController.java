@@ -39,6 +39,14 @@ public class WordDocumentController {
     public void initialize() {
         visibilityBox.setItems(visibilities);
         visibilityBox.setValue(visibilities.get(0));
+        Tooltip toolTip1 = new Tooltip();
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        if(bundle.getLocale().toString().equals("bs")) {
+            toolTip1.setText("Učitajte docx dokument sa računara");
+        } else {
+            toolTip1.setText("Load your docx file from PC");
+        }
+        loadBtn.setTooltip(toolTip1);
     }
 
     public void uploadWordAction(ActionEvent actionEvent) {
@@ -74,11 +82,16 @@ public class WordDocumentController {
                 materialManagementDAO.addMaterial(material);
             }
         } catch (IOException e) {
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Pojavila se greška prilikom učitavanja .docx datoteke - " + chooser.getName());
-            System.out.println(e.getMessage());
-            alert.setContentText(e.getMessage());
-            alert.setTitle("Error");
+            if(bundle.getLocale().toString().equals("bs")) {
+                alert.setHeaderText("Pojavila se greška prilikom učitavanja .docx datoteke - " + chooser.getName());
+                alert.setContentText(e.getMessage());
+                alert.setTitle("Greška");
+            } else {
+                alert.setHeaderText("There was an error while loading .docx document - " + chooser.getName());
+                alert.setContentText(e.getMessage());
+                alert.setTitle("Error");            }
             alert.showAndWait();
 
         }
