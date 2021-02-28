@@ -146,7 +146,7 @@ public class ReviewController {
         Parent root = null;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/privateSubjects.fxml"), bundle);
-        PrivateSubjectsController reviewController = new PrivateSubjectsController(activeSubject, activeProfessor);
+        PrivateSubjectController reviewController = new PrivateSubjectController(activeSubject, activeProfessor);
         loader.setController(reviewController);
         root = loader.load();
         stage.setTitle("Izbor vrste željenog materijala");

@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class AddProfessorController implements NewPassword {
+public class NewProfessorController implements NewPassword {
     public TextField nameField;
     public TextField surnameField;
     public TextField usernameField;
@@ -22,7 +22,7 @@ public class AddProfessorController implements NewPassword {
     private Professor professor;
     public Button addBtn;
 
-    public AddProfessorController(Professor professor, ArrayList<Subject> subjects) {
+    public NewProfessorController(Professor professor, ArrayList<Subject> subjects) {
         materialManagementDAO = MaterialManagementDAO.getInstance();
         this.professor = professor;
         this.subjects= FXCollections.observableArrayList(subjects);

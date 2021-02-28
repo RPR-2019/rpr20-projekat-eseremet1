@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 
-public class AddSubjectController {
+public class NewSubjectController {
     public TextField nameField;
     private MaterialManagementDAO materialManagementDAO;
     private Subject subject;
@@ -18,7 +18,7 @@ public class AddSubjectController {
 
 
 
-    public AddSubjectController(Subject subject, ArrayList<Professor> professors) {
+    public NewSubjectController(Subject subject, ArrayList<Professor> professors) {
         materialManagementDAO= MaterialManagementDAO.getInstance();
         this.subject = subject;
     }

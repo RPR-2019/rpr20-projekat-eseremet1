@@ -8,8 +8,6 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -28,18 +26,19 @@ import java.util.ResourceBundle;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
-public class AddSubjectControllerTest {
+public class NewStudentControllerTest {
     MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
     @Start
     public void start (Stage stage) throws Exception {
         Parent root = null;
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"), bundle);
-            AddSubjectController subjectController=new AddSubjectController(null, materialManagementDAO.professors());
-            loader.setController(subjectController);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addStudent.fxml"), bundle);
+            NewStudentController studentController =new NewStudentController(null);
+            //new Student(1,"Eldar","Šeremet","eseremet2@etf.unsa.ba","eseremet2","Seremet123","https://i.giphy.com/media/yFQ0ywscgobJK/giphy_s.gif","18318")
+            loader.setController(studentController);
             root=loader.load();
-            stage.setTitle("Dodavanje profesora");
+            stage.setTitle("Dodavanje studenta");
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
             stage.show();
@@ -53,23 +52,47 @@ public class AddSubjectControllerTest {
 
     @Test
     public void testWindow(FxRobot robot) {
-        Button addBtn = robot.lookup("#addBtn").queryAs(Button.class);
-        Button cancelBtn = robot.lookup("#cancelBtn").queryAs(Button.class);
+        Button generateBtnn = robot.lookup("#generateBtn").queryAs(Button.class);
         TextField name = robot.lookup("#nameField").queryAs(TextField.class);
-
+        TextField surname = robot.lookup("#surnameField").queryAs(TextField.class);
     }
 
     @Test
-    public void testNewSubject1(FxRobot robot) throws IOException {
-        robot.clickOn("#addBtn");
-        TextField name = robot.lookup("#nameField").queryAs(TextField.class);
-        Background bg = name.getBackground();
-        boolean color = false;
-        for (BackgroundFill bf : bg.getFills())
-            if (bf.getFill().toString().contains("d43417"))
-                color= true;
+    public void testGenerate(FxRobot robot) {
+        Button generateBtnn = robot.lookup("#generateBtn").queryAs(Button.class);
+        robot.clickOn("#generateBtn");
+        PasswordField passwordField = robot.lookup("#passwordField").queryAs(PasswordField.class);
+        check(
+                "Vaša lozinka glasi: ", passwordField.getText(), robot);
+        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
+        assertTrue(!passwordField.getText().isEmpty());
+    }
 
-        assertTrue(color);
+    @Test
+    public void testNewStudent1(FxRobot robot) throws IOException {
+        robot.clickOn("#nameField");
+        robot.write("Elma");
+        robot.clickOn("#surnameField");
+        robot.write("Šeremet");
+        robot.clickOn("#usernameField");
+        robot.write("eseremet1");
+        robot.clickOn("#generateBtn");
+        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
+        robot.clickOn("#addBtn");
+        check(
+                null, "Username već postoji!", robot);
+        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
+    }
+
+    @Test
+    public void testNewStudent2(FxRobot robot) throws IOException {
+        robot.clickOn("#nameField");
+        robot.write("Ensar");
+        robot.clickOn("#surnameField");
+        robot.write("Šeremet");
+        robot.clickOn("#usernameField");
+        robot.write("eseremet100");
+        robot.clickOn("#generateBtn");
         robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
         robot.clickOn("#cancelBtn");
     }

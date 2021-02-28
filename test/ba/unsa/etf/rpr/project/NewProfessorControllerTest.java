@@ -26,19 +26,18 @@ import java.util.ResourceBundle;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(ApplicationExtension.class)
-public class AddStudentControllerTest {
+public class NewProfessorControllerTest {
     MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
     @Start
     public void start (Stage stage) throws Exception {
         Parent root = null;
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addStudent.fxml"), bundle);
-            AddStudentController studentController =new AddStudentController(null);
-            //new Student(1,"Eldar","Šeremet","eseremet2@etf.unsa.ba","eseremet2","Seremet123","https://i.giphy.com/media/yFQ0ywscgobJK/giphy_s.gif","18318")
-            loader.setController(studentController);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"), bundle);
+            NewProfessorController professorContoller=new NewProfessorController(null, materialManagementDAO.subjects());
+            loader.setController(professorContoller);
             root=loader.load();
-            stage.setTitle("Dodavanje studenta");
+            stage.setTitle("Dodavanje profesora");
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
             stage.show();
@@ -69,7 +68,7 @@ public class AddStudentControllerTest {
     }
 
     @Test
-    public void testNewStudent1(FxRobot robot) throws IOException {
+    public void testNewProfessor1(FxRobot robot) throws IOException {
         robot.clickOn("#nameField");
         robot.write("Elma");
         robot.clickOn("#surnameField");
@@ -85,9 +84,9 @@ public class AddStudentControllerTest {
     }
 
     @Test
-    public void testNewStudent2(FxRobot robot) throws IOException {
+    public void testNewProfessor2(FxRobot robot) throws IOException {
         robot.clickOn("#nameField");
-        robot.write("Ensar");
+        robot.write("Elma");
         robot.clickOn("#surnameField");
         robot.write("Šeremet");
         robot.clickOn("#usernameField");
@@ -99,7 +98,7 @@ public class AddStudentControllerTest {
 
 
     public void check(final String expectedHeader, final String expectedContent, FxRobot robot) {
-        final Stage actualAlertDialog = getTopModalStage(robot);
+        final javafx.stage.Stage actualAlertDialog = getTopModalStage(robot);
         assertNotNull(actualAlertDialog);
 
         final DialogPane dialogPane = (DialogPane) actualAlertDialog.getScene().getRoot();
@@ -109,14 +108,14 @@ public class AddStudentControllerTest {
 
     }
 
-    private Stage getTopModalStage(FxRobot robot) {
+    private javafx.stage.Stage getTopModalStage(FxRobot robot) {
         final List<Window> allWindows = new ArrayList<>(robot.robotContext().getWindowFinder().listWindows());
         Collections.reverse(allWindows);
 
-        return (Stage) allWindows
+        return (javafx.stage.Stage) allWindows
                 .stream()
-                .filter(window -> window instanceof Stage)
-                .filter(window -> ((Stage) window).getModality() == Modality.APPLICATION_MODAL)
+                .filter(window -> window instanceof javafx.stage.Stage)
+                .filter(window -> ((javafx.stage.Stage) window).getModality() == Modality.APPLICATION_MODAL)
                 .findFirst()
                 .orElse(null);
     }

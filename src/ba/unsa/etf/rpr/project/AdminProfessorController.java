@@ -52,7 +52,7 @@ public class AdminProfessorController {
     public Button logoutBtn;
 
     public AdminProfessorController() {
-        materialManagementDAO= MaterialManagementDAO.getInstance();
+        materialManagementDAO = MaterialManagementDAO.getInstance();
         collection = FXCollections.observableArrayList(materialManagementDAO.professors());
     }
 
@@ -73,7 +73,7 @@ public class AdminProfessorController {
         FilteredList<Professor> filteredList = new FilteredList<>(collection, tmp->true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(professor -> {
-                if(newValue==null || newValue.isEmpty()) return true;
+                if(newValue == null || newValue.isEmpty()) return true;
                 String lowerCaseFilter = newValue.toLowerCase();
                 if(professor.getName().toLowerCase().indexOf(lowerCaseFilter)!= -1) {
                     return true;
@@ -119,9 +119,9 @@ public class AdminProfessorController {
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"), bundle);
-            AddProfessorController professorContoller=new AddProfessorController(null, materialManagementDAO.subjects());
+            NewProfessorController professorContoller = new NewProfessorController(null, materialManagementDAO.subjects());
             loader.setController(professorContoller);
-            root=loader.load();
+            root = loader.load();
             stage.setTitle("Dodavanje profesora");
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
@@ -141,17 +141,16 @@ public class AdminProfessorController {
     }
 
     public void editProfessorAction(ActionEvent actionEvent) {
-        Professor professor= tableViewProfessors.getSelectionModel().getSelectedItem();
+        Professor professor = tableViewProfessors.getSelectionModel().getSelectedItem();
         if (professor == null) return;
-
         Stage stage = new Stage();
         Parent root = null;
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"), bundle);
-            AddProfessorController professorContoller=new AddProfessorController(professor, materialManagementDAO.subjects());
+            NewProfessorController professorContoller = new NewProfessorController(professor, materialManagementDAO.subjects());
             loader.setController(professorContoller);
-            root=loader.load();
+            root = loader.load();
             stage.setTitle("Izmjena profesora");
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
@@ -171,7 +170,7 @@ public class AdminProfessorController {
 
     public void deleteProfessorAction(ActionEvent actionEvent) {
         Professor professor = tableViewProfessors.getSelectionModel().getSelectedItem();
-        if (professor== null) return;
+        if (professor == null) return;
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Potvrda brisanja");
@@ -205,8 +204,6 @@ public class AdminProfessorController {
         stage.setTitle("Prijavite se!");
         stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
         stage.setResizable(false);
-
-
         stage.show();
     }
 
@@ -221,8 +218,6 @@ public class AdminProfessorController {
         stage.setTitle("Prijavite se!");
         stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
         stage.setResizable(false);
-
-
         stage.show();
     }
 

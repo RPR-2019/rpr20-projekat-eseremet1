@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class PrivateSubjectsController {
+public class PrivateSubjectController {
     public ListView listView;
     private Professor activeProfessor;
     private Subject activeSubject;
@@ -29,7 +29,7 @@ public class PrivateSubjectsController {
     private ObservableList<Material> materialCollection;
     private ArrayList<String> collection = new ArrayList<>();
 
-    public PrivateSubjectsController(Subject selectedItem, Professor professor) {
+    public PrivateSubjectController(Subject selectedItem, Professor professor) {
         activeProfessor=professor;
         activeSubject=selectedItem;
         materialManagementDAO = MaterialManagementDAO.getInstance();

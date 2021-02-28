@@ -50,7 +50,7 @@ public class AdminStudentController {
     public Button backBtn;
     public Button logoutBtn;
     public AdminStudentController() {
-        materialManagementDAO= MaterialManagementDAO.getInstance();
+        materialManagementDAO = MaterialManagementDAO.getInstance();
         collection = FXCollections.observableArrayList(materialManagementDAO.students());
     }
 
@@ -71,7 +71,7 @@ public class AdminStudentController {
         FilteredList<Student> filteredList = new FilteredList<>(collection, tmp->true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(student -> {
-                if(newValue==null || newValue.isEmpty()) return true;
+                if(newValue == null || newValue.isEmpty()) return true;
                 String lowerCaseFilter = newValue.toLowerCase();
                 if(student.getName().toLowerCase().indexOf(lowerCaseFilter)!= -1) {
                     return true;
@@ -160,7 +160,7 @@ public class AdminStudentController {
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addStudent.fxml"), bundle);
-            AddStudentController studentController=new AddStudentController(null);
+            NewStudentController studentController = new NewStudentController(null);
             loader.setController(studentController);
             root=loader.load();
             stage.setTitle("Dodavanje studenta");
@@ -190,7 +190,7 @@ public class AdminStudentController {
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addStudent.fxml"), bundle);
-            AddStudentController studentController =new AddStudentController(student);
+            NewStudentController studentController = new NewStudentController(student);
             loader.setController(studentController);
             root=loader.load();
             stage.setTitle("Izmjena studenta");
@@ -216,7 +216,7 @@ public class AdminStudentController {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Potvrda brisanja");
-        alert.setHeaderText("Brisanje studenta "+student.getName()+" "+student.getSurname());
+        alert.setHeaderText("Brisanje studenta " + student.getName() + " " + student.getSurname());
         alert.setContentText("Da li ste sigurni da želite obrisati studenta " + student.getName() + " " + student.getSurname()+"?");
 
         Optional<ButtonType> result = alert.showAndWait();

@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class AddStudentController implements NewPassword {
+public class NewStudentController implements NewPassword {
     public TextField nameField;
     public TextField surnameField;
     public TextField usernameField;
@@ -16,7 +16,7 @@ public class AddStudentController implements NewPassword {
     private Student student;
     public Button addBtn;
 
-    public AddStudentController(Student student) {
+    public NewStudentController(Student student) {
         materialManagementDAO = MaterialManagementDAO.getInstance();
         this.student = student;
     }

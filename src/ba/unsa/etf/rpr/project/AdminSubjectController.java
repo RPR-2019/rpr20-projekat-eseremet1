@@ -58,7 +58,7 @@ public class AdminSubjectController {
         FilteredList<Subject> filteredList = new FilteredList<>(collection, tmp->true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(subject -> {
-                if(newValue==null || newValue.isEmpty()) return true;
+                if(newValue == null || newValue.isEmpty()) return true;
                 String lowerCaseFilter = newValue.toLowerCase();
                 if(subject.getName().toLowerCase().indexOf(lowerCaseFilter)!= -1) {
                     return true;
@@ -99,7 +99,7 @@ public class AdminSubjectController {
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"), bundle);
-            AddSubjectController subjectController=new AddSubjectController(null, materialManagementDAO.professors());
+            NewSubjectController subjectController = new NewSubjectController(null, materialManagementDAO.professors());
             loader.setController(subjectController);
             root=loader.load();
             stage.setTitle("Dodavanje profesora");
@@ -129,7 +129,7 @@ public class AdminSubjectController {
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addSubject.fxml"), bundle);
-            AddSubjectController subjectController=new AddSubjectController(subject, materialManagementDAO.professors());
+            NewSubjectController subjectController = new NewSubjectController(subject, materialManagementDAO.professors());
             loader.setController(subjectController);
             root=loader.load();
             stage.setTitle("Izmjena predmeta");
@@ -151,7 +151,7 @@ public class AdminSubjectController {
 
     public void deleteSubjectAction(ActionEvent actionEvent) {
         Subject subject = tableViewSubjects.getSelectionModel().getSelectedItem();
-        if (subject== null) return;
+        if (subject == null) return;
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Potvrda brisanja");
