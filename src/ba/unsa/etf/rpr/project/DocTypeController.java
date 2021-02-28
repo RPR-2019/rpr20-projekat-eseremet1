@@ -22,14 +22,25 @@ public class DocTypeController {
     @FXML
     public void initialize() {
 
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         Tooltip toolTip1 = new Tooltip();
-        toolTip1.setText("Add PDF document");
-        pdfBtn.setTooltip(toolTip1);
         Tooltip toolTip2 = new Tooltip();
-        toolTip2.setText("Add word document");
-        wordBtn.setTooltip(toolTip2);
         Tooltip toolTip3 = new Tooltip();
-        toolTip3.setText("Add txt document");
+
+
+        if(bundle.getLocale().toString().equals("bs")) {
+            toolTip1.setText("Dodaj PDF dokument");
+            toolTip2.setText("Dodaj word dokument");
+            toolTip3.setText("Dodaj txt dokument");
+
+        } else {
+            toolTip1.setText("Add PDF document");
+            toolTip2.setText("Add word document");
+            toolTip3.setText("Add txt document");
+        }
+
+        pdfBtn.setTooltip(toolTip1);
+        wordBtn.setTooltip(toolTip2);
         txtBtn.setTooltip(toolTip3);
     }
 
@@ -46,7 +57,12 @@ public class DocTypeController {
         PDFDocumentController PDFDocumentController = new PDFDocumentController(selectedSubject,activeProfessor);
         loader.setController(PDFDocumentController);
         root=loader.load();
-        stage.setTitle("PDF document");
+        if(bundle.getLocale().toString().equals("bs")) {
+           stage.setTitle("PDF dokument");
+
+        } else {
+            stage.setTitle("PDF document");
+        }
         stage.setScene(new Scene(root, 500, 300)); //stavljamo početni ekran
         stage.setMinHeight(300); //da se ne može više smanjivati
         stage.setMinWidth(200);
@@ -64,7 +80,12 @@ public class DocTypeController {
         WordDocumentController wordDocumentController = new WordDocumentController(selectedSubject,activeProfessor);
         loader.setController(wordDocumentController);
         root = loader.load();
-        stage.setTitle("Word document");
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Word dokument");
+
+        } else {
+            stage.setTitle("Word document");
+        }
         stage.setScene(new Scene(root, 500, 300)); //stavljamo početni ekran
         stage.setMinHeight(300); //da se ne može više smanjivati
         stage.setMinWidth(200);
@@ -84,7 +105,12 @@ public class DocTypeController {
             TXTDocumentController TXTDocumentController=new TXTDocumentController(selectedSubject,activeProfessor);
             loader.setController(TXTDocumentController);
             root=loader.load();
-            stage.setTitle("Izbor vrste željenog materijala");
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle("Txt dokument");
+
+            } else {
+                stage.setTitle("Txt document");
+            }
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setMinHeight(300); //da se ne može više smanjivati
             stage.setMinWidth(200);
