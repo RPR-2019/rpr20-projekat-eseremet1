@@ -37,7 +37,13 @@ public class QuizController {
         visibilityBox.setItems(visibilities);
         visibilityBox.setValue(visibilities.get(0));
         textAreaField.setText("1. Pitanje1"+"\n"+"a. Odgovor1"+"\n"+"b. Odgovor2"+"\n"+"c. Odgovor3"+"\n"+ "Tačan odgovor: Odgovor"+"\n"+"2. Pitanje2"+"\n"+"a. Odgovor1"+"\n"+"b. Odgovor2"+"\n"+"c. Odgovor3"+"\n"+ "Tačan odgovor: Odgovor"+"\n"+"3. Pitanje3"+"\n"+"a. Odgovor1"+"\n"+"b. Odgovor2"+"\n"+"c. Odgovor3"+"\n"+ "Tačan odgovor: Odgovor");
-        statusBarLabel.setText("Napomena: Kviz mora poštovati navedeni format!");
+        ResourceBundle bundle1 = ResourceBundle.getBundle("Translation");
+        Stage stage1 = (Stage) textAreaField.getScene().getWindow();
+        if(bundle1.getLocale().toString().equals("bs")) {
+            statusBarLabel.setText("Napomena: Kviz mora poštovati navedeni format!");
+        } else {
+            statusBarLabel.setText("Reference: The quiz must follow the specified format!");
+        }
         docNameField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {
@@ -74,7 +80,13 @@ public class QuizController {
                 fw.write(content);
                 fw.flush();
                 fw.close();
-                statusBarLabel.setText("Datoteka uspješno spremljena!");
+                ResourceBundle bundle1 = ResourceBundle.getBundle("Translation");
+                Stage stage1 = (Stage) textAreaField.getScene().getWindow();
+                if(bundle1.getLocale().toString().equals("bs")) {
+                    statusBarLabel.setText("Datoteka uspješno spremljena!");
+                } else {
+                    statusBarLabel.setText("Document has been saved successfully!");                }
+
 
             } catch(Exception e) {
                 JOptionPane.showMessageDialog(null,e.getMessage());
@@ -85,7 +97,13 @@ public class QuizController {
 
     public void newAction(ActionEvent actionEvent) {
         textAreaField.setText("1. Pitanje1"+"\n"+"a. Odgovor1"+"\n"+"b. Odgovor2"+"\n"+"c. Odgovor3"+"\n"+ "Tačan odgovor: Odgovor"+"\n"+"2. Pitanje2"+"\n"+"a. Odgovor1"+"\n"+"b. Odgovor2"+"\n"+"c. Odgovor3"+"\n"+ "Tačan odgovor: Odgovor"+"\n"+"3. Pitanje3"+"\n"+"a. Odgovor1"+"\n"+"b. Odgovor2"+"\n"+"c. Odgovor3"+"\n"+ "Tačan odgovor: Odgovor");
-        statusBarLabel.setText("Napomena: Kviz mora poštovati navedeni format!");
+        ResourceBundle bundle1 = ResourceBundle.getBundle("Translation");
+        Stage stage1 = (Stage) textAreaField.getScene().getWindow();
+        if(bundle1.getLocale().toString().equals("bs")) {
+            statusBarLabel.setText("Napomena: Kviz mora poštovati navedeni format!");
+        } else {
+            statusBarLabel.setText("Reference: The quiz must follow the specified format!");
+        }
         docNameField.setText("");
         ObservableList<String> items = FXCollections.observableArrayList("");
         listView.setItems(items);
@@ -111,7 +129,13 @@ public class QuizController {
                      BufferedWriter b = new BufferedWriter(f);
                      PrintWriter p = new PrintWriter(b);) {
                     p.println(textAreaField.getText());
-                    statusBarLabel.setText("Kviz je objavljen!");
+                    ResourceBundle bundle1 = ResourceBundle.getBundle("Translation");
+                    Stage stage1 = (Stage) textAreaField.getScene().getWindow();
+                    if(bundle1.getLocale().toString().equals("bs")) {
+                        statusBarLabel.setText("Kviz je objavljen!");
+                    } else {
+                        stage1.setTitle("Quiz is published!");
+                    }
                     MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
                     if(visibilityBox.getValue().equals(Visibility.PUBLIC)) {
                         Material material = new Material(materialManagementDAO.getId(), docNameField.getText()+"-QUIZ", activeProfessor.getSubject(), 1);
@@ -153,7 +177,11 @@ public class QuizController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/aboutTXT.fxml" ), bundle);
         Parent root = loader.load();
-        myStage.setTitle("About");
+        if(bundle.getLocale().toString().equals("bs")) {
+            myStage.setTitle("O nama");
+        } else {
+            myStage.setTitle("About");
+        }
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
