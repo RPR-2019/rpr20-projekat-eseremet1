@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -41,6 +38,9 @@ public class ProfileController {
     public Label passwordLabel;
     public Label emailLabel;
     public Button changeBtn;
+    public Button backBtn;
+    public Button logoutBtn;
+
     public ProfileController(User user) {
         this.user = user;
         if(user instanceof Professor) {
@@ -78,6 +78,20 @@ public class ProfileController {
                 imageUser.setGraphic(choose);
             }
         }
+
+
+        Tooltip toolTip1 = new Tooltip();
+        toolTip1.setText("You want to log out?");
+        logoutBtn.setTooltip(toolTip1);
+        Tooltip toolTip2 = new Tooltip();
+        toolTip2.setText("Return to home page");
+        backBtn.setTooltip(toolTip2);
+        Tooltip toolTip3 = new Tooltip();
+        toolTip3.setText("Change your profile picture using Giphy");
+        imageUser.setTooltip(toolTip3);
+        Tooltip toolTip4 = new Tooltip();
+        toolTip4.setText("Change your password");
+        changeBtn.setTooltip(toolTip4);
 
     }
 
