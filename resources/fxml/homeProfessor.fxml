@@ -48,7 +48,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#homeworkAction" style="-fx-background-color: #bf5c4e;">
+                        <Button fx:id="homeworkBtn" disable="true" mnemonicParsing="false" onAction="#homeworkAction" style="-fx-background-color: #bf5c4e;">
                             <graphic>
                                 <ImageView disable="true" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                     <image>

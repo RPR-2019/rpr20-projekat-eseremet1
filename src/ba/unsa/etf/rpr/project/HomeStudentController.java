@@ -28,6 +28,8 @@ public class HomeStudentController {
     public MenuItem bosnianMenu;
     public MenuItem englishMenu;
     public MenuItem aboutMenu;
+    public Button reviewBtn;
+    public Button logoutBtn;
 
     public HomeStudentController(Student student) {
         materialManagementDAO = MaterialManagementDAO.getInstance();
@@ -38,7 +40,18 @@ public class HomeStudentController {
 
     @FXML
     public void initialize() {
+
         listViewSubject.setItems(subjectCollection);
+        Tooltip toolTip1 = new Tooltip();
+        toolTip1.setText("Display material for the selected subject");
+        reviewBtn.setTooltip(toolTip1);
+        Tooltip toolTip2 = new Tooltip();
+        toolTip2.setText("You want to log out?");
+        logoutBtn.setTooltip(toolTip2);
+        Tooltip toolTip3 = new Tooltip();
+        toolTip3.setText("View profile");
+        profilBtn.setTooltip(toolTip3);
+
     }
 
 

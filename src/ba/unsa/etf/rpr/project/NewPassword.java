@@ -2,7 +2,7 @@ package ba.unsa.etf.rpr.project;
 
 import java.util.Random;
 
-public interface Password {
+public interface NewPassword {
 
     default String generatePassword() {
         String newPassword="";

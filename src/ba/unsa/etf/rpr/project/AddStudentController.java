@@ -7,9 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.util.Random;
-
-public class AddStudentController implements Password {
+public class AddStudentController implements NewPassword {
     public TextField nameField;
     public TextField surnameField;
     public TextField usernameField;

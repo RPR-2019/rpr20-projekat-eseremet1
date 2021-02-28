@@ -35,6 +35,10 @@ public class HomeProfessorController {
     public MenuItem bosnianMenu;
     public MenuItem englishMenu;
     public MenuItem aboutMenu;
+    public Button logoutBtn;
+    public Button reviewBtn;
+    public Button quizBtn;
+    public Button homeworkBtn;
 
 
     public HomeProfessorController(Professor professor) {
@@ -56,6 +60,24 @@ public class HomeProfessorController {
             }
         }
         listViewSubject.setItems(subjectCollection);
+        Tooltip toolTip1 = new Tooltip();
+        toolTip1.setText("Display material for the selected subject");
+        reviewBtn.setTooltip(toolTip1);
+        Tooltip toolTip2 = new Tooltip();
+        toolTip2.setText("You want to log out?");
+        logoutBtn.setTooltip(toolTip2);
+        Tooltip toolTip3 = new Tooltip();
+        toolTip3.setText("View profile");
+        profilBtn.setTooltip(toolTip3);
+        Tooltip toolTip4 = new Tooltip();
+        toolTip4.setText("Add new material");
+        addDocumentBtn.setTooltip(toolTip4);
+        Tooltip toolTip5 = new Tooltip();
+        toolTip5.setText("Add new quiz");
+        quizBtn.setTooltip(toolTip5);
+        Tooltip toolTip6 = new Tooltip();
+        toolTip6.setText("The *Add homework* option will be enabled soon!");
+        homeworkBtn.setTooltip(toolTip6);
     }
     public void addDocumentAction(ActionEvent actionEvent) throws IOException {
         if(listViewSubject.getSelectionModel().getSelectedItem()==null) {

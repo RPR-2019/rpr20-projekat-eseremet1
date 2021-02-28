@@ -10,9 +10,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Random;
 
-public class AddProfessorController implements Password {
+public class AddProfessorController implements NewPassword {
     public TextField nameField;
     public TextField surnameField;
     public TextField usernameField;
