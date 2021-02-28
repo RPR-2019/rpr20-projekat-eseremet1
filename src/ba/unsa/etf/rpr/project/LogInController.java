@@ -56,11 +56,17 @@ public class LogInController {
             }
         });
 
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         Tooltip toolTip = new Tooltip();
-        toolTip.setText("ba.unsa.etf.rpr.project.Password field");
-        passwordField.setTooltip(toolTip);
         Tooltip toolTip1 = new Tooltip();
-        toolTip1.setText("Username field");
+        if(bundle.getLocale().toString().equals("bs")) {
+            toolTip.setText("Lozinka");
+            toolTip1.setText("Username");
+        } else {
+            toolTip.setText("Password field");
+            toolTip1.setText("Username field");
+        }
+        passwordField.setTooltip(toolTip);
         userNameField.setTooltip(toolTip1);
     }
 
@@ -73,17 +79,15 @@ public class LogInController {
         }
 
         if (userNameField.getText().equals("admin") && passwordField.getText().equals("admin")) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Obavijest");
-            alert.setHeaderText(null);
-            alert.setContentText("Uspješno ste prijavljeni kao administrator!");
-            alert.showAndWait();
-
             Stage stage = new Stage();
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/homeAdmin.fxml" ), bundle);
             Parent root = loader.load();
-            stage.setTitle("Upravljanje korisnicima");
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle("Početna stranica");
+            } else {
+                stage.setTitle("Home");
+            }
             stage.setScene(new Scene(root, 1200, 700));
             stage.setResizable(false);
             stage.show();
@@ -91,12 +95,6 @@ public class LogInController {
             stageClose.close();
         } else if (materialManagementDAO.searchProfessor(userNameField.getText()) != null) {
             if (materialManagementDAO.searchProfessor(userNameField.getText()).getPassword().equals(passwordField.getText())) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Obavijest");
-                alert.setHeaderText(null);
-                alert.setContentText("Uspješno ste prijavljeni kao profesor!");
-
-                alert.showAndWait();
                 Stage stage = new Stage();
                 Parent root = null;
                 ResourceBundle bundle = ResourceBundle.getBundle("Translation");
@@ -104,7 +102,11 @@ public class LogInController {
                 HomeProfessorController professorContoller=new HomeProfessorController(materialManagementDAO.searchProfessor(userNameField.getText()));
                 loader.setController(professorContoller);
                 root=loader.load();
-                stage.setTitle("Početna stranica za profesora");
+                if(bundle.getLocale().toString().equals("bs")) {
+                    stage.setTitle("Početna stranica");
+                } else {
+                    stage.setTitle("Home");
+                }
                 stage.setScene(new Scene(root, 1500, 700)); //stavljamo početni ekran
                 stage.setMinHeight(500); //da se ne može više smanjivati
                 stage.setMinWidth(200);
@@ -113,22 +115,22 @@ public class LogInController {
                 stageClose.close();
 
             } else {
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                Stage stage = (Stage) userNameField.getScene().getWindow();
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-
-                alert.setTitle("Upozorenje");
-                alert.setHeaderText(null);
-                alert.setContentText("Pogrešna lozinka. Pokušajte ponovo!");
-
+                if(bundle.getLocale().toString().equals("bs")) {
+                    alert.setTitle("Upozorenje");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Pogrešna lozinka. Pokušajte ponovo!");
+                } else {
+                    alert.setTitle("Warning");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Wrong password. Please try again!");
+                }
                 alert.showAndWait();
             }
         } else if (materialManagementDAO.searchStudent(userNameField.getText()) != null) {
             if (materialManagementDAO.searchStudent(userNameField.getText()).getPassword().equals(passwordField.getText())) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Obavijest");
-                alert.setHeaderText(null);
-                alert.setContentText("Uspješno ste prijavljeni kao student!");
-
-                alert.showAndWait();
                 Stage stage = new Stage();
                 Parent root = null;
                 ResourceBundle bundle = ResourceBundle.getBundle("Translation");
@@ -136,7 +138,11 @@ public class LogInController {
                 HomeStudentController studentController=new HomeStudentController(materialManagementDAO.searchStudent(userNameField.getText()));
                 loader.setController(studentController);
                 root=loader.load();
-                stage.setTitle("Početna stranica za studenta");
+                if(bundle.getLocale().toString().equals("bs")) {
+                    stage.setTitle("Početna stranica");
+                } else {
+                    stage.setTitle("Home");
+                }
                 stage.setScene(new Scene(root, 1500, 700)); //stavljamo početni ekran
                 stage.setMinHeight(500); //da se ne može više smanjivati
                 stage.setMinWidth(200);
@@ -145,12 +151,18 @@ public class LogInController {
                 stageClose.close();
 
             } else {
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                Stage stage = (Stage) userNameField.getScene().getWindow();
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-
-                alert.setTitle("Upozorenje");
-                alert.setHeaderText(null);
-                alert.setContentText("Pogrešna lozinka. Pokušajte ponovo!");
-
+                if(bundle.getLocale().toString().equals("bs")) {
+                    alert.setTitle("Upozorenje");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Pogrešna lozinka. Pokušajte ponovo!");
+                } else {
+                    alert.setTitle("Warning");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Wrong password. Please try again!");
+                }
                 alert.showAndWait();
             }
         }
