@@ -44,8 +44,12 @@ public class AdminProfessorController {
     public Label changeLabel;
     public Label removeLabel;
     public Label reportLabel;
-
-
+    public Button addProffesorBtn;
+    public Button editProffesorBtn;
+    public Button deleteProffesorBtn;
+    public Button reportBtn;
+    public Button backBtn;
+    public Button logoutBtn;
 
     public AdminProfessorController() {
         materialManagementDAO= MaterialManagementDAO.getInstance();
@@ -86,6 +90,27 @@ public class AdminProfessorController {
         sortedList.comparatorProperty().bind(tableViewProfessors.comparatorProperty());
         tableViewProfessors.setItems(sortedList);
 
+        Tooltip toolTip1 = new Tooltip();
+        toolTip1.setText("Add a new professor");
+        addProffesorBtn.setTooltip(toolTip1);
+        Tooltip toolTip2 = new Tooltip();
+        toolTip2.setText("Modify an existing professor");
+        editProffesorBtn.setTooltip(toolTip2);
+        Tooltip toolTip3 = new Tooltip();
+        toolTip3.setText("Delete this professor");
+        deleteProffesorBtn.setTooltip(toolTip3);
+        Tooltip toolTip4 = new Tooltip();
+        toolTip4.setText("Report of all professors");
+        reportBtn.setTooltip(toolTip4);
+        Tooltip toolTip5 = new Tooltip();
+        toolTip5.setText("Search by name, surname, username or email");
+        filterField.setTooltip(toolTip5);
+        Tooltip toolTip6 = new Tooltip();
+        toolTip6.setText("Return to home page");
+        backBtn.setTooltip(toolTip6);
+        Tooltip toolTip7 = new Tooltip();
+        toolTip7.setText("You want to log out?");
+        logoutBtn.setTooltip(toolTip7);
     }
 
     public void addProfessorAction(ActionEvent actionEvent) {
@@ -112,6 +137,7 @@ public class AdminProfessorController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void editProfessorAction(ActionEvent actionEvent) {

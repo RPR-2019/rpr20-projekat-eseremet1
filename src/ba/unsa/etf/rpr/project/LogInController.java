@@ -60,7 +60,6 @@ public class LogInController {
         Tooltip toolTip1 = new Tooltip();
         toolTip1.setText("Username field");
         userNameField.setTooltip(toolTip1);
-
     }
 
     public void logInAction(ActionEvent actionEvent) throws IOException {

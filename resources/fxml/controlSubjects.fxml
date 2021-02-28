@@ -60,10 +60,10 @@
             <children>
                 <MenuBar>
                     <menus>
-                        <Menu fx:id="languageMenu" mnemonicParsing="false" text="%language">
+                        <Menu fx:id="languageMenu" text="%language">
                             <items>
-                                <MenuItem fx:id="bosnianMenu" mnemonicParsing="false" onAction="#bosnianAction" text="%bosnian" />
-                                <MenuItem fx:id="englishMenu" mnemonicParsing="false" onAction="#englishAction" text="%english" />
+                                <MenuItem fx:id="bosnianMenu" onAction="#bosnianAction" text="%bosnian" />
+                                <MenuItem fx:id="englishMenu" onAction="#englishAction" text="%english" />
                             </items>
                         </Menu>
                         <Menu fx:id="helpMenu" text="%_help">

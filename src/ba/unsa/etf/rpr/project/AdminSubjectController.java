@@ -37,6 +37,12 @@ public class AdminSubjectController {
     public Label changeLabel;
     public Label removeLabel;
     public Label reportLabel;
+    public Button addSubjectBtn;
+    public Button editSubjectBtn;
+    public Button deleteSubjectBtn;
+    public Button reportBtn;
+    public Button backBtn;
+    public Button logoutBtn;
 
     public AdminSubjectController() {
         materialManagementDAO = MaterialManagementDAO.getInstance();
@@ -62,6 +68,29 @@ public class AdminSubjectController {
         SortedList<Subject> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(tableViewSubjects.comparatorProperty());
         tableViewSubjects.setItems(sortedList);
+
+        Tooltip toolTip1 = new Tooltip();
+        toolTip1.setText("Add a new subject");
+        addSubjectBtn.setTooltip(toolTip1);
+        Tooltip toolTip2 = new Tooltip();
+        toolTip2.setText("Modify an existing subject");
+        editSubjectBtn.setTooltip(toolTip2);
+        Tooltip toolTip3 = new Tooltip();
+        toolTip3.setText("Delete this subject");
+        deleteSubjectBtn.setTooltip(toolTip3);
+        Tooltip toolTip4 = new Tooltip();
+        toolTip4.setText("Report of all subjects");
+        reportBtn.setTooltip(toolTip4);
+        Tooltip toolTip5 = new Tooltip();
+        toolTip5.setText("Search by name");
+        filterField.setTooltip(toolTip5);
+        Tooltip toolTip6 = new Tooltip();
+        toolTip6.setText("Return to home page");
+        backBtn.setTooltip(toolTip6);
+        Tooltip toolTip7 = new Tooltip();
+        toolTip7.setText("You want to log out?");
+        logoutBtn.setTooltip(toolTip7);
+
 
     }
     public void addSubjectAction(ActionEvent actionEvent) {
