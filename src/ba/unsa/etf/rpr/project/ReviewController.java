@@ -89,11 +89,17 @@ public class ReviewController {
             }
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Obavijest");
-            alert.setHeaderText(null);
-            alert.setContentText("Morate izabrati određeni materijal");
-
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            if(bundle.getLocale().toString().equals("bs")) {
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Morate izabrati određeni materijal");
+            } else {
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("You have to choose the material!");
+            }
             alert.showAndWait();
         }
     }
@@ -108,7 +114,11 @@ public class ReviewController {
         HomeProfessorController professorContoller=new HomeProfessorController(materialManagementDAO.searchProfessor(activeProfessor.getUsername()));
         loader.setController(professorContoller);
         root=loader.load();
-        stage.setTitle("Početna stranica za profesora");
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Početna stranica");
+        } else {
+            stage.setTitle("Home");
+        }
         stage.setScene(new Scene(root, 1500, 700)); //stavljamo početni ekran
         stage.setMinHeight(500); //da se ne može više smanjivati
         stage.setMinWidth(200);
@@ -129,11 +139,17 @@ public class ReviewController {
             listView.setItems(result);
         }
         else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Obavijest");
-            alert.setHeaderText(null);
-            alert.setContentText("Morate izabrati određeni materijal");
-
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            if(bundle.getLocale().toString().equals("bs")) {
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Morate izabrati određeni materijal");
+            } else {
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("You have to choose the material!");
+            }
             alert.showAndWait();
         }
     }
@@ -149,7 +165,11 @@ public class ReviewController {
         PrivateSubjectController reviewController = new PrivateSubjectController(activeSubject, activeProfessor);
         loader.setController(reviewController);
         root = loader.load();
-        stage.setTitle("Izbor vrste željenog materijala");
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle(activeSubject.getName());
+        } else {
+            stage.setTitle(activeSubject.getName());
+        }
         stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
         stage.setMinHeight(300); //da se ne može više smanjivati
         stage.setMinWidth(200);
@@ -198,18 +218,19 @@ public class ReviewController {
     }
 
     public void logoutAction(ActionEvent actionEvent) throws IOException {
-        Stage stageClose = (Stage) listView.getScene().getWindow();
-        stageClose.close();
         Stage stage = new Stage();
-        Parent root = null;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
-        root = loader.load();
-        stage.setTitle("Prijavite se!");
-        stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+        Parent root = loader.load();
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Prijava");
+        } else {
+            stage.setTitle("Login");
+        }
+        stage.setScene(new Scene(root, 1200, 700));
         stage.setResizable(false);
-
-
         stage.show();
+        Stage stageClose = (Stage) listView.getScene().getWindow();
+        stageClose.close();
     }
 }
