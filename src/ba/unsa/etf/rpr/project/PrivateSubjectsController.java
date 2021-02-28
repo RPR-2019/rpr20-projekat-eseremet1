@@ -132,4 +132,19 @@ public class PrivateSubjectsController {
             alert.showAndWait();
         }
     }
+    public void logoutAction(ActionEvent actionEvent) throws IOException {
+        Stage stageClose = (Stage) listView.getScene().getWindow();
+        stageClose.close();
+        Stage stage = new Stage();
+        Parent root = null;
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
+        root = loader.load();
+        stage.setTitle("Prijavite se!");
+        stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+        stage.setResizable(false);
+
+
+        stage.show();
+    }
 }

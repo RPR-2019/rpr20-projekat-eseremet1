@@ -10,7 +10,9 @@
     <stylesheets>
         <URL value="@../css/controlMaterial.css" />
     </stylesheets>
-
+    <stylesheets>
+        <URL value="@../css/icons.css" />
+    </stylesheets>
     <left>
       <ListView fx:id="listViewSubject" />
     </left>
@@ -104,14 +106,7 @@
             </MenuBar>
               <ToolBar nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: transparent;">
                   <items>
-                      <Button fx:id="logoutBtn" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;">
-                     <graphic>
-                        <ImageView fitHeight="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/logoutIcon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
+                      <Button fx:id="logoutBtn" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;" />
                       <Button fx:id="profilBtn" layoutX="10.0" layoutY="10.0" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#profileAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;">
                           <graphic>
                               <ImageView disable="true" fitHeight="30.0" pickOnBounds="true" preserveRatio="true">

@@ -14,9 +14,3 @@
 #logoutBtn:hover {
     -fx-background-color:  #bf5c4e;
 }
-#deleteMaterialBtn {
- -fx-graphic: url("/images/deleteIcon.png");
-}
-#addMaterialBtn {
- -fx-graphic: url("/images/showIcon.png");
-}

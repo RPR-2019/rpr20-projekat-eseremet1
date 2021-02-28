@@ -1,0 +1,39 @@
+#addProffesorBtn {
+ -fx-graphic: url("/images/addUserIcon.png");
+}
+#editProffesorBtn {
+ -fx-graphic: url("/images/updateUserIcon.png");
+}
+#deleteProffesorBtn {
+ -fx-graphic: url("/images/deleteUserIcon.png");
+}
+#addSubjectBtn {
+ -fx-graphic: url("/images/addSubjectIcon.png");
+}
+#editSubjectBtn {
+ -fx-graphic: url("/images/updateSubjectIcon.png");
+}
+#deleteSubjectBtn {
+ -fx-graphic: url("/images/deleteSubjectIcon.png");
+}
+#reportBtn {
+ -fx-graphic: url("/images/reportIcon.png");
+}
+#logoutBtn {
+ -fx-graphic: url("/images/logoutIcon.png");
+}
+#backBtn {
+ -fx-graphic: url("/images/backIcon.png");
+}
+#reviewMaterialBtn {
+-fx-graphic: url("/images/privateMaterialIcon.png");
+}
+#deleteMaterialBtn {
+ -fx-graphic: url("/images/deleteIcon.png");
+}
+#addMaterialBtn {
+ -fx-graphic: url("/images/showIcon.png");
+}
+#publicBtn {
+ -fx-graphic: url("/images/public.png");
+}

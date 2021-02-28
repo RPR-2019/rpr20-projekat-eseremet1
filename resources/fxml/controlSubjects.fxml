@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1513.0" style="-fx-background-color: #a6a2a5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.project.AdminSubjectController">
+    <stylesheets>
+        <URL value="@../css/icons.css" />
+    </stylesheets>
     <bottom>
         <HBox alignment="BOTTOM_LEFT" depthTest="DISABLE" prefHeight="185.0" prefWidth="1508.0" BorderPane.alignment="TOP_LEFT">
             <children>
@@ -71,24 +75,8 @@
                 </MenuBar>
                 <ToolBar nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: transparent;">
                     <items>
-                        <Button fx:id="logoutBtn" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;">
-                            <graphic>
-                                <ImageView disable="true" fitHeight="40.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/logoutIcon.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                        <Button fx:id="profilBtn" layoutX="10.0" layoutY="10.0" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#backAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;">
-                            <graphic>
-                                <ImageView disable="true" fitHeight="33.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/backIcon.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
+                        <Button fx:id="logoutBtn" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;" />
+                        <Button fx:id="backBtn" layoutX="10.0" layoutY="10.0" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#backAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;" />
                     </items>
                 </ToolBar>
             </children>
@@ -133,14 +121,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <children>
-                        <Button fx:id="addSubjectBtn" mnemonicParsing="false" onAction="#addSubjectAction" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
-                            <graphic>
-                                <ImageView disable="true" fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/logoutIcon.png" />
-                                    </image></ImageView>
-                            </graphic>
-                        </Button>
+                        <Button fx:id="addSubjectBtn" mnemonicParsing="false" onAction="#addSubjectAction" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;" />
                         <Label fx:id="addLabel" prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%addSubject">
                             <HBox.margin>
                                 <Insets left="10.0" />
@@ -158,14 +139,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <children>
-                        <Button fx:id="editSubjectBtn" mnemonicParsing="false" onAction="#editSubjectAction" prefHeight="31.0" prefWidth="44.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
-                            <graphic>
-                                <ImageView disable="true" fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/logoutIcon.png" />
-                                    </image></ImageView>
-                            </graphic>
-                        </Button>
+                        <Button fx:id="editSubjectBtn" mnemonicParsing="false" onAction="#editSubjectAction" prefHeight="31.0" prefWidth="44.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;" />
                         <Label fx:id="changeLabel" prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%changeSubject">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -183,14 +157,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <children>
-                        <Button fx:id="deleteSubjectBtn" mnemonicParsing="false" onAction="#deleteSubjectAction" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
-                            <graphic>
-                                <ImageView disable="true" fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/logoutIcon.png" />
-                                    </image></ImageView>
-                            </graphic>
-                        </Button>
+                        <Button fx:id="deleteSubjectBtn" mnemonicParsing="false" onAction="#deleteSubjectAction" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;" />
                         <Label fx:id="removeLabel" prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%removeSubject">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -208,14 +175,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                     <children>
-                        <Button mnemonicParsing="false" onAction="#showReportAction" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;">
-                            <graphic>
-                                <ImageView disable="true" fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/logoutIcon.png" />
-                                    </image></ImageView>
-                            </graphic>
-                        </Button>
+                        <Button fx:id="reportBtn" mnemonicParsing="false" onAction="#showReportAction" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;" />
                         <Label fx:id="reportLabel" prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%report">
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
