@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class NewProfessorController implements NewPassword {
     public TextField nameField;
@@ -79,7 +80,12 @@ public class NewProfessorController implements NewPassword {
         });
 
         Tooltip toolTip1 = new Tooltip();
-        toolTip1.setText("You must generate a password!");
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        if(bundle.getLocale().toString().equals("bs")) {
+            toolTip1.setText("Morate generisati lozinku!");
+        } else {
+            toolTip1.setText("You must generate a password!");
+        }
         passwordField.setTooltip(toolTip1);
 
     }
@@ -88,10 +94,15 @@ public class NewProfessorController implements NewPassword {
         String newPassword=generatePassword();
         passwordField.setText(newPassword);
 
-
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Upozorenje!");
-        alert.setHeaderText("Vaša lozinka glasi: ");
+        if(bundle.getLocale().toString().equals("bs")) {
+            alert.setTitle("Upozorenje!");
+            alert.setHeaderText("Vaša lozinka glasi: ");
+        } else {
+            alert.setTitle("Warning");
+            alert.setHeaderText("Your password is: ");
+        }
         alert.setContentText(newPassword);
         alert.showAndWait();
     }
@@ -119,10 +130,17 @@ public class NewProfessorController implements NewPassword {
         if(professor==null) {
             for (Professor oldProffesor : materialManagementDAO.professors()) {
                 if (oldProffesor.getUsername().equals(usernameField.getText())) {
+                    ResourceBundle bundle = ResourceBundle.getBundle("Translation");
                     Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Upozorenje");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Username već postoji!");
+                    if(bundle.getLocale().toString().equals("bs")) {
+                        alert.setTitle("Upozorenje");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Username već postoji!");
+                    } else {
+                        alert.setTitle("Upozorenje");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Username already exists!");
+                    }
 
                     alert.showAndWait();
 
@@ -135,10 +153,17 @@ public class NewProfessorController implements NewPassword {
 
             for (Student oldStudent : materialManagementDAO.students()) {
                 if (oldStudent.getUsername().equals(usernameField.getText())) {
+                    ResourceBundle bundle = ResourceBundle.getBundle("Translation");
                     Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Upozorenje");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Username već postoji!");
+                    if(bundle.getLocale().toString().equals("bs")) {
+                        alert.setTitle("Upozorenje");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Username već postoji!");
+                    } else {
+                        alert.setTitle("Upozorenje");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Username already exists!");
+                    }
 
                     alert.showAndWait();
 

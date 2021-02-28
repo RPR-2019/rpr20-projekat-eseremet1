@@ -31,8 +31,6 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    //moram dodati da kad se obrise predmet,obrisu se i profesori na tom predmetu
-
     public static void main(String[] args) {
         launch(args);
     }
