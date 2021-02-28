@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.project;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ public class NewSubjectController {
 
     @FXML
     public void initialize() {
+
         if(subject!=null) {
             nameField.setText(subject.getName());
             addBtn.setText("Izmijeni");

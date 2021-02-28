@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.project;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -28,6 +29,7 @@ public class LogInController {
     }
     @FXML
     public void initialize() {
+
         userNameField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String o, String n) {

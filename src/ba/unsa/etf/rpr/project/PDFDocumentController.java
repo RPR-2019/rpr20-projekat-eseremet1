@@ -4,6 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,13 +19,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ResourceBundle;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 
 public class PDFDocumentController {
     private ObservableList<Visibility> visibilities;
     public Button loadBtn;
     public Label pdfNameLabel;
-    public ProgressBar pdfProgressBar;
     private Subject selectedSubject;
     private Professor activeProfessor;
     public ChoiceBox<Visibility> visibilityBox;
@@ -45,12 +50,16 @@ public class PDFDocumentController {
         fileChooser.setTitle("Izaberite datoteku");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF document","*.pdf"));
         File chooser = fileChooser.showOpenDialog(loadBtn.getScene().getWindow());
-        Path path1= Paths.get(chooser.getAbsolutePath());
+        Path path1;
+        try {
+            path1= Paths.get(chooser.getAbsolutePath());
+        } catch (NullPointerException n) {
+            return;
+        }
         if(chooser==null) return;
         try {
             String text = new String(String.valueOf(Files.readAllBytes(chooser.toPath())));
             pdfNameLabel.setText(chooser.getName());
-            pdfProgressBar.setProgress(100);
             String docName=pdfNameLabel.getText();
             if(pdfNameLabel.getText().isEmpty()) {
                 pdfNameLabel.getStyleClass().removeAll("poljeJeIspravno");
@@ -90,8 +99,17 @@ public class PDFDocumentController {
                 material.setType(Visibility.CUSTOM);
             }
             instance.changeMaterial(material);
+            Stage stage = new Stage();
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/progress.fxml" ), bundle);
+            Parent root = loader.load();
+            stage.setScene(new Scene(root, 200, 100));
+            stage.setResizable(false);
+            stage.show();
+
         }
         Stage stageClose = (Stage) pdfNameLabel.getScene().getWindow();
         stageClose.close();
+
     }
 }

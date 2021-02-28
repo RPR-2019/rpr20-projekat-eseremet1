@@ -123,8 +123,18 @@ public class QuizController {
                         Material material = new Material(materialManagementDAO.getId(),docNameField.getText()+"-QUIZ", activeProfessor.getSubject(), 3);
                         materialManagementDAO.addMaterial(material);
                     }
-                    Stage stage = (Stage) docNameField.getScene().getWindow();
-                    stage.close();
+                    Stage stage = new Stage();
+                    ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                    FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/progress.fxml" ), bundle);
+                    Parent root = loader.load();
+                    stage.setScene(new Scene(root, 200, 100));
+                    stage.setResizable(false);
+                    stage.show();
+
+
+
+                    Stage closeStage = (Stage) docNameField.getScene().getWindow();
+                    closeStage.close();
                 } catch (IOException i) {
                     i.printStackTrace();
                 }
