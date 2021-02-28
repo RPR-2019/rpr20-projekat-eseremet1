@@ -22,14 +22,25 @@ public class HomeAdminController {
 
     @FXML
     public void initialize() {
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         Tooltip toolTip1 = new Tooltip();
-        toolTip1.setText("Manage professors");
-        proffesorBtn.setTooltip(toolTip1);
         Tooltip toolTip2 = new Tooltip();
-        toolTip2.setText("Manage students");
-        studentBtn.setTooltip(toolTip2);
         Tooltip toolTip3 = new Tooltip();
-        toolTip3.setText("Manage subjects");
+
+
+        if(bundle.getLocale().toString().equals("bs")) {
+            toolTip1.setText("Upravljanje profesorima");
+            toolTip2.setText("Upravljanje studentima");
+            toolTip3.setText("Upravljanje predmetima");
+
+        } else {
+            toolTip1.setText("Manage professors");
+            toolTip2.setText("Manage students");
+            toolTip3.setText("Manage subjects");
+        }
+
+        proffesorBtn.setTooltip(toolTip1);
+        studentBtn.setTooltip(toolTip2);
         subjectBtn.setTooltip(toolTip3);
     }
     public void proffesorAction(ActionEvent actionEvent) throws IOException {
@@ -37,7 +48,11 @@ public class HomeAdminController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/controlProfessors.fxml" ), bundle);
         Parent root = loader.load();
-        stage.setTitle("Upravljanje profesorima");
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Upravljanje profesorima");
+        } else {
+            stage.setTitle("Manage professors");
+        }
         stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
         stage.setMinHeight(300); //da se ne može više smanjivati
         stage.setMinWidth(200);
@@ -51,7 +66,11 @@ public class HomeAdminController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/controlStudents.fxml" ), bundle);
         Parent root = loader.load();
-        stage.setTitle("Upravljanje studentima");
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Upravljanje studentima");
+        } else {
+            stage.setTitle("Manage students");
+        }
         stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
         stage.setMinHeight(300); //da se ne može više smanjivati
         stage.setMinWidth(200);
@@ -65,7 +84,11 @@ public class HomeAdminController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/controlSubjects.fxml" ), bundle);
         Parent root = loader.load();
-        stage.setTitle("Upravljanje predmetima");
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Upravljanje predmetima");
+        } else {
+            stage.setTitle("Manage subjects");
+        }
         stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
         stage.setMinHeight(300); //da se ne može više smanjivati
         stage.setMinWidth(200);
