@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
@@ -34,15 +35,28 @@ public class PasswordController {
         } else {
             student = (Student) user;
         }
+        Tooltip toolTip1 = new Tooltip();
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        if(bundle.getLocale().toString().equals("bs")) {
+            toolTip1.setText("Lozinka mora imati barem 8 znakova, te veliko, malo slovo i broj!");
+        } else {
+            toolTip1.setText("Password must be at least 8 characters long and must have uppercase, lowercase and number");
+        }
+        newPasswordField.setTooltip(toolTip1);
     }
 
 
     public void changeAction(ActionEvent actionEvent) throws IOException {
         boolean correct = true;
         if(!newPasswordField.getText().equals(newPasswordField1.getText())) {
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Not confirmed the same password!");
-            alert.show();
+            if(bundle.getLocale().toString().equals("bs")) {
+                alert.setContentText("Lozinka i potvrda lozinke se ne podudaraju!");
+            } else {
+                alert.setContentText("Password and confirm password does not match!");
+            }
+            alert.showAndWait();
             correct = false;
         } if(correct==true) {
             correct = passwordCheck(newPasswordField.getText());
@@ -59,7 +73,11 @@ public class PasswordController {
                     ProfileController profileController = new ProfileController(professor);
                     loader.setController(profileController);
                     root = loader.load();
-                    stage.setTitle("Moj profil");
+                    if(bundle.getLocale().toString().equals("bs")) {
+                        stage.setTitle("Profil");
+                    } else {
+                        stage.setTitle("Profile");
+                    }
                     stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
                     stage.setResizable(true);
                     stage.show();
@@ -75,7 +93,11 @@ public class PasswordController {
                     ProfileController profileController = new ProfileController(student);
                     loader.setController(profileController);
                     root = loader.load();
-                    stage.setTitle("Moj profil");
+                    if(bundle.getLocale().toString().equals("bs")) {
+                        stage.setTitle("Profil");
+                    } else {
+                        stage.setTitle("Profile");
+                    }
                     stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
                     stage.setResizable(true);
                     stage.show();
@@ -90,7 +112,7 @@ public class PasswordController {
         if(password.length()<8) {
             correct=false;
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("ba.unsa.etf.rpr.project.Password must be at least 8 characters long!");
+            alert.setContentText("Password must be at least 8 characters long!");
             alert.show();
         } else {
             boolean small = false, uppercase = false, number = false;
@@ -107,9 +129,14 @@ public class PasswordController {
             }
             if (uppercase == false || small == false || number == false) {
                 correct=false;
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setContentText("The password must have uppercase, lowercase and number!");
-                alert.show();
+                if(bundle.getLocale().toString().equals("bs")) {
+                    alert.setContentText("Lozinka mora imati veliko, malo slovo i broj!!");
+                } else {
+                    alert.setContentText("The password must have uppercase, lowercase and number!");
+                }
+                alert.showAndWait();
             }
         }
         return correct;
@@ -126,7 +153,11 @@ public class PasswordController {
             ProfileController profileController = new ProfileController(professor);
             loader.setController(profileController);
             root = loader.load();
-            stage.setTitle("Moj profil");
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle("Profil");
+            } else {
+                stage.setTitle("Profile");
+            }
             stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
             stage.setResizable(true);
             stage.show();
@@ -140,7 +171,11 @@ public class PasswordController {
             ProfileController profileController = new ProfileController(student);
             loader.setController(profileController);
             root = loader.load();
-            stage.setTitle("Moj profil");
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle("Profil");
+            } else {
+                stage.setTitle("Profile");
+            }
             stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
             stage.setResizable(true);
             stage.show();
