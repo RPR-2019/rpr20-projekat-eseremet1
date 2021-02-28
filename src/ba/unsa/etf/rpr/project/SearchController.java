@@ -17,6 +17,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ResourceBundle;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -94,10 +96,17 @@ public class SearchController {
 
     public void okAction() {
         if (url == null || url.trim().isEmpty()) {
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Upozorenje!");
-            alert.setContentText("Nijedna slika nije izabrana");
+            if(bundle.getLocale().toString().equals("bs")) {
+                alert.setTitle("Upozorenje!");
+                alert.setContentText("Nijedna slika nije izabrana");
+            } else {
+                alert.setTitle("Warning!");
+                alert.setContentText("No image selected");
+            }
             alert.showAndWait();
+
             Stage stage = (Stage) btnCancel.getScene().getWindow();
             stage.close();
 
