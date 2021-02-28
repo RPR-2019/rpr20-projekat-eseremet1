@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr.project;
 
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -9,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
 public class NewSubjectController {
@@ -61,11 +61,17 @@ public class NewSubjectController {
 
         for (Subject oldSubject: materialManagementDAO.subjects()) {
             if(oldSubject.getName().toUpperCase().equals(nameField.getText().toUpperCase())) {
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-
-                alert.setTitle("Upozorenje");
-                alert.setHeaderText(null);
-                alert.setContentText("Predmet već postoji!");
+                if(bundle.getLocale().toString().equals("bs")) {
+                    alert.setTitle("Upozorenje");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Predmet već postoji!");
+                } else {
+                    alert.setTitle("Upozorenje");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Subject already exists!");
+                }
 
                 alert.showAndWait();
 
