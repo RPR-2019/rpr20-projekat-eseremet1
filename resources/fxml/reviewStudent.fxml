@@ -101,17 +101,14 @@
                 <Button fx:id="backBtn" layoutX="10.0" layoutY="10.0" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#backAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;" />
                 <ButtonBar nodeOrientation="RIGHT_TO_LEFT">
                     <buttons>
-                        <RadioButton fx:id="checkBtn" mnemonicParsing="false" onAction="#checkAction" text="%sortA-Z">
+                        <RadioButton fx:id="checkBtn" mnemonicParsing="false" onAction="#checkAction" prefWidth="100.0" text="%sortA-Z">
                             <toggleGroup>
                                 <ToggleGroup fx:id="option" />
                             </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="quizBtn" mnemonicParsing="false" onAction="#quizAction" text="%quizzes" toggleGroup="$option" />
-                        <RadioButton fx:id="materialsBtn" mnemonicParsing="false" onAction="#allMaterialsAction" text="%allMaterials" toggleGroup="$option" />
+                        <RadioButton fx:id="quizBtn" mnemonicParsing="false" onAction="#quizAction" prefWidth="100.0" text="%quizzes" toggleGroup="$option" />
+                        <RadioButton fx:id="materialsBtn" mnemonicParsing="false" onAction="#allMaterialsAction" prefWidth="100.0" text="%allMaterials" toggleGroup="$option" />
                     </buttons>
-                    <padding>
-                        <Insets right="60.0" />
-                    </padding>
                 </ButtonBar>
             </items>
         </ToolBar>
