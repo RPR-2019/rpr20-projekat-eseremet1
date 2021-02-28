@@ -73,12 +73,16 @@ public class TXTDocumentController {
         try {
             String text = new String(Files.readAllBytes(file.toPath()));
             textAreaField.setText(text);
-            statusBarLabel.setText("Datoteka uspješno učitana!");
+            ResourceBundle bundle1 = ResourceBundle.getBundle("Translation");
+            if(bundle1.getLocale().toString().equals("bs")) {
+                statusBarLabel.setText("Datoteka uspješno učitana!");
+            } else {
+                statusBarLabel.setText("Document was loaded successfully!");
+            }
             ObservableList<String> items = FXCollections.observableArrayList(file.getName());
             listView.setItems(items);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Pojavila se greška prilikom učitavanja .txt datoteke -" + file.getName());
             alert.setContentText(e.getMessage());
             alert.setTitle("Error");
             alert.showAndWait();
@@ -102,7 +106,12 @@ public class TXTDocumentController {
                 fw.write(content);
                 fw.flush();
                 fw.close();
-                statusBarLabel.setText("Datoteka uspješno spremljena!");
+                ResourceBundle bundle1 = ResourceBundle.getBundle("Translation");
+                if(bundle1.getLocale().toString().equals("bs")) {
+                    statusBarLabel.setText("Datoteka uspješno spremljena!");
+                } else {
+                    statusBarLabel.setText("Document has been saved successfully!");
+                }
 
             } catch(Exception e) {
                 JOptionPane.showMessageDialog(null,e.getMessage());
@@ -113,7 +122,12 @@ public class TXTDocumentController {
 
     public void newAction(ActionEvent actionEvent) {
         textAreaField.setText("");
-        statusBarLabel.setText("Text editor je pokrenut!");
+        ResourceBundle bundle1 = ResourceBundle.getBundle("Translation");
+        if(bundle1.getLocale().toString().equals("bs")) {
+            statusBarLabel.setText("Text editor je pokrenut!");
+        } else {
+            statusBarLabel.setText("Text editor is running!");
+        }
         docNameField.setText("");
         ObservableList<String> items = FXCollections.observableArrayList("");
         listView.setItems(items);
@@ -136,7 +150,13 @@ public class TXTDocumentController {
                      BufferedWriter b = new BufferedWriter(f);
                      PrintWriter p = new PrintWriter(b);) {
                     p.println(textAreaField.getText());
-                    statusBarLabel.setText("Materijal je objavljen!");
+                    ResourceBundle bundle1 = ResourceBundle.getBundle("Translation");
+                    Stage stage1 = (Stage) textAreaField.getScene().getWindow();
+                    if(bundle1.getLocale().toString().equals("bs")) {
+                        statusBarLabel.setText("Materijal je objavljen!");
+                    } else {
+                        statusBarLabel.setText("Material is published!");
+                    }
                     MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
                     if(visibilityBox.getValue().equals(Visibility.PUBLIC)) {
                         Material material = new Material(materialManagementDAO.getId(), docNameField.getText(), selectedSubject, 1);
@@ -172,7 +192,11 @@ public class TXTDocumentController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/aboutTXT.fxml" ), bundle);
         Parent root = loader.load();
-        myStage.setTitle("About");
+        if(bundle.getLocale().toString().equals("bs")) {
+            myStage.setTitle("O nama");
+        } else {
+            myStage.setTitle("About");
+        }
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();

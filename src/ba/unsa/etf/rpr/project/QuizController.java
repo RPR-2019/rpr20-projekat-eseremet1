@@ -85,7 +85,8 @@ public class QuizController {
                 if(bundle1.getLocale().toString().equals("bs")) {
                     statusBarLabel.setText("Datoteka uspješno spremljena!");
                 } else {
-                    statusBarLabel.setText("Document has been saved successfully!");                }
+                    statusBarLabel.setText("Document has been saved successfully!");
+                }
 
 
             } catch(Exception e) {
@@ -134,7 +135,7 @@ public class QuizController {
                     if(bundle1.getLocale().toString().equals("bs")) {
                         statusBarLabel.setText("Kviz je objavljen!");
                     } else {
-                        stage1.setTitle("Quiz is published!");
+                        statusBarLabel.setText("Quiz is published!");
                     }
                     MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
                     if(visibilityBox.getValue().equals(Visibility.PUBLIC)) {
