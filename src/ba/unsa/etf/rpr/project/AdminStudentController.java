@@ -116,26 +116,31 @@ public class AdminStudentController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/about.fxml" ), bundle);
         Parent root = loader.load();
-        myStage.setTitle("About");
+        if(bundle.getLocale().toString().equals("bs")) {
+            myStage.setTitle("O nama");
+        } else {
+            myStage.setTitle("About");
+        }
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
     }
 
     public void logoutAction(ActionEvent actionEvent) throws IOException {
-        Stage stageClose = (Stage) tableViewStudents.getScene().getWindow();
-        stageClose.close();
         Stage stage = new Stage();
-        Parent root = null;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
-        root = loader.load();
-        stage.setTitle("Prijavite se!");
-        stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+        Parent root = loader.load();
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Prijava");
+        } else {
+            stage.setTitle("Login");
+        }
+        stage.setScene(new Scene(root, 1200, 700));
         stage.setResizable(false);
-
-
         stage.show();
+        Stage stageClose = (Stage) tableViewStudents.getScene().getWindow();
+        stageClose.close();
     }
 
     public void backAction(ActionEvent actionEvent) throws IOException {
@@ -163,7 +168,11 @@ public class AdminStudentController {
             NewStudentController studentController = new NewStudentController(null);
             loader.setController(studentController);
             root=loader.load();
-            stage.setTitle("Dodavanje studenta");
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle("Dodavanje studenta");
+            } else {
+                stage.setTitle("Add student");
+            }
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
             stage.show();
@@ -193,7 +202,11 @@ public class AdminStudentController {
             NewStudentController studentController = new NewStudentController(student);
             loader.setController(studentController);
             root=loader.load();
-            stage.setTitle("Izmjena studenta");
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle("Izmjena studenta");
+            } else {
+                stage.setTitle("Edit student");
+            }
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
             stage.show();
@@ -213,11 +226,17 @@ public class AdminStudentController {
     public void deleteStudentAction(ActionEvent actionEvent) {
         Student student = tableViewStudents.getSelectionModel().getSelectedItem();
         if (student == null) return;
-
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Potvrda brisanja");
-        alert.setHeaderText("Brisanje studenta " + student.getName() + " " + student.getSurname());
-        alert.setContentText("Da li ste sigurni da želite obrisati studenta " + student.getName() + " " + student.getSurname()+"?");
+        if(bundle.getLocale().toString().equals("bs")) {
+            alert.setTitle("Potvrda brisanja");
+            alert.setHeaderText("Brisanje studenta " + student.getName() + " " + student.getSurname());
+            alert.setContentText("Da li ste sigurni da želite obrisati studenta " + student.getName() + " " + student.getSurname()+"?");
+        } else {
+            alert.setTitle("Delete confirmation");
+            alert.setHeaderText("Delete student  " + student.getName() + " " + student.getSurname());
+            alert.setContentText("Are you sure you want to delete the student " + student.getName() + " " + student.getSurname()+"?");
+        }
 
         Optional<ButtonType> result = alert.showAndWait();
         if (((Optional) result).get() == ButtonType.OK){
@@ -264,6 +283,7 @@ public class AdminStudentController {
         removeLabel.setText(resourceBundle.getString("removeStudent"));
         reportLabel.setText(resourceBundle.getString("report"));
         changeLabel.setText(resourceBundle.getString("changeStudent"));
+        tableViewStudents.setItems(collection);
 
     }
 }

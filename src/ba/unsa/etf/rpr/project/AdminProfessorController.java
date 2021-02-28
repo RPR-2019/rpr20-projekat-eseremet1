@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -122,7 +123,11 @@ public class AdminProfessorController {
             NewProfessorController professorContoller = new NewProfessorController(null, materialManagementDAO.subjects());
             loader.setController(professorContoller);
             root = loader.load();
-            stage.setTitle("Dodavanje profesora");
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle("Dodavanje profesora");
+            } else {
+                stage.setTitle("Add professor");
+            }
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
             stage.show();
@@ -151,7 +156,11 @@ public class AdminProfessorController {
             NewProfessorController professorContoller = new NewProfessorController(professor, materialManagementDAO.subjects());
             loader.setController(professorContoller);
             root = loader.load();
-            stage.setTitle("Izmjena profesora");
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle("Izmjena profesora");
+            } else {
+                stage.setTitle("Edit professor");
+            }
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
             stage.show();
@@ -171,11 +180,18 @@ public class AdminProfessorController {
     public void deleteProfessorAction(ActionEvent actionEvent) {
         Professor professor = tableViewProfessors.getSelectionModel().getSelectedItem();
         if (professor == null) return;
-
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Potvrda brisanja");
-        alert.setHeaderText("Brisanje profesora "+professor.getName()+" "+professor.getSurname());
-        alert.setContentText("Da li ste sigurni da želite obrisati profesora " +professor.getName()+" "+professor.getSurname()+"?");
+        if(bundle.getLocale().toString().equals("bs")) {
+            alert.setTitle("Potvrda brisanja");
+            alert.setHeaderText("Brisanje profesora "+professor.getName()+" "+professor.getSurname());
+            alert.setContentText("Da li ste sigurni da želite obrisati profesora " +professor.getName()+" "+professor.getSurname()+"?");
+        } else {
+            alert.setTitle("Delete confirmation");
+            alert.setHeaderText("Delete professor  "+professor.getName()+" "+professor.getSurname());
+            alert.setContentText("Are you sure you want to delete the professor " +professor.getName()+" "+professor.getSurname()+"?");
+        }
+
 
         Optional<ButtonType> result = alert.showAndWait();
         if (((Optional) result).get() == ButtonType.OK){
@@ -194,17 +210,20 @@ public class AdminProfessorController {
     }
 
     public void logoutAction(ActionEvent actionEvent) throws IOException {
-        Stage stageClose = (Stage) tableViewProfessors.getScene().getWindow();
-        stageClose.close();
         Stage stage = new Stage();
-        Parent root = null;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
-        root = loader.load();
-        stage.setTitle("Prijavite se!");
-        stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+        Parent root = loader.load();
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Prijava");
+        } else {
+            stage.setTitle("Login");
+        }
+        stage.setScene(new Scene(root, 1200, 700));
         stage.setResizable(false);
         stage.show();
+        Stage stageClose = (Stage) tableViewProfessors.getScene().getWindow();
+        stageClose.close();
     }
 
     public void backAction(ActionEvent actionEvent) throws IOException {
@@ -215,7 +234,11 @@ public class AdminProfessorController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/homeAdmin.fxml" ), bundle);
         root = loader.load();
-        stage.setTitle("Prijavite se!");
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Početna - Admin");
+        } else {
+            stage.setTitle("Home - Admin");
+        }
         stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
         stage.setResizable(false);
         stage.show();
@@ -226,7 +249,11 @@ public class AdminProfessorController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/about.fxml" ), bundle);
         Parent root = loader.load();
-        myStage.setTitle("About");
+        if(bundle.getLocale().toString().equals("bs")) {
+            myStage.setTitle("O nama");
+        } else {
+            myStage.setTitle("About");
+        }
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -263,7 +290,7 @@ public class AdminProfessorController {
         removeLabel.setText(resourceBundle.getString("removeProfessor"));
         reportLabel.setText(resourceBundle.getString("report"));
         changeLabel.setText(resourceBundle.getString("changeProfessor"));
-
+        tableViewProfessors.setItems(collection);
     }
 
 }

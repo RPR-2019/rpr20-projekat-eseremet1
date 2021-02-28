@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class InitialController {
@@ -18,7 +19,11 @@ public class InitialController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
         Parent root = loader.load();
-        stage.setTitle("Prijava");
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Prijava");
+        } else {
+            stage.setTitle("Login");
+        }
         stage.setScene(new Scene(root, 1200, 700));
         stage.setResizable(false);
         stage.show();

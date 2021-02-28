@@ -68,29 +68,7 @@ public class AdminSubjectController {
         SortedList<Subject> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(tableViewSubjects.comparatorProperty());
         tableViewSubjects.setItems(sortedList);
-
-        Tooltip toolTip1 = new Tooltip();
-        toolTip1.setText("Add a new subject");
-        addSubjectBtn.setTooltip(toolTip1);
-        Tooltip toolTip2 = new Tooltip();
-        toolTip2.setText("Modify an existing subject");
-        editSubjectBtn.setTooltip(toolTip2);
-        Tooltip toolTip3 = new Tooltip();
-        toolTip3.setText("Delete this subject");
-        deleteSubjectBtn.setTooltip(toolTip3);
-        Tooltip toolTip4 = new Tooltip();
-        toolTip4.setText("Report of all subjects");
-        reportBtn.setTooltip(toolTip4);
-        Tooltip toolTip5 = new Tooltip();
-        toolTip5.setText("Search by name");
-        filterField.setTooltip(toolTip5);
-        Tooltip toolTip6 = new Tooltip();
-        toolTip6.setText("Return to home page");
-        backBtn.setTooltip(toolTip6);
-        Tooltip toolTip7 = new Tooltip();
-        toolTip7.setText("You want to log out?");
-        logoutBtn.setTooltip(toolTip7);
-
+        translateTooltips();
 
     }
     public void addSubjectAction(ActionEvent actionEvent) {
@@ -102,7 +80,12 @@ public class AdminSubjectController {
             NewSubjectController subjectController = new NewSubjectController(null, materialManagementDAO.professors());
             loader.setController(subjectController);
             root=loader.load();
-            stage.setTitle("Dodavanje profesora");
+
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle("Dodavanje predmeta");
+            } else {
+                stage.setTitle("Add subject");
+            }
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
             stage.show();
@@ -132,7 +115,11 @@ public class AdminSubjectController {
             NewSubjectController subjectController = new NewSubjectController(subject, materialManagementDAO.professors());
             loader.setController(subjectController);
             root=loader.load();
-            stage.setTitle("Izmjena predmeta");
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle("Izmjena predmeta");
+            } else {
+                stage.setTitle("Edit subject");
+            }
             stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
             stage.setResizable(false);
             stage.show();
@@ -152,11 +139,17 @@ public class AdminSubjectController {
     public void deleteSubjectAction(ActionEvent actionEvent) {
         Subject subject = tableViewSubjects.getSelectionModel().getSelectedItem();
         if (subject == null) return;
-
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Potvrda brisanja");
-        alert.setHeaderText("Brisanje predmeta "+subject.getName()+" ");
-        alert.setContentText("Da li ste sigurni da želite obrisati predmet" +subject.getName()+"?");
+        if(bundle.getLocale().toString().equals("bs")) {
+            alert.setTitle("Potvrda brisanja");
+            alert.setHeaderText("Brisanje predmeta " + subject.getName());
+            alert.setContentText("Da li ste sigurni da želite obrisati predmet " + subject.getName() +"?");
+        } else {
+            alert.setTitle("Delete confirmation");
+            alert.setHeaderText("Delete subject " + subject.getName());
+            alert.setContentText("Are you sure you want to delete the subject " + subject.getName() +"?");
+        }
 
         Optional<ButtonType> result = alert.showAndWait();
         if (((Optional) result).get() == ButtonType.OK){
@@ -182,11 +175,13 @@ public class AdminSubjectController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/homeAdmin.fxml" ), bundle);
         root = loader.load();
-        stage.setTitle("Prijavite se!");
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Početna - Admin");
+        } else {
+            stage.setTitle("Home - Admin");
+        }
         stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
         stage.setResizable(false);
-
-
         stage.show();
     }
 
@@ -195,36 +190,43 @@ public class AdminSubjectController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/about.fxml" ), bundle);
         Parent root = loader.load();
-        myStage.setTitle("About");
+        if(bundle.getLocale().toString().equals("bs")) {
+            myStage.setTitle("O nama");
+        } else {
+            myStage.setTitle("About");
+        }
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
     }
 
     public void logoutAction(ActionEvent actionEvent) throws IOException {
-        Stage stageClose = (Stage) tableViewSubjects.getScene().getWindow();
-        stageClose.close();
         Stage stage = new Stage();
-        Parent root = null;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
-        root = loader.load();
-        stage.setTitle("Prijavite se!");
-        stage.setScene(new Scene(root, 1200, 700)); //stavljamo početni ekran
+        Parent root = loader.load();
+        if(bundle.getLocale().toString().equals("bs")) {
+            stage.setTitle("Prijava");
+        } else {
+            stage.setTitle("Login");
+        }
+        stage.setScene(new Scene(root, 1200, 700));
         stage.setResizable(false);
-
-
         stage.show();
+        Stage stageClose = (Stage) tableViewSubjects.getScene().getWindow();
+        stageClose.close();
     }
 
     public void bosnianAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("bs", "BA"));
         translate();
+        translateTooltips();
     }
 
     public void englishAction(ActionEvent actionEvent) {
         Locale.setDefault(new Locale("en", "US"));
         translate();
+        translateTooltips();
     }
 
     private void translate() {
@@ -241,6 +243,44 @@ public class AdminSubjectController {
         removeLabel.setText(resourceBundle.getString("removeSubject"));
         reportLabel.setText(resourceBundle.getString("report"));
         changeLabel.setText(resourceBundle.getString("changeSubject"));
+        tableViewSubjects.setItems(collection);
 
+    }
+    private void translateTooltips() {
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        Tooltip toolTip1 = new Tooltip();
+        Tooltip toolTip2 = new Tooltip();
+        Tooltip toolTip3 = new Tooltip();
+        Tooltip toolTip4 = new Tooltip();
+        Tooltip toolTip5 = new Tooltip();
+        Tooltip toolTip6 = new Tooltip();
+        Tooltip toolTip7 = new Tooltip();
+
+
+        if(bundle.getLocale().toString().equals("bs")) {
+            toolTip1.setText("Dodaj novi predmet");
+            toolTip2.setText("Uredi izabrani predmet");
+            toolTip3.setText("Obriši izabrani predmet");
+            toolTip4.setText("Pogledaj izvještaj svih predmeta");
+            toolTip5.setText("Pretraži predmete po nazivu");
+            toolTip6.setText("Povratak na početnu stranicu");
+            toolTip7.setText("Želite se odjaviti?");
+        } else {
+            toolTip1.setText("Add a new subject");
+            toolTip2.setText("Modify an existing subject");
+            toolTip3.setText("Delete this subject");
+            toolTip4.setText("Report of all subjects");
+            toolTip5.setText("Search by name");
+            toolTip6.setText("Return to home page");
+            toolTip7.setText("You want to log out?");
+        }
+
+        addSubjectBtn.setTooltip(toolTip1);
+        editSubjectBtn.setTooltip(toolTip2);
+        deleteSubjectBtn.setTooltip(toolTip3);
+        reportBtn.setTooltip(toolTip4);
+        filterField.setTooltip(toolTip5);
+        backBtn.setTooltip(toolTip6);
+        logoutBtn.setTooltip(toolTip7);
     }
 }
