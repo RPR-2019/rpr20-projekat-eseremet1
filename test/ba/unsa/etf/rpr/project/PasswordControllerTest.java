@@ -53,7 +53,7 @@ public class PasswordControllerTest {
         robot.write("elma");
         robot.clickOn("#changeBtn");
         check(
-                "Password must be at least 8 characters long!", robot);
+                "ba.unsa.etf.rpr.project.Password must be at least 8 characters long!", robot);
         robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
 
     }

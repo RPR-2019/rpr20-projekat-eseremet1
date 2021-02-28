@@ -55,7 +55,7 @@ public class LogInController {
         });
 
         Tooltip toolTip = new Tooltip();
-        toolTip.setText("Password field");
+        toolTip.setText("ba.unsa.etf.rpr.project.Password field");
         passwordField.setTooltip(toolTip);
         Tooltip toolTip1 = new Tooltip();
         toolTip1.setText("Username field");

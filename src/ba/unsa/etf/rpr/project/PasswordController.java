@@ -90,7 +90,7 @@ public class PasswordController {
         if(password.length()<8) {
             correct=false;
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Password must be at least 8 characters long!");
+            alert.setContentText("ba.unsa.etf.rpr.project.Password must be at least 8 characters long!");
             alert.show();
         } else {
             boolean small = false, uppercase = false, number = false;
