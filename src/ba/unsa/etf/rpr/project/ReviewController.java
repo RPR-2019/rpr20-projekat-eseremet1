@@ -128,15 +128,38 @@ public class ReviewController {
 
     public void deleteMaterialAction(ActionEvent actionEvent) {
         if(listView.getSelectionModel().getSelectedItem()!=null) {
-            String nameFile = (String) listView.getSelectionModel().getSelectedItem();
-            materialManagementDAO.deleteMaterial(nameFile);
-            File file = new File("materials", nameFile);
-            Path absolutePath = Paths.get(file.getAbsolutePath());
-            absolutePath.toFile().delete();
-            //spisak bez tog izbrisanog
-            ArrayList<String> withoutFile = collection1.stream().filter(name -> !name.equals(nameFile)).collect(Collectors.toCollection(ArrayList::new));
-            ObservableList<String> result = FXCollections.observableArrayList(withoutFile);
-            listView.setItems(result);
+            if(activeProfessor.getSubject().getId() == activeSubject.getId()) {
+                String nameFile = (String) listView.getSelectionModel().getSelectedItem();
+                materialManagementDAO.deleteMaterial(nameFile);
+                //spisak bez tog izbrisanog
+                String finalNameFile = nameFile;
+                ArrayList<String> withoutFile = collection1.stream().filter(name -> !name.equals(finalNameFile)).collect(Collectors.toCollection(ArrayList::new));
+                ObservableList<String> result = FXCollections.observableArrayList(withoutFile);
+                if(nameFile.contains("-QUIZ")) {
+                    nameFile=nameFile.substring(0,nameFile.length()-5);
+                }
+                File file = new File("materials", nameFile);
+                Path absolutePath = Paths.get(file.getAbsolutePath());
+                absolutePath.toFile().delete();
+
+                listView.setItems(result);
+            } else {
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                if(bundle.getLocale().toString().equals("bs")) {
+                    alert.setTitle("Upozorenje");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Materijale može brisati samo profesor na predmetu!");
+                } else {
+                    alert.setTitle("Warning");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Materials can only be deleted by the subject teacher!");
+                }
+
+
+                alert.showAndWait();
+            }
+
         }
         else {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
@@ -156,26 +179,44 @@ public class ReviewController {
 
     public void showAllMaterialsAction(ActionEvent actionEvent) throws IOException {
 
-        Stage stageClose = (Stage) listView.getScene().getWindow();
-        stageClose.close();
-        Stage stage = new Stage();
-        Parent root = null;
-        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/privateSubjects.fxml"), bundle);
-        PrivateSubjectController reviewController = new PrivateSubjectController(activeSubject, activeProfessor);
-        loader.setController(reviewController);
-        root = loader.load();
-        if(bundle.getLocale().toString().equals("bs")) {
-            stage.setTitle(activeSubject.getName());
-        } else {
-            stage.setTitle(activeSubject.getName());
-        }
-        stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
-        stage.setMinHeight(300); //da se ne može više smanjivati
-        stage.setMinWidth(200);
-        stage.setResizable(true);
+        if(activeProfessor.getSubject().getId() == activeSubject.getId()) {
+            Stage stageClose = (Stage) listView.getScene().getWindow();
+            stageClose.close();
+            Stage stage = new Stage();
+            Parent root = null;
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/privateSubjects.fxml"), bundle);
+            PrivateSubjectController reviewController = new PrivateSubjectController(activeSubject, activeProfessor);
+            loader.setController(reviewController);
+            root = loader.load();
+            if(bundle.getLocale().toString().equals("bs")) {
+                stage.setTitle(activeSubject.getName());
+            } else {
+                stage.setTitle(activeSubject.getName());
+            }
+            stage.setScene(new Scene(root, Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE)); //stavljamo početni ekran
+            stage.setMinHeight(300); //da se ne može više smanjivati
+            stage.setMinWidth(200);
+            stage.setResizable(true);
 
-        stage.show();
+            stage.show();
+        } else {
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            if(bundle.getLocale().toString().equals("bs")) {
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Ilegalna akcija!");
+            } else {
+                alert.setTitle("Warning");
+                alert.setHeaderText(null);
+                alert.setContentText("Illegal action!");
+            }
+
+
+            alert.showAndWait();
+        }
+
 
     }
 

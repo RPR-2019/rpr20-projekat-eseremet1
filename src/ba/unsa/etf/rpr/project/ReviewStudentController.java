@@ -217,5 +217,4 @@ public class ReviewStudentController {
         Stage stageClose = (Stage) listView.getScene().getWindow();
         stageClose.close();
     }
-
 }

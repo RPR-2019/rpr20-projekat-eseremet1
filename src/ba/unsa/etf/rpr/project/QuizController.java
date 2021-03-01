@@ -38,7 +38,6 @@ public class QuizController {
         visibilityBox.setValue(visibilities.get(0));
         textAreaField.setText("1. Pitanje1"+"\n"+"a. Odgovor1"+"\n"+"b. Odgovor2"+"\n"+"c. Odgovor3"+"\n"+ "Tačan odgovor: Odgovor"+"\n"+"2. Pitanje2"+"\n"+"a. Odgovor1"+"\n"+"b. Odgovor2"+"\n"+"c. Odgovor3"+"\n"+ "Tačan odgovor: Odgovor"+"\n"+"3. Pitanje3"+"\n"+"a. Odgovor1"+"\n"+"b. Odgovor2"+"\n"+"c. Odgovor3"+"\n"+ "Tačan odgovor: Odgovor");
         ResourceBundle bundle1 = ResourceBundle.getBundle("Translation");
-        Stage stage1 = (Stage) textAreaField.getScene().getWindow();
         if(bundle1.getLocale().toString().equals("bs")) {
             statusBarLabel.setText("Napomena: Kviz mora poštovati navedeni format!");
         } else {
