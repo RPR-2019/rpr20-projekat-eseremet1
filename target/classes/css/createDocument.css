@@ -1,0 +1,64 @@
+#mniOpen > .label{
+    -fx-graphic: url("/images/openIcon.png");
+}
+#mniOpen .accelerator-text{
+    -fx-graphic: none;
+}
+#mniOpen:pressed {
+    -fx-background-color:   #bf5c4e;
+
+}
+#mniSave > .label{
+    -fx-graphic: url("/images/saveIcon.png");
+}
+#mniSave .accelerator-text{
+    -fx-graphic: none;
+}
+#mniSave:pressed {
+    -fx-background-color:   #bf5c4e;
+
+}
+#mniExit:pressed {
+    -fx-background-color:   #bf5c4e;
+
+}
+#mniNew:pressed {
+    -fx-background-color:   #bf5c4e;
+
+}
+#mniSave:hover {
+    -fx-background-color:  #bf5c4e;
+
+}
+#mniExit:hover {
+    -fx-background-color:  #bf5c4e;
+
+}
+#mniNew:hover {
+    -fx-background-color:   #bf5c4e;
+
+
+}
+#mniOpen:hover {
+    -fx-background-color:   #bf5c4e;
+
+}
+
+#uploadBtn {
+    -fx-graphic: url("/images/postIcon.png");
+    -fx-background-color: transparent;
+}
+
+#uploadBtn:pressed {
+    -fx-background-color:  #bf5c4e;
+}
+#uploadBtn:hover {
+    -fx-background-color:  #bf5c4e;
+}
+.poljeNijeIspravno {
+  -fx-background-color: lightpink;
+}
+.poljeJeIspravno {
+  -fx-background-color: #d1ff47;
+}
+

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1513.0" style="-fx-background-color: #a6a2a5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@../css/controlMaterial.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@../css/icons.css" />
+    </stylesheets>
+    <left>
+        <VBox style="-fx-background-color: #a6a2a5;" BorderPane.alignment="CENTER">
+            <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></HBox>
+                <HBox layoutX="10.0" layoutY="103.0" prefWidth="266.0">
+                    <padding>
+
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <children>
+                      <Button fx:id="addMaterialBtn" maxHeight="30.4" maxWidth="40.0" mnemonicParsing="false" onAction="#showMaterialAction" prefHeight="30.4" prefWidth="40.0" style="-fx-background-color: #bf5c4e; -fx-text-fill: white;" />
+                        <Label prefHeight="35.0" prefWidth="190.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%open">
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin></Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </HBox>
+
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </BorderPane.margin>
+        </VBox>
+    </left>
+    <bottom>
+        <HBox alignment="BOTTOM_LEFT" depthTest="DISABLE" prefHeight="185.0" prefWidth="1508.0" BorderPane.alignment="TOP_LEFT">
+            <children>
+                <ImageView fitHeight="170.0" fitWidth="300.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <viewport>
+                        <Rectangle2D />
+                    </viewport>
+                    <image>
+                        <Image url="@../images/etfPicture.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="170.0" fitWidth="300.0" opacity="0.67" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/etfPicture5.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="170.0" fitWidth="320.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/etfPicture2.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="170.0" fitWidth="300.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/etfPicture3.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="170.0" fitWidth="300.0" opacity="0.66" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/etfPicture4.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="170.0" fitWidth="300.0" layoutX="311.0" layoutY="11.0" opacity="0.67" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/etfPicture5.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </BorderPane.margin>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </HBox>
+    </bottom>
+    <top>
+        <ToolBar nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+            <items>
+                <Button fx:id="logoutBtn" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;" />
+                <Button fx:id="backBtn" layoutX="10.0" layoutY="10.0" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#backAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;" />
+                <ButtonBar nodeOrientation="RIGHT_TO_LEFT">
+                    <buttons>
+                        <RadioButton fx:id="checkBtn" mnemonicParsing="false" onAction="#checkAction" prefWidth="100.0" text="%sortA-Z">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="option" />
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="quizBtn" mnemonicParsing="false" onAction="#quizAction" prefWidth="100.0" text="%quizzes" toggleGroup="$option" />
+                        <RadioButton fx:id="materialsBtn" mnemonicParsing="false" onAction="#allMaterialsAction" prefWidth="100.0" text="%allMaterials" toggleGroup="$option" />
+                    </buttons>
+                </ButtonBar>
+            </items>
+        </ToolBar>
+    </top>
+   <center>
+      <ListView fx:id="listView" prefHeight="305.0" prefWidth="1097.0" style="-fx-background-color: #d6d4d6;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="100.0" top="10.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding></ListView>
+   </center>
+</BorderPane>

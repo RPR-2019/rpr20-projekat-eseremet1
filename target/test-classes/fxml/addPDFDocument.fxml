@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <ImageView disable="true" fitHeight="300.0" fitWidth="500.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+            <image>
+                <Image url="@../images/etfPicture.jpg" />
+            </image>
+            <GridPane.margin>
+                <Insets />
+            </GridPane.margin>
+            <effect>
+                <MotionBlur radius="4.0" />
+            </effect>
+        </ImageView>
+        <VBox alignment="CENTER" prefHeight="279.0" prefWidth="500.0" spacing="20.0">
+            <children>
+                <Button fx:id="loadBtn" mnemonicParsing="false" onAction="#uploadPDFAction" prefHeight="26.0" prefWidth="205.0" text="%choosePDF" VBox.vgrow="ALWAYS" />
+            <ChoiceBox fx:id="visibilityBox" prefWidth="150.0" />
+                <Label fx:id="pdfNameLabel" />
+            <Button fx:id="finishBtn" defaultButton="true" mnemonicParsing="false" onAction="#cancelAction" text="%finish" />
+            </children>
+        </VBox>
+    </children>
+</GridPane>

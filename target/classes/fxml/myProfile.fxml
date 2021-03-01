@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="1513.0" style="-fx-background-color: #a6a2a5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@../css/controlMaterial.css" />
+    </stylesheets>
+    <stylesheets>
+        <URL value="@../css/icons.css" />
+    </stylesheets>
+
+    <left>
+        <VBox style="-fx-background-color: #a6a2a5;" BorderPane.alignment="CENTER">
+            <children>
+                <HBox layoutX="10.0" layoutY="103.0" prefWidth="266.0">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <children>
+                        <Button mnemonicParsing="false" style="-fx-background-color: #a6a2a5; -fx-text-fill: white;" />
+                        <Label prefHeight="35.0" prefWidth="196.0" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;">
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin></Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </BorderPane.margin>
+        </VBox>
+    </left>
+    <center>
+        <VBox alignment="CENTER" prefHeight="519.0" prefWidth="973.0" style="-fx-background-color: #d6d4d6;">
+            <children>
+                <HBox alignment="CENTER" prefHeight="0.0" prefWidth="1202.0" VBox.vgrow="ALWAYS">
+                    <children>
+                  <VBox prefHeight="315.0" prefWidth="281.0">
+                     <children>
+                        <Button fx:id="imageUser" alignment="TOP_LEFT" maxHeight="200.0" maxWidth="200.0" mnemonicParsing="false" onAction="#imageAction" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                        <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="394.0" prefWidth="150.0" spacing="10.0">
+                            <children>
+                                <Label fx:id="nameLabel" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%name">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                                <Label fx:id="surnameLabel" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;" text="%surname">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                                <Label fx:id="usernameLabel" layoutX="10.0" layoutY="45.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%username">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                        <VBox>
+                           <children>
+                                      <Label fx:id="passwordLabel" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;" text="%password">
+                                          <padding>
+                                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                          </padding>
+                                      </Label>
+                           </children>
+                        </VBox>
+                                <Label fx:id="emailLabel" layoutX="10.0" layoutY="116.0" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;" text="%email">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="394.0" prefWidth="511.0" spacing="10.0">
+                            <children>
+                                <Label fx:id="nameField" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                                <Label fx:id="surnameField" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #a6a2a5;">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                                <Label fx:id="usernameField" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                                <Label fx:id="passwordField" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-background-color: #a6a2a5;">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                                <Label fx:id="emailField" maxWidth="1.7976931348623157E308" style="-fx-font-size: 16px; -fx-fill: white; -fx-background-color: #bf5c4e;">
+                                    <padding>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </children></HBox>
+            <Button fx:id="changeBtn" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#changePassword" text="%changePassword">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="30.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            </children>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox alignment="BOTTOM_LEFT" depthTest="DISABLE" prefHeight="185.0" prefWidth="1508.0" BorderPane.alignment="TOP_LEFT">
+            <children>
+                <ImageView fitHeight="170.0" fitWidth="300.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <viewport>
+                        <Rectangle2D />
+                    </viewport>
+                    <image>
+                        <Image url="@../images/etfPicture.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="170.0" fitWidth="300.0" opacity="0.67" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/etfPicture5.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="170.0" fitWidth="320.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/etfPicture2.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="170.0" fitWidth="300.0" opacity="0.68" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/etfPicture3.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="170.0" fitWidth="300.0" opacity="0.66" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/etfPicture4.jpg" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="170.0" fitWidth="300.0" layoutX="311.0" layoutY="11.0" opacity="0.67" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/etfPicture5.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </BorderPane.margin>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </HBox>
+    </bottom>
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu fx:id="languageMenu" mnemonicParsing="false" text="%language">
+                            <items>
+                                <MenuItem fx:id="bosnianMenu" mnemonicParsing="false" onAction="#bosnianAction" text="%bosnian" />
+                                <MenuItem fx:id="englishMenu" mnemonicParsing="false" onAction="#englishAction" text="%english" />
+                            </items>
+                        </Menu>
+                        <Menu fx:id="helpMenu" text="%_help">
+                            <items>
+                                <MenuItem fx:id="aboutMenu" onAction="#aboutAction" text="%_about" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <ToolBar nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: transparent;">
+                    <items>
+                        <Button fx:id="logoutBtn" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#logoutAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;" />
+                        <Button fx:id="backBtn" layoutX="10.0" layoutY="10.0" maxHeight="36.0" maxWidth="44.0" minHeight="36.0" minWidth="43.0" mnemonicParsing="false" onAction="#backAction" prefHeight="36.0" prefWidth="44.0" style="-fx-background-color: transparent;" />
+                    </items>
+                </ToolBar>
+            </children>
+        </VBox>
+    </top>
+</BorderPane>
