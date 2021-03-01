@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class ProfileController {
