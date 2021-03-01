@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.project;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,16 +36,19 @@ public class PasswordController {
         } else {
             student = (Student) user;
         }
+
+    }
+    @FXML
+    public void initialize() throws IOException {
         Tooltip toolTip1 = new Tooltip();
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        if(bundle.getLocale().toString().equals("bs")) {
+        if (bundle.getLocale().toString().equals("bs")) {
             toolTip1.setText("Lozinka mora imati barem 8 znakova, te veliko, malo slovo i broj!");
         } else {
             toolTip1.setText("Password must be at least 8 characters long and must have uppercase, lowercase and number");
         }
         newPasswordField.setTooltip(toolTip1);
     }
-
 
     public void changeAction(ActionEvent actionEvent) throws IOException {
         boolean correct = true;
