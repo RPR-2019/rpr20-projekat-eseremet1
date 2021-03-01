@@ -17,10 +17,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -31,6 +28,7 @@ public class PasswordControllerTest {
     public void start (Stage stage) throws Exception {
         Parent root = null;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        Locale.setDefault(new Locale("en", "US"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/changePassword.fxml"), bundle);
         PasswordController passwordController =new PasswordController(new Professor(1,"Elma","Šeremet","eseremet1@etf.unsa.ba","eseremet1","Seremet12","https://i.giphy.com/media/yFQ0ywscgobJK/giphy_s.gif"));
         loader.setController(passwordController);
@@ -53,7 +51,7 @@ public class PasswordControllerTest {
         robot.write("elma");
         robot.clickOn("#changeBtn");
         check(
-                "ba.unsa.etf.rpr.project.Password must be at least 8 characters long!", robot);
+                "Password must be at least 8 characters long!", robot);
         robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
 
     }
@@ -68,7 +66,7 @@ public class PasswordControllerTest {
         robot.write("elma1");
         robot.clickOn("#changeBtn");
         check(
-                "Not confirmed the same password!", robot);
+                "Password and confirm password does not match!", robot);
         robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
     }
 

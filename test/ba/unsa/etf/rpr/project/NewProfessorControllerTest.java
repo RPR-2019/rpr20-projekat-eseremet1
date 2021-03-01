@@ -18,10 +18,7 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,6 +30,7 @@ public class NewProfessorControllerTest {
         Parent root = null;
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            Locale.setDefault(new Locale("bs", "BA"));
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addProfessor.fxml"), bundle);
             NewProfessorController professorContoller=new NewProfessorController(null, materialManagementDAO.subjects());
             loader.setController(professorContoller);

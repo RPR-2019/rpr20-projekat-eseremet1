@@ -19,10 +19,7 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,6 +32,7 @@ public class LogInControllerTest {
         @Start
         public void start (Stage stage) throws Exception {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            Locale.setDefault(new Locale("bs", "BA"));
             FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/logIn.fxml" ), bundle);
             Parent root = loader.load();
             stage.setScene(new Scene(root, 1200, 700));
@@ -79,9 +77,8 @@ public class LogInControllerTest {
         robot.clickOn("#passwordField");
         robot.write("admin");
         robot.clickOn("#logInBtn");
-        check(
-                null, "Uspješno ste prijavljeni kao administrator!", robot);
-        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
+        Button professorBtn = robot.lookup("#proffesorBtn").queryAs(Button.class);
+        robot.clickOn("#proffesorBtn");
     }
 
     @Test
@@ -95,14 +92,11 @@ public class LogInControllerTest {
         robot.clickOn("#passwordField");
         robot.write("Seremet123");
         robot.clickOn("#logInBtn");
-        check(
-                null, "Uspješno ste prijavljeni kao profesor!", robot);
-        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
+        Button review = robot.lookup("#reviewBtn").queryAs(Button.class);
     }
 
     @Test
     public void testlogInStudentFxRobot (FxRobot robot) {
-
 
         logInBtn = robot.lookup("#logInBtn").queryAs(Button.class);
         passwordField = robot.lookup("#passwordField").queryAs(PasswordField.class);
@@ -112,37 +106,9 @@ public class LogInControllerTest {
         robot.clickOn("#passwordField");
         robot.write("Seremet123");
         robot.clickOn("#logInBtn");
-        check(
-                null, "Uspješno ste prijavljeni kao student!", robot);
-        robot.press(KeyCode.ENTER).release(KeyCode.ENTER);
+        Button review = robot.lookup("#reviewBtn").queryAs(Button.class);
     }
 
-
-    public void check(final String expectedHeader, final String expectedContent, FxRobot robot) {
-        final javafx.stage.Stage actualAlertDialog = getTopModalStage(robot);
-        assertNotNull(actualAlertDialog);
-
-        final DialogPane dialogPane = (DialogPane) actualAlertDialog.getScene().getRoot();
-        assertEquals(expectedHeader, dialogPane.getHeaderText());
-        assertEquals(expectedContent, dialogPane.getContentText());
-
-
-    }
-
-    private javafx.stage.Stage getTopModalStage(FxRobot robot) {
-
-        // Get a list of windows but ordered from top[0] to bottom[n] ones.
-        // It is needed to get the first found modal window.
-        final List<Window> allWindows = new ArrayList<>(robot.robotContext().getWindowFinder().listWindows());
-        Collections.reverse(allWindows);
-
-        return (javafx.stage.Stage) allWindows
-                .stream()
-                .filter(window -> window instanceof javafx.stage.Stage)
-                .filter(window -> ((javafx.stage.Stage) window).getModality() == Modality.APPLICATION_MODAL)
-                .findFirst()
-                .orElse(null);
-    }
 
     @BeforeEach
     public void reset() throws SQLException {

@@ -11,6 +11,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -21,6 +22,7 @@ public class HomeAdminControllerTest {
     @Start
     public void start (Stage stage) throws Exception {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        Locale.setDefault(new Locale("bs", "BA"));
         FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/homeAdmin.fxml" ), bundle);
         Parent root = loader.load();
         stage.setScene(new Scene(root, 1200, 700));

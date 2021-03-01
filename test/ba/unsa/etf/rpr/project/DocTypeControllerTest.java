@@ -13,6 +13,7 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 import org.w3c.dom.Text;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 @ExtendWith(ApplicationExtension.class)
@@ -21,6 +22,7 @@ public class DocTypeControllerTest {
     public void start (Stage stage) throws Exception {
         Parent root = null;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        Locale.setDefault(new Locale("bs", "BA"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/chooseDocType.fxml"), bundle);
         DocTypeController docTypeController = new DocTypeController(new Subject(2,"RPR"), new Professor(1,"Elma","Šeremet","eseremet1@etf.unsa.ba","eseremet1","Seremet12","https://i.giphy.com/media/yFQ0ywscgobJK/giphy_s.gif"));
         loader.setController(docTypeController);

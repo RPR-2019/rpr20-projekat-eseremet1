@@ -16,10 +16,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -31,6 +28,7 @@ public class HomeStudentControllerTest {
 
         Parent root = null;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        Locale.setDefault(new Locale("bs", "BA"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/homeStudent.fxml"), bundle);
         MaterialManagementDAO materialManagementDAO = MaterialManagementDAO.getInstance();
         HomeStudentController studentController=new HomeStudentController(materialManagementDAO.searchStudent("eseremet2"));

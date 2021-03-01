@@ -11,6 +11,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -21,6 +22,7 @@ public class InitialControllerTest {
     @Start
     public void start (Stage stage) throws Exception {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            Locale.setDefault(new Locale("bs", "BA"));
             FXMLLoader loader = new FXMLLoader( getClass().getResource("/fxml/initial.fxml" ), bundle);
             Parent root = loader.load();
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
