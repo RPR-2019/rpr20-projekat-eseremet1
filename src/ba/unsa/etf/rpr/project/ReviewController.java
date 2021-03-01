@@ -134,8 +134,11 @@ public class ReviewController {
                 //spisak bez tog izbrisanog
                 String finalNameFile = nameFile;
                 ArrayList<String> withoutFile = collection1.stream().filter(name -> !name.equals(finalNameFile)).collect(Collectors.toCollection(ArrayList::new));
+                collection1.remove(nameFile);
                 ObservableList<String> result = FXCollections.observableArrayList(withoutFile);
+                collection2.remove(nameFile);
                 if(nameFile.contains("-QUIZ")) {
+                    collection3.remove(nameFile);
                     nameFile=nameFile.substring(0,nameFile.length()-5);
                 }
                 File file = new File("materials", nameFile);
